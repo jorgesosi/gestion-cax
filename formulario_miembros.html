@@ -4,12 +4,124 @@
 	
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
 	<link rel="stylesheet" href="css/bootstrap.css">
+	<!-- <link type="text/css" href="css/inicio.css" rel="stylesheet" />  -->
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 
-	<h1> Pantalla de Formulario de Miembros</h1>
+	<div class="container">
+		<div class="row"> 
+			<div class="col-med-12"> 	
+				<h1> Pantalla de Formulario de Miembros</h1>
+			</div>
+		</div>
+			<div class="col-md-12"> 	
+				Formulario de ingreso 1
+			</div>
+		<div class="row"> 
+			<div class="col-md-2">
+			</div>
+			<div class="col-md-8"> 	
+				<form class="form-horizontal">
+	  				<div class="form-group">
+	    				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+	    					<div class="col-sm-10">
+	      						<input type="email" class="form-control" id="inputEmail3" placeholder="E-mail">
+	    					</div>
+	  				</div>	   					
+	  				<div class = "form-group">
+	  					<label for="text" class="col-sm-2 control-label">Nombre</label>
+		  					<div class="col-sm-10">
+		    					<input type="text" class="form-control" id="textNombre" placeholder="Ingrese Nombre">
+		    				</div>
+		    		</div>
+	    			
+	    			<div class = "form-group">	
+	    				<label for="text" class="col-sm-2 control-label">Apellido</label>
+		    				<div class="col-sm-10">
+		    					<input type="text" class="form-control" id="textApellido" placeholder="Ingrese Apellido">
+		    				</div>
+	    			</div>
+	    			<div class = "form-group">
+	    				<label for "text" class="col-sm-2 control-label">Domicilio</label>
+	    				<div class="col-sm-10">
+	    					<input type="text" class="form-control" id="texDomicilio"placeholder="Ingrese Domicilio">
+	    				</div>
+	    			</div>
+	    			<div class = "form-group">
+	    				<label for "text" class="col-sm-2 control-label">D.N.I</label>
+	    				<div class="col-sm-10">
+	    					<input type="text" class="form-control" id="textDNI" placeholder="Ingrese Numero de Documento">
+	    				</div>
+	    			</div>
+	    			<div class = "form-group">
+	    				<label for "text" class="col-sm-2 control-label">Celular</label>
+	    				<div class="col-sm-10">
+	    					<input type="text" class="form-control" id="textCelular" placeholder="Ingrese Numero de Celular">
+	    				</div>
+	    			</div>
+	    			<div class = "form-group">
+	    				<label for "text" class="col-sm-2 control-label">Tel. Fijo dia</label>
+	    				<div class="col-sm-10">
+	    					<input type="text" class="form-control" id="textTelDia"placeholder="Ingrese Numero de Telefono">
+	    				</div>
+	    			</div>
+	    			<div class = "form-group">
+	    				<label for "text" class="col-sm-2 control-label">Tel. Fijo Noche</label>
+	    				<div class="col-sm-10">
+	    					<input type="text" class="form-control"id="textTelNoche" placeholder="Ingrese Numero de Telefono">
+	    				</div>
+	    			</div>
+	    			
+	    			<div class = "col-md-2">
+	    			</div>
+	    			
+	    			<div class ="form-group">
+		    			<div class="radio-inline">
+		  					<label>
+		    				<input type="radio" name="inlineoptionsRadios" id="optionsRadios1" value="option1" checked>
+		    					Activo	
+		  					</label>
+						</div>
+						<div class="radio-inline">
+		  					<label>
+		    				<input type="radio" name="inlineoptionsRadios" id="optionsRadios2" value="option2" checked>
+		    					Apoyo	
+		  					</label>
+						</div>
+						<div class="radio-inline">
+		  					<label>
+		    				<input type="radio" name="inlineoptionsRadios" id="optionsRadios3" value="option3" checked>
+		    					Aspirante	
+		  					</label>
+						</div>
+					</div>
 
+					<div class = "form-group">
+						<div class="checkbox">
+						 	<label class="checkbox-inline">
+							 	<input type="checkbox" id="inlineCheckbox1" value="option1"> Guardia
+							</label>
+							<label class="checkbox-inline">
+							 	 <input type="checkbox" id="inlineCheckbox2" value="option2"> Medico
+							</label>
+							<label class="checkbox-inline">
+							  	<input type="checkbox" id="inlineCheckbox3" value="option3"> Perro
+							</label>
+						</div>
+	    			</div>
+
+	    			<div class="form-group">    
+	    				<div class="col-sm-offset-2 col-sm-10">
+	      					<button type="submit" class="btn btn-default">Aceptar</button>
+	    				</div>
+	  				</div>
+				</form>	
+			</div>
+			<div class="col-md-2"> 	
+			</div>
+		</div>
+	</div>	
 
 </body>
 </html>
