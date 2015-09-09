@@ -1,15 +1,54 @@
 <html>
 <head>
-	<title> Comisión de Auxilio - Sistema de Gestion de Disponibilidad de Miembros de Auxilio  </title>
+	<title> Listado_de_Miembros</title>
 	
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+	<!-- Navegador-->
+<nav style="background-color:#ececec"class="navbar navbar-default navbar-static-top" role="navigation">
+	<button type="button" class="btn btn-default navbar-btn">Entrar</button>
+	<a class="navbar-brand" href="prueba_tablas.html">CAB</a>
+</nav>
+	<p></p>
+	<!-- Botones y barra de busqueda-->
+<div class="row"> 
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-5">
+		<input class="form-control input-m" type="text" placeholder="Buscar por Nombre o Apellido...">
+    </div>
+    <div class="col-md-1">
+        <button type="button" class="btn  btn-default btn-x">Buscar</button>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-2">
+    	<button type="button" class="btn  btn-default btn-m">Agregar +</button>
+    </div>
 
-	<h1> Pantalla de listado de miembros </h1>
-
-
+</div>
+<!-- Tabla-->
+<div class="row"> 
+	<div class="col-md-2">
+	</div>
+	<div class="col-md-8">
+	<table class="table table-condensed table-hover table-bordered" style="background-color:#ececec" >
+		<!-- Datos de las tablas de prueba-->
+		<tr><th>Nombre</th><th>Apellido</th><th>Telefono </th><th>Tipo </th><th>Opciones</th></tr>
+		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><a href="prueba_tablas.html">Editar</a></td></tr>
+		<tr><td>Marta<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default btn-lg btn-block">Editar</button></td></tr>
+		<tr><td>Jose<td>Perez</td><td>154823655 </td><td>Medico </td><td><center><a href="editar.php"><button type="button" class="btn  btn-default">Editar</button></a></center></td></tr>
+		<tr><td>Mariano<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default btn-xs">Editar</button></td></tr>
+		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td>
+			<button type="button" class="btn  btn-default">Editar</button></td></tr>
+		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default">Editar</button></td></tr>
+		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default">Editar</button></td></tr>
+		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default">Editar</button></td></tr>
+	</table> 
+	</div>
+</div>
 </body>
 </html>
