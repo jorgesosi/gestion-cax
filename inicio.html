@@ -5,12 +5,149 @@
 	
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
 	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+<!-- Navegador-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<nav role="navigation" class="navbar navbar-default navbar-inverse">
+				<div class="navbar-header">
 
-	<h1> Pantalla de inicio </h1>
+					<a class="navbar-brand" href="inicio.html"><img src="img/logoComAux.jpg" id="img" width="50px" class="img-circle"></a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="inicio.html">Inicio</a></li>
+					<li><a href="listado_miembros.html">Listado</a></li>
+					<li><a href="formulario_miembros.html">Ingresar Nuevo</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><form class="navbar-form navbar-right" action="listado_miembros.html" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Nombre o apellido">
+						</div>
+						<button type="submit" class="btn btn-danger">Buscar</button>
+					</form></li>
+					<li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-5">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h1>Disponibles hoy</h1>
+				</div>
+				<div class="panel-body">
+					<p></p><p></p>
+					<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
+						<!-- Datos de las tablas de prueba-->
+						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th>
+						</tr>
+						<tr class="danger"><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr class="danger"><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- Segunda Tabla-->
+		<div class="col-md-5">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h1>Disponibles mañana</h1>
+				</div>
+				<div class="pannel -body">
+					<p></p><p></p>
+					<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
+						<!-- Datos de las tablas de prueba-->
+						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th>
+						</tr>
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+
+						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+							<td>Marcelo</td>
+							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+		</div>
 
 
+
+
+	</div>
+</div>
+</div>
 </body>
 </html>

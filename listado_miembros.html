@@ -4,50 +4,174 @@
 	
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
 	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js"></script>
 </head>
-<body>
-	<!-- Navegador-->
-<nav style="background-color:#ececec"class="navbar navbar-default navbar-static-top" role="navigation">
-	<button type="button" class="btn btn-default navbar-btn">Entrar</button>
-	<a class="navbar-brand" href="prueba_tablas.html">CAB</a>
-</nav>
-	<p></p>
-	<!-- Botones y barra de busqueda-->
-<div class="row"> 
-	<div class="col-md-2">
-	</div>
-	<div class="col-md-5">
-		<input class="form-control input-m" type="text" placeholder="Buscar por Nombre o Apellido...">
-    </div>
-    <div class="col-md-1">
-        <button type="button" class="btn  btn-default btn-x">Buscar</button>
-    </div>
-    <div class="col-md-1">
-    </div>
-    <div class="col-md-2">
-    	<button type="button" class="btn  btn-default btn-m">Agregar +</button>
-    </div>
+<!-- Navegador-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<nav role="navigation" class="navbar navbar-default navbar-inverse">
+				<div class="navbar-header">
 
-</div>
-<!-- Tabla-->
-<div class="row"> 
-	<div class="col-md-2">
+					<a class="navbar-brand" href="inicio.html"><img src="img/logoComAux.jpg" id="img" width="50px" class="img-circle"></a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="inicio.html">Inicio</a></li>
+					<li><a href="listado_miembros.html">Listado</a></li>
+					<li><a href="formulario_miembros.html">Ingresar Nuevo</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><form class="navbar-form navbar-right" action="listado_miembros.html" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Nombre o apellido">
+						</div>
+						<button type="submit" class="btn btn-danger">Buscar</button>
+					</form></li>
+					<li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+				</ul>
+			</nav>
+		</div>
 	</div>
-	<div class="col-md-8">
-	<table class="table table-condensed table-hover table-bordered" style="background-color:#ececec" >
-		<!-- Datos de las tablas de prueba-->
-		<tr><th>Nombre</th><th>Apellido</th><th>Telefono </th><th>Tipo </th><th>Opciones</th></tr>
-		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><a href="prueba_tablas.html">Editar</a></td></tr>
-		<tr><td>Marta<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default btn-lg btn-block">Editar</button></td></tr>
-		<tr><td>Jose<td>Perez</td><td>154823655 </td><td>Medico </td><td><center><a href="editar.php"><button type="button" class="btn  btn-default">Editar</button></a></center></td></tr>
-		<tr><td>Mariano<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default btn-xs">Editar</button></td></tr>
-		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td>
-			<button type="button" class="btn  btn-default">Editar</button></td></tr>
-		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default">Editar</button></td></tr>
-		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default">Editar</button></td></tr>
-		<tr><td>Claudio<td>Perez</td><td>154823655 </td><td>Medico </td><td><button type="button" class="btn  btn-default">Editar</button></td></tr>
-	</table> 
+	<!-- Botones y barra de busqueda-->
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-5">
+			<form class="form-group" action="listado_miembros.html" role="search">
+				<input type="text" class="form-control" placeholder="Nombre o apellido">
+		</div>
+		<div class="col-md-1">
+			<button type="submit" class="btn  btn-primary btn-x">Buscar</button></a>
+			</form>
+		</div>
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-2">
+			<a href="formulario_miembros.html"><button type="button" class="btn  btn-success btn-m">Agregar +</button></a>
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+	<!-- Tabla-->
+	<div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10">
+			<p></p><p></p>
+			<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
+				<!-- Datos de las tablas de prueba-->
+				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th>Tipo </th>
+					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th></th><th></th><th></th>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="listado_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="listado_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="listado_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="listado_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="formulario_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="formulario_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="formulario_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="formulario_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+				<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
+					<td>Marcelo</td>
+					<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
+					<td>Medico </td>
+					<td>Anasagasti 842</td>
+					<td>294-4823655</td>
+					<td>294-4823655</td>
+					<td><a title="Editar" href="formulario_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-pencil"</span></button></a></td>
+					<td><a title="Disponibilidad" href="formulario_miembros.html"><button type="button" class="btn  btn-success"><span class="glyphicon glyphicon-ok"</span></button></a></td>
+					<td><a title="Eliminar" href="formulario_miembros.html"><button type="button" class="btn  btn-danger"><span class="glyphicon glyphicon-remove"</span></button></a></td>
+				</tr>
+
+				<div class="col-md-1">
+				</div>
+
+
+
+			</table>
+		</div>
 	</div>
 </div>
 </body>
