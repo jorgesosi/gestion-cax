@@ -1,0 +1,2 @@
+-- Muestra el apellido, nombre, celular, domicilio, categoria,fijo de dia, fijo de noche y id de miembro.
+SELECT idmiembro,apellido,nombre,celular,idcategoria,domicilio,fijoDia,fijoNoche FROM CAX.miembro
