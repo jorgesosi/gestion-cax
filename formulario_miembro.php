@@ -1,3 +1,35 @@
+<?
+require("include/connect_db.php");
+
+$id="0";
+$nombre="";
+$boton="nuevo";
+$email="";
+$domicilio="";
+$apellido="";
+$dni="";
+$celular="";
+$fijoDia="";
+$fijoNoche="";
+$fechaNacimiento="";
+
+if (isset($_GET['id'])){
+	$id=$_GET['id'];
+	$boton="Modificar";
+	$query = 'select * from CAX.miembro where idmiembro="'.$id.'";';
+	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	$row=mysql_fetch_object($result);
+	$nombre=$row->nombre;
+	$email=$row->email;
+	$domicilio=$row->domicilio;
+	$apellido=$row->apellido;
+	$dni=$row->dni;
+	$celular=$row->celular;
+	$fijoDia=$row->fijoDia;
+	$fijoNoche=$row->fijoNoche;
+	$fechaNacimiento=$row->fechaNacimiento;
+}
+?>
 <html>
 <head>
 	<title> Comisión de Auxilio - Sistema de Gestion de Disponibilidad de Miembros de Auxilio  </title>
@@ -47,15 +79,17 @@
 		<div class="col-md-2">
 		</div>				
 		<div class="row"> <!--inicio  fila  contenedora formulario-->
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="include/servicio_miembro.php" method="POST" name="miembro">
 				<div class = "row">
 					<div class="col-md-2">
 					</div>
 					<div class="col-md-8"> 	
 						<div class="form-group">
-		    				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+		    				<label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
 		    					<div class="col-sm-10">
-		      						<input type="email" class="form-control" id="inputEmail3" placeholder="E-mail">
+
+		      						<? echo("<input type='text' name='nombre' value='$nombre'>");
+								echo ("<input type='hidden' name='id' value='$id'>"); ?>
 		    					</div>
 		  				</div>
 		  			</div>	
@@ -65,9 +99,9 @@
 					</div>
 					<div class ="col-md-8">
 		  				<div class = "form-group">
-		  					<label for="text" class="col-sm-2 control-label">Nombre</label>
+		  					<label for="text" class="col-sm-2 control-label">Apellido</label>
 			  					<div class="col-sm-10">
-			    					<input type="text" class="form-control" id="textNombre" placeholder="Ingrese Nombre">
+			    					<? echo("<input type='text' name='apellido' value='$apellido'>"); ?>
 			    				</div>
 			    		</div>
 			    	</div>	
@@ -77,9 +111,9 @@
 					</div>
 					<div class ="col-md-8">	
 		    			<div class = "form-group">	
-		    				<label for="text" class="col-sm-2 control-label">Apellido</label>
+		    				<label for="text" class="col-sm-2 control-label">email</label>
 			    				<div class="col-sm-10">
-			    					<input type="text" class="form-control" id="textApellido" placeholder="Ingrese Apellido">
+			    					<? echo("<input type='text' name='email' value='$email'>"); ?>
 			    				</div>
 		    			</div>
 		    		</div>	
@@ -91,7 +125,7 @@
 						<div class = "form-group">
 		    				<label for "text" class="col-sm-2 control-label">Domicilio</label>
 		    				<div class="col-sm-10">
-		    					<input type="text" class="form-control" id="texDomicilio"placeholder="Ingrese Domicilio">
+		    					<? echo("<input type='text' name='domicilio' value='$domicilio'>"); ?>
 		    				</div>
 		    			</div>
 		    		</div>
@@ -103,7 +137,7 @@
 		    			<div class = "form-group">
 		    				<label for "text" class="col-sm-2 control-label">D.N.I</label>
 		    				<div class="col-sm-10">
-		    					<input type="text" class="form-control" id="textDNI" placeholder="Ingrese Numero de Documento">
+		    					<? echo("<input type='text' name='dni' value='$dni'>"); ?>
 		    				</div>
 		    			</div>
 		    		</div>
@@ -115,7 +149,7 @@
 		    			<div class = "form-group">
 		    				<label for "text" class="col-sm-2 control-label">Celular</label>
 		    				<div class="col-sm-10">
-		    					<input type="text" class="form-control" id="textCelular" placeholder="Ingrese Numero de Celular">
+		    					<? echo("<input type='text' name='celular' value='$celular'>"); ?>
 		    				</div>
 		    			</div>
 		    		</div>
@@ -127,7 +161,7 @@
 		    			<div class = "form-group">
 		    				<label for "text" class="col-sm-2 control-label">Tel. Fijo dia</label>
 		    				<div class="col-sm-10">
-		    					<input type="text" class="form-control" id="textTelDia"placeholder="Ingrese Numero de Telefono">
+		    					<? echo("<input type='text' name='fijoDia' value='$fijoDia'>"); ?>
 		    				</div>
 		    			</div>
 		    		</div>
@@ -137,9 +171,9 @@
 					</div>
 					<div class = "col-md-8">
 		    			<div class = "form-group">
-		    				<label for "text" class="col-sm-2 control-label">Tel. Fijo dia2</label>
+		    				<label for "text" class="col-sm-2 control-label">Tel. Fijo noche</label>
 		    				<div class="col-sm-10">
-		    					<input type="text" class="form-control" id="textTelDia"placeholder="Ingrese Numero de Telefono">
+		    					<? echo("<input type='text' name='fijoNoche' value='$fijoNoche'>"); ?>
 		    				</div>
 		    			</div>
 		    		</div><!--fin primera fila--><!--fila carga datos personales-->
@@ -222,7 +256,6 @@
 	    	<div class="row">		
 	    			<div class="form-group">    
 	    				<div class="col-sm-offset-2 col-sm-10">
-	    					<button type="submit" class="btn btn-default">Disponibilidad</button>
 	      					<button type="submit" class="btn btn-default">Aceptar</button>
 
 	    				</div>
