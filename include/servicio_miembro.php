@@ -1,5 +1,4 @@
 <? require("connect_db.php");
-$orden=$_GET['orden'];
 $nombre=$_POST['nombre'];
 $id=$_POST['id'];
 $id1=$_GET['id1'];
@@ -11,18 +10,20 @@ $dni=$_POST['dni'];
 $fijoDia=$_POST['fijoDia'];
 $fijoNoche=$_POST['fijoNoche'];
 $fechaNacimiento=$_POST['fechaNacimiento'];
-if($orden=='1'){
+$password=$_POST['password'];
+if (isset($id1)){
 	echo $query="DELETE FROM CAX.miembro WHERE idmiembro='".$id1."';";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
-	header('Location: ../listadomiembro.php');
+	header('Location: ../listadomiembro.php?msg=1');
+	exit();
 }
 echo $id,$celular,$nombre,$apellido,$domicilio,$dni,$fijoDia,$fijoNoche,$fechaNacimiento;
 if($id=='0'){
-	$query="INSERT INTO CAX.miembro (email,celular,nombre,apellido,domicilio,dni,fijoDia,fijoNoche,fechaNacimiento) VALUE ('".$email."','".$celular."','".$nombre."','".$apellido."','".$domicilio."','".$dni."','".$fijoDia."','".$fijoNoche."','".$fechaNacimiento."');";
+	$query="INSERT INTO CAX.miembro (email,celular,nombre,apellido,domicilio,dni,fijoDia,fijoNoche,fechaNacimiento,password) VALUE ('".$email."','".$celular."','".$nombre."','".$apellido."','".$domicilio."','".$dni."','".$fijoDia."','".$fijoNoche."','".$password."',         '".$fechaNacimiento."');";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 }
 else {
-$query="UPDATE CAX.miembro SET email='".$email."',celular='".$celular."',nombre='".$nombre."',apellido='".$apellido."',domicilio='".$domicilio."',dni='".$dni."',fijoDia='".$fijoDia."',fijoNoche='".$fijoNoche."',fechaNacimiento='".$fechaNacimiento."' WHERE idmiembro='".$id."';";
+$query="UPDATE CAX.miembro SET email='".$email."',celular='".$celular."',nombre='".$nombre."',apellido='".$apellido."',domicilio='".$domicilio."',dni='".$dni."',fijoDia='".$fijoDia."',fijoNoche='".$fijoNoche."',fechaNacimiento='".$fechaNacimiento."',            password='".$password."'  WHERE idmiembro='".$id."';";
 $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 }
 

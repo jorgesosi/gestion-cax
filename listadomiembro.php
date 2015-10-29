@@ -1,7 +1,14 @@
 <html>
 <head>
 	<title> Listado_de_Miembros</title>
-	
+<script language="JavaScript"> 
+function pregunta(){
+	var blnRespuesta=confirm('¿Desea eliminar todos los datos de su perfil?');
+	return blnRespuesta;
+}
+</script> 
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
@@ -18,17 +25,15 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.html">Inicio</a></li>
-					<li><a href="listado_miembros.html">Listado</a></li>
-					<li><a href="formulario_miembros.html">Ingresar Nuevo</a></li>
+					<li><a href="listadomiembro.php">Listado</a></li>
+					<li><a href="formulario_miembro.php">Ingresar Nuevo</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><form class="navbar-form navbar-right" action="listado_miembros.html" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Nombre o apellido">
-						</div>
-						<button type="submit" class="btn btn-danger">Buscar</button>
-					</form></li>
+					<li><form  class="navbar-form navbar-right" method="post" action="listadomiembro.php?go"> 
+	     	 			<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
+	    	 			<input  type="submit" name="buscar" class="btn btn-danger" value="Buscar"> 
+	   	 			</form> </li>
 					<li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 				</ul>
 			</nav>
@@ -39,11 +44,11 @@
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-5">
-			<form class="form-group" action="listado_miembros.html" role="search">
-				<input type="text" class="form-control" placeholder="Nombre o apellido">
+			<form  class="form-group" method="post" action="listadomiembro.php?go"> 
+	     	 	<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
 		</div>
 		<div class="col-md-1">
-			<button type="submit" class="btn  btn-primary btn-x">Buscar</button></a>
+			<input  type="submit" name="buscar" class="btn btn-primary btn-x" value="Buscar">
 			</form>
 		</div>
 		<div class="col-md-1">
@@ -56,7 +61,9 @@
 		<div class="col-md-1">
 		</div>
 	</div>
-	<!-- Tabla-->
+	<? if (isset($_GET['msg'])){
+		echo ("Borrado");}?>
+			<!-- Tabla-->
 	<div class="row">
 		<div class="col-md-1">
 		</div>
@@ -69,8 +76,11 @@
 				</tr>
 				<?
 					require("include/connect_db.php");
-					$query = 'SELECT * FROM CAX.miembro;';
-					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+					if (isset($_POST['buscar'])){
+						$nombre=$_POST['name'];
+						$query = 'SELECT * FROM CAX.miembro WHERE nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';}
+					else {$query = 'SELECT * FROM CAX.miembro;';}
+					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); 
 				while ($row=mysql_fetch_object($result)){
 					echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 					echo ("<td>    $row->nombre</td>");
@@ -80,9 +90,16 @@
 					echo("<td>$row->fijoDia</td>");
 					echo("<td>$row->fijoNoche</td>");
 					echo("<td><a title='Editar' href='formulario_miembro.php?id=$row->idmiembro'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-pencil'</span></button></a></td>");
-					echo("<td><a title='Disponibilidad' href='formulario_miembros.html'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>");
-					echo("<td><a title='Eliminar' href='include/servicio_miembro.php?orden=1&id1=$row->idmiembro'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td></tr>");}
-				?>
+					echo("<td><a title='Disponibilidad' href='formulario_miembros.html'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>"); ?>
+					
+					<td>
+					<a title='Eliminar' href="include/servicio_miembro.php?id1=<?echo($row->idmiembro);?>"  onclick="return pregunta();"> 
+					<span class="glyphicon glyphicon-remove"> </span> 
+					</a>
+					</td></tr>
+
+				<? } ?>
+
 				<div class="col-md-1">
 				</div>
 

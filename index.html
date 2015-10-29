@@ -9,6 +9,13 @@
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
+	<script type="text/javascript"> / Pedimos al usuario que introduzca su nombre
+var nombre = prompt(“Introduzca su nombre”);
+// Pedimos confirmación
+if (confirm(“¿Seguro que su nombre es ”+nombre+”?”)) {
+// Respuesta afirmativa...
+alert(“Hola ”+nombre);
+}</script>
 	
 	<div class="container">
 	<div class="row"> 
@@ -23,7 +30,7 @@
 		
 		<div class="col-md-4" id="cuerpo"> 
 
-			<form id="form-login" action="inc/resultado.php" method="post">
+			<form id="form-login" action="include/servicio_ingreso.php" method="post">
                     <p style="font-size:20px"><label >Usuario:</label></p>
                         <input name="usuario" type="text" id="usuario" placeholder="Ingresa Usuario"></p>
  

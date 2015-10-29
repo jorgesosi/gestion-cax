@@ -10,6 +10,7 @@
 </head>
 <body>
 <!-- Navegador-->
+<!-- Navegador-->
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
@@ -20,17 +21,15 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.html">Inicio</a></li>
-					<li><a href="listado_miembros.html">Listado</a></li>
-					<li><a href="formulario_miembros.html">Ingresar Nuevo</a></li>
+					<li><a href="listadomiembro.php">Listado</a></li>
+					<li><a href="formulario_miembro.php">Ingresar Nuevo</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li><form class="navbar-form navbar-right" action="listado_miembros.html" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Nombre o apellido">
-						</div>
-						<button type="submit" class="btn btn-danger">Buscar</button>
-					</form></li>
+					<li><form  class="navbar-form navbar-right" method="post" action="listadomiembro.php?go"> 
+	     	 			<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
+	    	 			<input  type="submit" name="buscar" class="btn btn-danger" value="Buscar"> 
+	   	 			</form> </li>
 					<li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 				</ul>
 			</nav>

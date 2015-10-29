@@ -12,6 +12,7 @@ $celular="";
 $fijoDia="";
 $fijoNoche="";
 $fechaNacimiento="";
+$password="";
 
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
@@ -28,6 +29,7 @@ if (isset($_GET['id'])){
 	$fijoDia=$row->fijoDia;
 	$fijoNoche=$row->fijoNoche;
 	$fechaNacimiento=$row->fechaNacimiento;
+	$password=$row->password;
 }
 ?>
 <html>
@@ -40,32 +42,31 @@ if (isset($_GET['id'])){
 	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container"><!--crea el contenedor-->
-		<div class="row">
-			<div class="col-md-12">
-				<nav role="navigation" class="navbar navbar-default navbar-inverse">
-					<div class="navbar-header">
+<!-- Navegador-->
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<nav role="navigation" class="navbar navbar-default navbar-inverse">
+				<div class="navbar-header">
 
-						<a class="navbar-brand" href="inicio.html"><img src="img/logoComAux.jpg" id="img" width="50px" class="img-circle"></a>
-					</div>
-					<ul class="nav navbar-nav">
-						<li><a href="inicio.html">Inicio</a></li>
-						<li><a href="listado_miembros.html">Listado</a></li>
-						<li><a href="formulario_miembros.html">Ingresar Nuevo</a></li>
-					</ul>
+					<a class="navbar-brand" href="inicio.html"><img src="img/logoComAux.jpg" id="img" width="50px" class="img-circle"></a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href="inicio.html">Inicio</a></li>
+					<li><a href="listadomiembro.php">Listado</a></li>
+					<li><a href="formulario_miembro.php">Ingresar Nuevo</a></li>
+				</ul>
 
-					<ul class="nav navbar-nav navbar-right">
-						<li><form class="navbar-form navbar-right" action="listado_miembros.html" role="search">
-							<div class="form-group">
-								<input type="text" class="form-control" placeholder="Nombre o apellido">
-							</div>
-							<button type="submit" class="btn btn-danger">Buscar</button>
-						</form></li>
-						<li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
-					</ul>
-				</nav>
-			</div>
+				<ul class="nav navbar-nav navbar-right">
+					<li><form  class="navbar-form navbar-right" method="post" action="listadomiembro.php?go"> 
+	     	 			<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
+	    	 			<input  type="submit" name="buscar" class="btn btn-danger" value="Buscar"> 
+	   	 			</form> </li>
+					<li><a href="index.html"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+				</ul>
+			</nav>
 		</div>
+	</div>
 		<div class="row"> <!--inicio primera fila-->
 			<div class="col-md-12"> 	
 				<h1> Pantalla de Formulario de Miembros</h1>
@@ -174,6 +175,18 @@ if (isset($_GET['id'])){
 		    				<label for "text" class="col-sm-2 control-label">Tel. Fijo noche</label>
 		    				<div class="col-sm-10">
 		    					<? echo("<input type='text' name='fijoNoche' value='$fijoNoche'>"); ?>
+		    				</div>
+		    			</div>
+		    		</div>
+				<div class="col-md-2">
+					</div>
+					<div class="col-md-2">
+					</div>
+					<div class = "col-md-8">
+		    			<div class = "form-group">
+		    				<label class="col-sm-2 control-label">Password</label>
+		    				<div class="col-sm-10">
+		    					<? echo("<input type='password' name='password' value='$password'>"); ?>
 		    				</div>
 		    			</div>
 		    		</div><!--fin primera fila--><!--fila carga datos personales-->
