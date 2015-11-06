@@ -54,6 +54,12 @@ if (empty($_SESSION["id"]))
 			</nav>
 		</div>
 	</div>
+<?
+/*conexion a  la BD y query para mostrar disponble hoy y manana*/
+require("include/connect_db.php");
+$today ="select nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()  between fechaInicio and fechaFin;";
+$tomorrow="select nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+30  between fechaInicio and fechaFin;";
+?>
 	<div class="row">
 		<div class="col-md-1">
 		</div>
@@ -65,50 +71,21 @@ if (empty($_SESSION["id"]))
 				<div class="panel-body">
 					<p></p><p></p>
 					<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
-						<!-- Datos de las tablas de prueba-->
+						<!-- cabecera de la tabla de hoy-->
 						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th>
 						</tr>
-						<tr class="danger"><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr class="danger"><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
+<?
+/*codigo para cargar los datos en la tabla de hoy*/
+$result=mysql_query($today) or die('Consulta fallida: ' . mysql_error());
+while ($row = mysql_fetch_object($result))  {
+								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
+    							echo("<tr class='danger'><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
+								echo("<td>$row->nombre</td>");
+								echo("<td><span class='glyphicon glyphicon-earphone'></span>$row->celular </td>");
+								echo("<td><a title='Ver mas' href='listadomiembro.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
+								echo ("\t</tr>\n");
+        						}
+?>
 					</table>
 				</div>
 			</div>
@@ -122,38 +99,20 @@ if (empty($_SESSION["id"]))
 				<div class="pannel -body">
 					<p></p><p></p>
 					<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
-						<!-- Datos de las tablas de prueba-->
-						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th>
-						</tr>
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
-
-						<tr><td><span class="glyphicon glyphicon-user"</span> Perez</td>
-							<td>Marcelo</td>
-							<td><span class="glyphicon glyphicon-earphone"></span> 294-4823655 </td>
-							<td><a title="Ver mas" href="listado_miembros.html"><button type="button" class="btn  btn-info"><span class="glyphicon glyphicon-plus"</span></button></a></td>
-						</tr>
+						<!-- cabecera de la tabla de manana-->
+						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th></tr>
+<?
+/*codigo para cargar los datos en la tabla de manana*/
+$result=mysql_query($tomorrow) or die('Consulta fallida: ' . mysql_error());
+while ($row = mysql_fetch_object($result))  {
+								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
+    							echo("<tr class='danger'><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
+								echo("<td>$row->nombre</td>");
+								echo("<td><span class='glyphicon glyphicon-earphone'></span>$row->celular </td>");
+								echo("<td><a title='Ver mas' href='listadomiembro.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
+								echo ("\t</tr>\n");
+        						}
+?>
 					</table>
 				</div>
 			</div>
