@@ -92,7 +92,7 @@ function pregunta(){
 			<p></p><p></p>
 			<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 				<!-- Datos de las tablas de prueba-->
-				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th>Tipo </th>
+				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th>
 					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th></th><th></th><th></th>
 				</tr>
 				<?
@@ -106,7 +106,6 @@ function pregunta(){
 					echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 					echo ("<td>    $row->nombre</td>");
 					echo("<td><span class='glyphicon glyphicon-earphone'></span> $row->celular </td>");
-					echo("<td>Medico </td>");
 					echo("<td>$row->domicilio</td>");
 					echo("<td>$row->fijoDia</td>");
 					echo("<td>$row->fijoNoche</td>");

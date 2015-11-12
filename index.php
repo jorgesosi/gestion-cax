@@ -23,7 +23,16 @@
 		</div>
 		
 		<div class="col-md-4" id="cuerpo"> 
+			<? if (isset($_GET['msg'])){
+			echo ('<div class="alert alert-warning alert-dismissable">');
+  			echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+  			echo ('<strong>¡AVISO!</strong> Clave enviada</div>');}
+  			if (isset($_GET['mail'])){
+			echo ('<div class="alert alert-warning alert-dismissable">');
+  			echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+  			echo ('<strong>¡AVISO!</strong> Correo incorrecto</div>');}
 
+  			?>
 			<form id="form-login" action="include/servicio_ingreso.php" method="post">
                     <p style="font-size:20px"><label >Usuario:</label></p>
                         <input name="usuario" type="text" id="usuario" placeholder="Ingresa Usuario"></p>
@@ -36,7 +45,16 @@
   							echo ('<strong>¡ERROR!</strong> Usuario/Contraseña incorrecto. </div>');}?>
 			
                     <p id="bot"><input type="submit" id="submit" name="submit" value="Ingresar" class="boton"></p>
-                </form>	
+            </form>	
+            <button type="button" data-toggle="collapse" data-target="#recupero">¿Olvidaste tu clave?</button>
+            <div id="recupero" class="collapse">
+        		<form action="include/recupero.php" method="post">
+					<input name ="mail" type="text" placeholder="Ingresa mail">
+					<input type="submit" id="submit" name="submit" value="Recuperar" class="boton">
+				</form>
+			</div>	
+
+        
         
 		</div>
 		<div class="col-md-4"> 	

@@ -96,43 +96,48 @@ if (isset($_GET['id'])){
 			<h3>Formulario de miembro</h3><p></p>
 			<form class="form-horizontal" action="include/servicio_miembro.php" method="POST" name="miembro">
 				<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
-		      	<label for="inputEmail3" class="col-sm-2 control-label">Nombre</label>
+		      	<label  class="col-sm-2 control-label">Nombre</label>
 				<p><? echo("<input type='text' name='nombre' value='$nombre'>");?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">Apellido</label>
+				<label class="col-sm-2 control-label">Apellido</label>
 				<p><? echo("<input type='text' name='apellido' value='$apellido'>");?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">Password</label>
+				<label class="col-sm-2 control-label">Password</label>
 				<p><? echo("<input type='password' name='password' value='$password'>");?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+				<label class="col-sm-2 control-label">Email</label>
 				<p><? echo("<input type='text' name='email' value='$email'>"); ?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">Domicilio</label>
+				<label class="col-sm-2 control-label">Domicilio</label>
 				<p><? echo("<input type='text' name='domicilio' value='$domicilio'>");?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">DNI</label>
+				<label  class="col-sm-2 control-label">DNI</label>
 			  	<p><? echo("<input type='text' name='dni' value='$dni'>"); ?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">Celular</label>
+				<label  class="col-sm-2 control-label">Celular</label>
 			    <p><? echo("<input type='text' name='celular' value='$celular'>");?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">Tel fijo dia</label>
+				<label  class="col-sm-2 control-label">Tel fijo dia</label>
 		    	<p><? echo("<input type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
-				<label for="inputEmail3" class="col-sm-2 control-label">Tel fijo noche</label>
+				<label class="col-sm-2 control-label">Tel fijo noche</label>
 		    	<p><? echo("<input type='text' name='fijoNoche' value='$fijoNoche'>");?></p>
 	    		<h3>Categoria</h3> 	
 	    		<p></p>		
-		    		<input type="radio" name="categoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>
+		    		<input type="radio" name="idcategoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>
 		    		Principiante
-		    		<input type="radio" name="categoria"  value="2" <?if ($idcategoria==2)echo ('checked')?>>
+		    		<input type="radio" name="idcategoria"  value="2" <?if ($idcategoria==2)echo ('checked')?>>
 		    		Apoyo
-		    		<input type="radio" name="categoria"  value="3" <?if ($idcategoria==3)echo ('checked')?>>
+		    		<input type="radio" name="idcategoria"  value="3" <?if ($idcategoria==3)echo ('checked')?>>
 		    		Aspirante	
 				<p></p>
-					<input type="checkbox" name="catextra" value="1">Guardias
-					<input type="checkbox" name="catextra" value="2">Medico
-					<input type="checkbox" name="catextra" value="3">Perro
-			<h3>Habilidades</h3>	
-				<input type="checkbox" id="inlineCheckbox4" value="1">Roca   
-				<input type="checkbox" id="inlineCheckbox5" value="2">Hielo						
-				<input type="checkbox" id="inlineCheckbox6" value="3">Esqui   
-				<input type="checkbox" id="inlineCheckbox4" value="4">Cuerdas   
-				<input type="checkbox" id="inlineCheckbox5" value="5">Avalanchas   
-				<input type="checkbox" id="inlineCheckbox6" value="6">Rios/Kayak   
+			<h3>Habilidades</h3>
+			<? 	$query = 'SELECT idskil,nombre from CAX.skill ;';
+				$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+				$total=mysql_num_rows($result);
+				for($i=1;$i<=$total;$i++){
+					$row=mysql_fetch_object($result);
+					$consulta= "SELECT idskill FROM CAX.miembro_skill WHERE idmiembro='".$id."' AND 
+					idskill='".$i."';";
+					$resultado= mysql_query($consulta) or die('Consulta fallida: ' . mysql_error());
+					if (mysql_num_rows($resultado)!=0)
+						echo ("<input type='checkbox' name='hab".$i."' checked='checked' 
+							value='".$i."'> ".$row->nombre." ");
+					else echo ("<input type='checkbox' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
+				}
+			?>  
 			<p></p><p></p>
 			<button type="submit" class="btn btn-success">Aceptar</button>
 		</form>

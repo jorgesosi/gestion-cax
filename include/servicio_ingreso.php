@@ -3,7 +3,6 @@ require("connect_db.php");
 $nombre=$_POST['usuario']; 
 $password=$_POST['contrasenia'];
 
-//echo ("hola soy ".$nombre." mi contraseña es ".$password); 
 $query = "select nombre, password, idmiembro, apellido from CAX.miembro
 	  where nombre='".$nombre."' AND password='".$password."';";
 $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
