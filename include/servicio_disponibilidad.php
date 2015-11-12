@@ -54,12 +54,12 @@ function compare_date($str,$str1) {
 }
 
 if (check_date($desde)==true and check_date($hasta)==true){
-	$query ="select nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and(('".$desde."'between fechaInicio and fechaFin) or ('".$hasta."'between fechaInicio and fechaFin));";
+	$query ="select * from  CAX.disponibilidad where  disponibilidad.idmiembro='".$id."' and(('".$desde."'between fechaInicio and fechaFin) or ('".$hasta."'between fechaInicio and fechaFin));";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	$numero=mysql_num_rows($result);
 	$row=mysql_fetch_object($result);
 	
-	$query2="select nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and((fechaInicio between '".$desde."' and '".$hasta."') or ( fechaFin between '".$desde."' and '".$hasta."'));";
+	$query2="select 8 from CAX.disponibilidad where disponibilidad.idmiembro='".$id."'and((fechaInicio between '".$desde."' and '".$hasta."') or ( fechaFin between '".$desde."' and '".$hasta."'));";
 	$result2 = mysql_query($query2) or die('Consulta fallida: ' . mysql_error());
 	$numero2=mysql_num_rows($result2);
 	$row2=mysql_fetch_object($result2);
@@ -70,7 +70,12 @@ if (check_date($desde)==true and check_date($hasta)==true){
     		echo "location.href='../disponibilidad.php?idmiembro=".$id."'";
     		echo "</script>";
     //header("Location:../disponibilidad.php?idmiembro=".$id."");
-		}
+		//echo$query;
+        //echo$numero;
+        //exit();		
+	}
+
+
 		elseif($numero2!==0){
 			echo "<script type='text/javascript'>";
     		echo "alert('Ya existen fechas entre fecha desde o fecha hasta !');";
