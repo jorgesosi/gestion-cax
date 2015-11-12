@@ -58,7 +58,7 @@ if (empty($_SESSION["id"]))
 /*conexion a  la BD y query para mostrar disponble hoy y manana*/
 require("include/connect_db.php");
 $today ="select nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()  between fechaInicio and fechaFin;";
-$tomorrow="select nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+30  between fechaInicio and fechaFin;";
+$tomorrow="select nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+1  between fechaInicio and fechaFin;";
 ?>
 	<div class="row">
 		<div class="col-md-1">
