@@ -111,7 +111,7 @@ function pregunta(){
 					echo("<td>$row->fijoDia</td>");
 					echo("<td>$row->fijoNoche</td>");
 					echo("<td><a title='Editar' href='formulario_miembro.php?id=$row->idmiembro'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-pencil'</span></button></a></td>");
-					echo("<td><a title='Disponibilidad' href='formulario_miembros.html'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>"); ?>
+					echo("<td><a title='Disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>"); ?>
 					
 					<td>
 					<a title='Eliminar' href="include/servicio_miembro.php?id1=<?echo($row->idmiembro);?>"  onclick="return pregunta();"> 
