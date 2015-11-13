@@ -103,12 +103,11 @@ if (empty($_SESSION["id"]))
 								echo"<form action='../disponibilidad.html' method='POST'>\n"; //se crea un form  	
 								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
     							echo("<td>$row->fechaInicio</td>");
-								echo("<td>$row->fechaFin</td>");
-								echo("<td><a title='Eliminar' href='include/servicio_disponibilidad'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td>");
-								echo ("\t</tr>\n");	
-								echo"</form>\n";												//utiliza los valores de value
-        						}
-?>
+								echo("<td>$row->fechaFin</td>");?>
+								<td><a title='Eliminar' href='include/servicio_disponibilidad.php?idmiembro=<?echo($row->idmiembro);?>&iddisp=<?echo($row->iddisponibilidad);?>'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td>
+								</tr>	
+								</form>												
+        						<?}?>
 					
 					</table>
 				</div>
