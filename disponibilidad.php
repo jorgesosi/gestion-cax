@@ -15,6 +15,44 @@ if (empty($_SESSION["id"]))
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js"></script>
+		<!--estas lines incorporan los archivos necesarios para el datepicker -->
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <!-- funcion para dar formato al text de la fecha -->
+    <script>
+    $(function() {
+        $(".fecha").datepicker(
+            {
+                dateFormat: "yy/mm/dd",
+                dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+                dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                firstDay: 1,
+                gotoCurrent: true,
+                monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+                monthNamesShort:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep", "Oct","Nov","Dic"],
+                minDate: "-1D",
+                maxDate: "+30Y" ,
+                prevText: '&#x3c;&#x3c;Ant', 
+        		prevStatus: '',
+        		prevJumpText: '&#x3c;&#x3c', 
+        		prevJumpStatus: '',
+        		nextText: 'Sig&#x3e;&#x3e', 
+        		nextStatus: '',
+        		nextJumpText: '&#x3e;&#x3e', 
+        		nextJumpStatus: '',
+        		changeMonth: true ,
+        		changeYear:true
+            }
+        );
+    });
+    </script>
+    <style>
+        #fecha {width:100px;text-align:center;}
+    </style>
+
+
 </head>
 <body>
 <!-- Navegador-->
@@ -80,36 +118,39 @@ if (empty($_SESSION["id"]))
 				<table class'table table-condensed table-bordered table-striped' style='background-color:#ececec' >
 						<!-- Datos de las tablas de disponibilidad crea los encabezados-->
 
-						<tr><th>Desde</th><th>hasta</th><th>Nuevo</th><th></th></tr>
+				<tr><th>Desde</th><th>hasta</th><th></th><th>Nuevo</th></tr>
 
 				<form action='include/servicio_disponibilidad.php' method='POST'>  	
-				<tr class='danger'>
-    			<td><input type='text' name='desde' size='18px'></input></td>
-				<td><input type='text' name='hasta' size='18px'></input></td>
-				<td><input type='hidden'name='idmiembro'value=<?php echo$id?> size='1px'></input></td>
-				<td><input type='submit'name='Nuevo' value='Nuevo'></input></td>
+				<tr>
+    			<td><p><input type='text' name='desde' class='fecha'value=''></input></p></td>
+				<td><p><input type='text' name='hasta' class='fecha'value=''></input></p></td>
+				<td><p><input type='hidden'name='idmiembro'value=<?php echo$id?> size='1px'></input></p></td>
+				<td><p><button type='submit'class='btn btn-success'name='Nuevo' value='Nuevo'>Nuevo</button></p></td>
 				<!--<td><a title='Ver mas' href='include/servicio_disponibilidad.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>-->
 				</tr>
 				</form>
 				</table>
 
 
-						<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
+				<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 						<!-- Datos de las tablas de disponibilidad crea los encabezados-->
-						<tr><th>Desde</th><th>hasta</th><th>Eliminar</th><th></th></tr>
+				<tr><th>Desde</th><th>hasta</th><th>Eliminar</th></tr>
 						<!--el while arma la tabla de disponivilidad de cada miembro-->
 <?
-						while ($row = mysql_fetch_object($result))  {
-								echo"<form action='../disponibilidad.html' method='POST'>\n"; //se crea un form  	
-								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
-    							echo("<td>$row->fechaInicio</td>");
-								echo("<td>$row->fechaFin</td>");?>
-								<td><a title='Eliminar' href='include/servicio_disponibilidad.php?idmiembro=<?echo($row->idmiembro);?>&iddisp=<?echo($row->iddisponibilidad);?>'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td>
-								</tr>	
-								</form>												
-        						<?}?>
+				while ($row = mysql_fetch_object($result))  {
+						echo"<form action='../disponibilidad.html' method='POST'>\n"; //se crea un form  	
+						echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
+    					echo("<td>$row->fechaInicio</td>");
+						echo("<td>$row->fechaFin</td>");?>
+						<td><a title='Eliminar' href='include/servicio_disponibilidad.php?idmiembro=<?echo($row->idmiembro);?>&iddisp=<?echo($row->iddisponibilidad);?>'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td>
+						</tr>	
+						</form>												
+        				<?}?>
 					
-					</table>
+				</table>
 				</div>
 			</div>
 		</div>
+	
+</body>
+</html>
