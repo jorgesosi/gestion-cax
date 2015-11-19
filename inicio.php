@@ -36,7 +36,6 @@ if (empty($_SESSION["id"]))
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					<li><a href="formulario_miembro.php">Ingresar Nuevo</a></li>
 					
 				</ul>
 
@@ -57,8 +56,8 @@ if (empty($_SESSION["id"]))
 <?
 /*conexion a  la BD y query para mostrar disponble hoy y manana*/
 require("include/connect_db.php");
-$today ="select nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()  between fechaInicio and fechaFin;";
-$tomorrow="select nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+1  between fechaInicio and fechaFin;";
+$today ="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()  between fechaInicio and fechaFin;";
+$tomorrow="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+1  between fechaInicio and fechaFin;";
 ?>
 	<div class="row">
 		<div class="col-md-1">
@@ -78,12 +77,14 @@ $tomorrow="select nombre, apellido, celular from CAX.miembro,CAX.disponibilidad 
 /*codigo para cargar los datos en la tabla de hoy*/
 $result=mysql_query($today) or die('Consulta fallida: ' . mysql_error());
 while ($row = mysql_fetch_object($result))  {
+								if ($row->nombre!="Root"){
 								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
     							echo("<tr class='danger'><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 								echo("<td>$row->nombre</td>");
 								echo("<td><span class='glyphicon glyphicon-earphone'></span>$row->celular </td>");
-								echo("<td><a title='Ver mas' href='listadomiembro.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
+								echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 								echo ("\t</tr>\n");
+							}
         						}
 ?>
 					</table>
@@ -105,12 +106,14 @@ while ($row = mysql_fetch_object($result))  {
 /*codigo para cargar los datos en la tabla de manana*/
 $result=mysql_query($tomorrow) or die('Consulta fallida: ' . mysql_error());
 while ($row = mysql_fetch_object($result))  {
+								if ($row->nombre!="Root"){
 								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
     							echo("<tr class='danger'><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 								echo("<td>$row->nombre</td>");
 								echo("<td><span class='glyphicon glyphicon-earphone'></span>$row->celular </td>");
-								echo("<td><a title='Ver mas' href='listadomiembro.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
+								echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 								echo ("\t</tr>\n");
+							}
         						}
 ?>
 					</table>

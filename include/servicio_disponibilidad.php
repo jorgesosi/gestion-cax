@@ -59,7 +59,7 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
 	   if($numero!==0){
 			echo "<script type='text/javascript'>";
     		echo "alert('fecha desde o fecha hasta ya existe!');";
-    		echo "location.href='../disponibilidad.php?idmiembro=".$id."'";
+    		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
         //header("Location:../disponibilidad.php?idmiembro=".$id."");
 		//echo$query;
@@ -71,14 +71,14 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
 	   elseif($numero2!==0){
 			echo "<script type='text/javascript'>";
     		echo "alert('Ya existen fechas entre fecha desde o fecha hasta !');";
-    		echo "location.href='../disponibilidad.php?idmiembro=".$id."'";
+    		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
     //header("Location:../disponibilidad.php?idmiembro=".$id."");
 		}
 		elseif(compare_date($desde,$hasta)==true){
 			echo "<script type='text/javascript'>";
     		echo "alert('fecha desde es posterior a la fecha hasta !');";
-    		echo "location.href='../disponibilidad.php?idmiembro=".$id."'";
+    		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
 		}else{
 			$insert= "INSERT INTO `CAX`.`disponibilidad` (`idmiembro`, `fechaInicio`, `fechaFin`) VALUES('$id','$desde','$hasta')";
@@ -86,7 +86,7 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
 			//if($_POST['id']!==0){
 			if (($id!=='') &&($desde!=='') && ($hasta!=='')){
 				mysql_query($insert) or die('Consulta fallida: ' . mysql_error());
-				header("Location:../disponibilidad.php?idmiembro=".$id."");
+				header("Location:../disponibilidad.php?owner&idmiembro=".$id."");
 			}
 			
 		}
@@ -95,7 +95,7 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
     else{
 	echo "<script type='text/javascript'>";
     		echo "alert('fechas invalidas!');";
-    		echo "location.href='../disponibilidad.php?idmiembro=".$id."'";
+    		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
     }
 
@@ -104,10 +104,10 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
     $id1=$_GET['idmiembro'];
     $delete=" DELETE FROM `CAX`.`disponibilidad` WHERE `iddisponibilidad`='".$iddisp."';";
     mysql_query($delete) or die('Consulta fallida: ' . mysql_error());
-    header("Location:../disponibilidad.php?idmiembro=".$id1."");
+    header("Location:../disponibilidad.php?owner&idmiembro=".$id1."");
 }
 else{
-    header("Location:../disponibilidad.php?idmiembro=".$id."");
+    header("Location:../disponibilidad.php?owner&idmiembro=".$id."");
 }
 
 ?>

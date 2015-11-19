@@ -77,7 +77,6 @@ if (empty($_SESSION["id"]))
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					<li><a href="formulario_miembro.php">Ingresar Nuevo</a></li>
 					
 				</ul>
 
@@ -118,9 +117,10 @@ if (empty($_SESSION["id"]))
 				<table class'table table-condensed table-bordered table-striped' style='background-color:#ececec' >
 						<!-- Datos de las tablas de disponibilidad crea los encabezados-->
 
+				
+				<?if ($_SESSION["permiso"]==1  || isset($_GET["owner"])){?>
 				<tr><th>Desde</th><th>hasta</th><th></th><th>Nuevo</th></tr>
-
-				<form action='include/servicio_disponibilidad.php' method='POST'>  	
+				<form action='include/servicio_disponibilidad.php' method='POST'>  
 				<tr>
     			<td><p><input type='text' name='desde' class='fecha'value=''></input></p></td>
 				<td><p><input type='text' name='hasta' class='fecha'value=''></input></p></td>
@@ -129,20 +129,25 @@ if (empty($_SESSION["id"]))
 				<!--<td><a title='Ver mas' href='include/servicio_disponibilidad.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>-->
 				</tr>
 				</form>
+				<?}?>
 				</table>
 
 
 				<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 						<!-- Datos de las tablas de disponibilidad crea los encabezados-->
-				<tr><th>Desde</th><th>hasta</th><th>Eliminar</th></tr>
+				<tr><th>Desde</th><th>hasta</th>
+					<?if ($_SESSION["permiso"]==1 || isset($_GET["owner"]))
+					echo("<th>Eliminar</th></tr>");?>
 						<!--el while arma la tabla de disponivilidad de cada miembro-->
 <?
 				while ($row = mysql_fetch_object($result))  {
 						echo"<form action='../disponibilidad.html' method='POST'>\n"; //se crea un form  	
 						echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
     					echo("<td>$row->fechaInicio</td>");
-						echo("<td>$row->fechaFin</td>");?>
-						<td><a title='Eliminar' href='include/servicio_disponibilidad.php?idmiembro=<?echo($row->idmiembro);?>&iddisp=<?echo($row->iddisponibilidad);?>'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td>
+						echo("<td>$row->fechaFin</td>");
+						if ($_SESSION["permiso"]==1  || isset($_GET["owner"])){?>
+						<td><a title='Eliminar' href='include/servicio_disponibilidad.php?idmiembro=<?echo($row->idmiembro);?>&ext&iddisp=<?echo($row->iddisponibilidad);?>'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td>
+						<?}?>
 						</tr>	
 						</form>												
         				<?}?>

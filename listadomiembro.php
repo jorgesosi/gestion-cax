@@ -40,7 +40,6 @@ function pregunta(){
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					<li><a href="formulario_miembro.php">Ingresar Nuevo</a></li>
 					
 				</ul>
 
@@ -73,10 +72,10 @@ function pregunta(){
 		<div class="col-md-1">
 		</div>
 		<div class="col-md-2">
-			<?
-			echo("<a href='formulario_miembro.php'><button type='button' class='btn  btn-success btn-m'>Agregar +</button></a>
-		</div>");
-		?>
+			<?if ($_SESSION["permiso"]==1)
+				echo("<a href='formulario_miembro.php'><button type='button' class='btn  btn-success btn-m'>Agregar +</button></a>");
+			?>
+		</div>
 		<div class="col-md-1">
 		</div>
 	</div>
@@ -93,7 +92,11 @@ function pregunta(){
 			<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 				<!-- Datos de las tablas de prueba-->
 				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th>
-					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th></th><th></th><th></th>
+					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th></th>
+					<? if ($_SESSION["permiso"]==1)
+						echo("<th></th><th></th><th></th>");
+
+					?>
 				</tr>
 				<?
 					require("include/connect_db.php");
@@ -102,23 +105,26 @@ function pregunta(){
 						$query = 'SELECT * FROM CAX.miembro WHERE nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';}
 					else {$query = 'SELECT * FROM CAX.miembro;';}
 					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); 
+
 				while ($row=mysql_fetch_object($result)){
+					if ($row->nombre!="Root"){
+
 					echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 					echo ("<td>    $row->nombre</td>");
 					echo("<td><span class='glyphicon glyphicon-earphone'></span> $row->celular </td>");
 					echo("<td>$row->domicilio</td>");
 					echo("<td>$row->fijoDia</td>");
 					echo("<td>$row->fijoNoche</td>");
-					echo("<td><a title='Editar' href='formulario_miembro.php?id=$row->idmiembro'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-pencil'</span></button></a></td>");
-					echo("<td><a title='Disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>"); ?>
-					
-					<td>
-					<a title='Eliminar' href="include/servicio_miembro.php?id1=<?echo($row->idmiembro);?>"  onclick="return pregunta();"> 
-					<span class="glyphicon glyphicon-remove"> </span> 
-					</a>
-					</td></tr>
+					echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>");
 
-				<? } ?>
+					if ($_SESSION["permiso"]==1){
+					echo("<td><a title='Editar' href='formulario_miembro.php?id=$row->idmiembro'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-pencil'</span></button></a></td>");
+					echo("<td><a title='Eliminar' href='include/servicio_miembro.php?id1=$row->idmiembro'  onclick='return pregunta();>'");
+					echo("<span class='glyphicon glyphicon-remove'> </span></a></td></tr>");
+					} else echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
+
+
+				} }?>
 
 				<div class="col-md-1">
 				</div>

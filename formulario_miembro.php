@@ -70,7 +70,6 @@ if (isset($_GET['id'])){
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					<li><a href="formulario_miembro.php">Ingresar Nuevo</a></li>
 					
 				</ul>
 
@@ -95,6 +94,7 @@ if (isset($_GET['id'])){
 		<div class="col-md-8">	
 			<h3>Formulario de miembro</h3><p></p>
 			<form class="form-horizontal" action="include/servicio_miembro.php" method="POST" name="miembro">
+				<?if (isset($_GET["ext"])==FALSE){?>
 				<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
 		      	<label  class="col-sm-2 control-label">Nombre</label>
 				<p><? echo("<input type='text' name='nombre' value='$nombre'>");?></p>
@@ -114,14 +114,48 @@ if (isset($_GET['id'])){
 		    	<p><? echo("<input type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
 				<label class="col-sm-2 control-label">Tel fijo noche</label>
 		    	<p><? echo("<input type='text' name='fijoNoche' value='$fijoNoche'>");?></p>
+		    	<?}else {?>
+		    	<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
+		      	<label  class="col-sm-2 control-label">Nombre</label>
+				<p><? echo("<input disabled='true' type='text' name='nombre' value='$nombre'>");?></p>
+				<label class="col-sm-2 control-label">Apellido</label>
+				<p><? echo("<input disabled='true' type='text' name='apellido' value='$apellido'>");?></p>
+				<label class="col-sm-2 control-label">Email</label>
+				<p><? echo("<input disabled='true' type='text' name='email' value='$email'>"); ?></p>
+				<label class="col-sm-2 control-label">Domicilio</label>
+				<p><? echo("<input disabled='true' type='text' name='domicilio' value='$domicilio'>");?></p>
+				<label  class="col-sm-2 control-label">DNI</label>
+			  	<p><? echo("<input disabled='true' type='text' name='dni' value='$dni'>"); ?></p>
+				<label  class="col-sm-2 control-label">Celular</label>
+			    <p><? echo("<input disabled='true' type='text' name='celular' value='$celular'>");?></p>
+				<label  class="col-sm-2 control-label">Tel fijo dia</label>
+		    	<p><? echo("<input disabled='true' type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
+				<label class="col-sm-2 control-label">Tel fijo noche</label>
+		    	<p><? echo("<input disabled='true' type='text' name='fijoNoche' value='$fijoNoche'>");?></p>
+		    	<?}?>
+		    	<p></p>
+		    	<? if (isset($_GET["ext"])==FALSE)
+						echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$id&owner'><button type='button' class='btn  btn-success'><span>Ver disponibilidad</span></button></a></td>");
+					else
+						echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$id'><button type='button' class='btn  btn-success'><span>Ver disponibilidad</span></button></a></td>");
+				?>
 	    		<h3>Categoria</h3> 	
-	    		<p></p>		
+	    		<p></p>	
+	    	    <?if (isset($_GET["ext"])==FALSE){?>
 		    		<input type="radio" name="idcategoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>
-		    		Principiante
+		    		Activo
 		    		<input type="radio" name="idcategoria"  value="2" <?if ($idcategoria==2)echo ('checked')?>>
 		    		Apoyo
 		    		<input type="radio" name="idcategoria"  value="3" <?if ($idcategoria==3)echo ('checked')?>>
-		    		Aspirante	
+		    		Aspirante
+		    	<?} else{?>
+		    		<input type="radio" disabled='disabled' name="idcategoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>
+		    		Activo
+		    		<input type="radio" disabled='disabled' name="idcategoria"  value="2" <?if ($idcategoria==2)echo ('checked')?>>
+		    		Apoyo
+		    		<input type="radio" disabled='disabled' name="idcategoria"  value="3" <?if ($idcategoria==3)echo ('checked')?>>
+		    		Aspirante
+		    		<?}?>
 				<p></p>
 			<h3>Habilidades</h3>
 			<? 	$query = 'SELECT idskil,nombre from CAX.skill ;';
@@ -132,14 +166,20 @@ if (isset($_GET['id'])){
 					$consulta= "SELECT idskill FROM CAX.miembro_skill WHERE idmiembro='".$id."' AND 
 					idskill='".$i."';";
 					$resultado= mysql_query($consulta) or die('Consulta fallida: ' . mysql_error());
-					if (mysql_num_rows($resultado)!=0)
-						echo ("<input type='checkbox' name='hab".$i."' checked='checked' 
-							value='".$i."'> ".$row->nombre." ");
-					else echo ("<input type='checkbox' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
+					if (isset($_GET["ext"])==FALSE)
+						if (mysql_num_rows($resultado)!=0)
+							echo ("<input type='checkbox' name='hab".$i."' checked='checked' 
+								value='".$i."'> ".$row->nombre." ");
+						else echo ("<input type='checkbox' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
+					else if (mysql_num_rows($resultado)!=0)
+							echo ("<input type='checkbox' disabled='disabled' name='hab".$i."' checked='checked' 
+								value='".$i."'> ".$row->nombre." ");
+						else echo ("<input type='checkbox' disabled='disabled' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
 				}
 			?>  
 			<p></p><p></p>
-			<button type="submit" class="btn btn-success">Aceptar</button>
+			<? if (isset($_GET["ext"])==FALSE)
+			echo ('<button type="submit" class="btn btn-success">Aceptar</button>');?>
 		</form>
 		</div>
 	    <div class ="col-md-3">

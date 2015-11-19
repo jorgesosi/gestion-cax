@@ -25,6 +25,8 @@ foreach($_POST as $nombre_campo => $valor){
 if (isset($id1)){
 	$query="DELETE FROM CAX.miembro WHERE idmiembro='".$id1."';";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	$query="DELETE FROM CAX.miembro_skill WHERE idmiembro='".$id1."';";
+	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	header('Location: ../listadomiembro.php?msg=1');
 	exit();
 }
