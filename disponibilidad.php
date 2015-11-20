@@ -43,7 +43,8 @@ if (empty($_SESSION["id"]))
         		nextJumpText: '&#x3e;&#x3e', 
         		nextJumpStatus: '',
         		changeMonth: true ,
-        		changeYear:true
+        		changeYear:true,
+        		numberOfMonths:3
             }
         );
     });
