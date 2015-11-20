@@ -16,7 +16,9 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
                 $partes = split ('[./-]', $str);
                 $año=$partes[0];
                 $mes=$partes[1];
-                $dia=$partes[2];     
+                $dia=$partes[2];
+                if($str=="")
+                    return false;     
                 if(checkdate ($mes,$dia,$año)){
                 	return true;
                 }
