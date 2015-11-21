@@ -15,79 +15,123 @@ Gestion Cax
 ======
 Descripcion
 -----
-La aplicación que permite ver la informacion de los miembros que  estan disponibles para realizar una salida de la comision de auxilio del Club Andino Bariloche. Las diferentes pantallas permiten ver disponibilidad , datos personales y habilidades de otros miembros
+La aplicación muestra la informacion de los miembros que  estan disponibles para realizar una **"salida"** de la **Comision de Auxilio (CAX)** del **Club Andino Bariloche**. Las diferentes pantallas permiten ver disponibilidad , datos personales y habilidades de otros miembros
 
 Guia de usuario
--------
-es posible visualizar informacion mas detallada de cada miembro de la comision y modificacion de los datos personales como tambien cargar las fechas o periodos de tempos en los que se va a estar disponible.
+===
+Permite visualizar informacion  detallada de cada miembro de la comision y modificacion de los datos personales como tambien cargar las fechas o periodos de tempos en los que se va a estar disponible.
 
 Usuarios/Miembros
 -------
-los usuarios seran los miembros de la comision de auxilio, activos , de  apoyo y aspirantes.
-El mantenimiento, la edicion de los daros  y la disponibilidad estara a cargo de cada uno de los usuarios 
+**Usuarios** son los miembros de la comision de auxilio, activos , de  apoyo y aspirantes, que hayan sido dados de alta en la base de datos por el **Ususario Administrador\res**.
+El mantenimiento, la edicion de los datos  y la disponibilidad estara a cargo de cada uno de los usuarios 
 se puede consultar la informacion de otro usuarios en las diferentes pantallas.
 
 Usuario/Administrador
-el administrador o los administradores  cuentan con mayores privilegios .tendran a cargo las altas o creacion de usuarios y las bajas de los mismos. El administrador /administradores podra modificar los datos de todos los usuarios, como tambien dar de baja de datos.
+----
+***El administrado/es*** cuentan con mayores privilegios.Tendran a cargo la creacion o altas y las bajas de los ***Usuarios***. ***El administrador/es*** podra modificar los datos de todos los usuarios.
 
 Vistas
-pantalla de inicio
-contiene dos campos para colocar el nombre de ususario y la contrasena, el nombre de ususario sera el email registrados en los listados de la CAX, la contrasena sera colocada por el adminitrador y podra ser cambiada por el usuario.
+===
+Pantalla de Log-in (gestion-cax)
+----
+Contiene dos campos para colocar el nombre de ***ususario y la contrasena***, el nombre de ***ususario*** sera el *email registrados* en los listados de la CAX, la contrasena sera colocada por el ***Adminitrador*** y podra ser cambiada por el ***Usuario***.
 
-Boton ingresar, 
-permite al usuario ingresar a la aplicación.
+-Boton ingresar 
+----
+Permite al usuario ***ingresar*** a la aplicación.
 
-Recuperacion de contrasena
-envia la contrasena al mail registrado del usuario. En caso de que la direccion de correo sea incorrecta envia un mensaje de error.
+-Recuperacion de contraseña
+----
+Envia la contraseña al ***e-mail registrado del usuario***. En caso de que la direccion de correo sea ***incorrecta*** envia un mensaje de ***error***.
 
-Pantalla de inicio.
-Muestra la disponibilidad de hoy y manana en la ventana principal y la barra de menu comun a todas las pantallas
+Pantalla de Inicio.
+----
+Muestra la **disponibilidad** de hoy y manana en la ventana principal y la barra de menu comun a todas las pantallas
+Muestra dos tablas con los  miembros disponibles hoy y mañana.
+Boton ver mas
+---
+Este boton lleva a la pantalla donde se visualizan los datos completos de la persona, Datos Personales, Categoria dentro del Grupo de la **CAX**, Habilidades.
+
 
 Barra de menu
-inicio: vuelve a la pantalla de inicio(disponibilidad)
-listados(lleva al usuario al listado completo de miembros.
-usuario conectado (muestra el nombre y apellido del usuario que inicio la sesion)
-mis datos (lleva al formulario de los datos completso del usuario que inicio la sesion)
-buscar(busca a un miembro por nombre o por apellido)
-salir (cierra la sesion del usuario actual)
+---
+* Inicio: vuelve a la pantalla de inicio(disponibilidad)
+* Listados(lleva al usuario al listado completo de miembros.
+* Usuario Conectado (muestra el nombre y apellido del usuario que inicio la sesion)
+* Mis Datos (lleva al formulario de los datos completso del usuario que inicio la sesion)
+* Buscar(busca a un miembro por nombre o por apellido)
+* Salir (cierra la sesion del usuario actual)
 
-buscar 
-busca por nombre y apoellido 
-muestra la pantalla datos. Donde se muestran todos los datos de la persona/miembro buscado
+Buscar
+---
+Busca por **nombre** o **apoellido**.
+Muestra la pantalla de **Listado de Miembros**. Donde se muestran todos los datos de la **persona/miembro** buscado
 
-
-pantalla inicio (parte dos)
-muestra dos tablas con los  miembros disponibles hoy y manana.
-Boton ver mas
-este boton lleva a la pantalla datos completos de la persona.
-
-
-
-pantalla datos 
-muestra todos los datos de la persona, si el usuario esta logueado puede modificar sus datos , cambiando la informacion de cada campo o agregando datos de ser necesario.
+Pantalla Datos Personales (Formulario Miembros)
+---
+Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** puede modificar solo sus datos personales, pudiendo cambiar la informacion de cada campo de **texto checkbox, y optionbox**.
+```
+Importante
+---
 Los datos solo pueden ser editados por el miembro o por el administrador
-los campos de esta pantalla son texto donde se colocaran todo los datos alli pedidos.
+```
+Los campos de texto se colocaran todo los datos personales del usuario.
 
-Boton disponibilidad, lleva a la pantalla de disponibilidad total de la persona
+Boton disponibilidad
+---
+Muestra la pantalla de disponibilidad total de la persona
 
-La categoria se carga en el formato de opciones, donde solo se podra elegir una categoria
+La categoria se carga en el formato de opciones, donde solo se podra elegir **una sola** categoria
 
 habilidades
-consiste en campos tipo checkbox dende se pueden elegie varia habilidades
+---
+Consiste en campos tipo checkbox donde pueden elegie **varias** habilidades
 
-boton aceptar, envia los datos cargados o modificados a la base de datos
-
-
-pantalla Listado
-muestra el listado de todos los miembros por nombre apellido, categoria, celular, telefono fijo de dia u de noche
-boton disponibilid, lleva a la pantalla disponibilidad de la persona seleccionada
-boton editar ( en el caso de que este habilitado) lleva a la pantalla de datos de la pesona para poder editarlos o modificarlos.
-
-guia de instalacion programadores
-requerimiento
-php
-my Sql
+Boton aceptar
+---
+Envia  los datos cargados o modificados a la **Base de Datos**
 
 
-script de creacion de base de datos.
+Pantalla Listado
+---
+Muestra el listado de todos los miembros por nombre, apellido, domicilio, categoria, celular, telefono fijo de dia u de noche.
+boton disponibilidad: lleva a la pantalla disponibilidad total de la persona seleccionada
+boton editar **(en el caso de que este habilitado)** lleva a la pantalla de datos de la pesona para poder editarlos o modificarlos.
 
+Guia de Instalacion (Programadores)
+===
+requerimientos
+---
+```
+* php
+* my Sql
+* script de creacion de base de datos.
+```
+
+Dependencias
+---
+```
+Gestion_cax
+	|__js
+	|		|__bootstrap.js
+	|		|__bootstrap.min.js
+	|		|__jquery-1.9.1.js
+	|		|__jquery-ui.js
+	|		|__npm.js
+	|__css
+	|		|__bootstrap.css
+	|		|__inicio.css
+	|		|__jquery-ui.css
+	|		|__style.css
+	|		|__images
+	|				|__ui-icons_222222_256x240.png
+	|__imag
+	|		|__cab.jpg
+	|		|__logoComAux.jpg
+	|__sql
+	|		|__
+	|__include
+			|__connect_db.php
+			|__
+	``
