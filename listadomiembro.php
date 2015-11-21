@@ -119,7 +119,7 @@ function pregunta(){
 
 					if ($_SESSION["permiso"]==1){
 					echo("<td><a title='Editar' href='formulario_miembro.php?id=$row->idmiembro'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-pencil'</span></button></a></td>");
-					echo("<td><a title='Eliminar' href='include/servicio_miembro.php?id1=$row->idmiembro'  onclick='return pregunta();>'");
+					echo("<td><a title='Eliminar' href='include/servicio_miembro.php?id1=$row->idmiembro'  onclick='return pregunta()'>");
 					echo("<span class='glyphicon glyphicon-remove'> </span></a></td></tr>");
 					} else echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 

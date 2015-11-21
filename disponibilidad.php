@@ -123,15 +123,30 @@ if (empty($_SESSION["id"]))
 				<tr><th>Desde</th><th>hasta</th><th></th><th>Nuevo</th></tr>
 				<form action='include/servicio_disponibilidad.php' method='POST'>  
 				<tr>
-    			<td><p><input type='text' name='desde' class='fecha'value=''></input></p></td>
-				<td><p><input type='text' name='hasta' class='fecha'value=''></input></p></td>
+    			<td><p><input type='text' name='desde' id='desde'class='fecha'value=''></input></p></td>
+				<td><p><input type='text' name='hasta' id='hasta'class='fecha'value=''></input></p></td>
 				<td><p><input type='hidden'name='idmiembro'value=<?php echo$id?> size='1px'></input></p></td>
-				<td><p><button type='submit'class='btn btn-success'name='Nuevo' value='Nuevo'>Nuevo</button></p></td>
+				<td><p><button type='submit'class='btn btn-success'name='Nuevo' value='Nuevo'onclick='return funcionNuevo()'>Nuevo</button></p></td>
 				<!--<td><a title='Ver mas' href='include/servicio_disponibilidad.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>-->
 				</tr>
 				</form>
 				<?}?>
 				</table>
+				<script>
+				function funcionNuevo(){
+					var ini=document.getElementById('desde').value;
+					var fin=document.getElementById('hasta').value;
+					if(ini==''|| fin==''){
+						alert("Fechas Vacias");
+						return false;
+					}else if(confirm("Los Datos Desde: "+ini+"y Hasta: "+fin+" Seran Enviados")==true)
+						return true;
+					else
+						return false;
+
+					
+    			}
+				</script>
 
 
 				<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
@@ -147,11 +162,19 @@ if (empty($_SESSION["id"]))
     					echo("<td>$row->fechaInicio</td>");
 						echo("<td>$row->fechaFin</td>");
 						if ($_SESSION["permiso"]==1  || isset($_GET["owner"])){?>
-						<td><a title='Eliminar' href='include/servicio_disponibilidad.php?idmiembro=<?echo($row->idmiembro);?>&ext&iddisp=<?echo($row->iddisponibilidad);?>'><button type='button' class='btn  btn-danger'><span class='glyphicon glyphicon-remove'</span></button></a></td>
+						<td><a title='Eliminar' href='include/servicio_disponibilidad.php?idmiembro=<?echo($row->idmiembro);?>&ext&iddisp=<?echo($row->iddisponibilidad);?>'><button type='button' class='btn  btn-danger' onclick='return funcionEliminar()' ><span class='glyphicon glyphicon-remove'</span></button></a></td>
 						<?}?>
 						</tr>	
 						</form>												
         				<?}?>
+        		<script>
+				function funcionEliminar() {					
+    				if (confirm("Desea Eliminar Estas Fechas")==true)
+    					return true;
+    				else
+    				return false;
+    				}
+				</script>
 					
 				</table>
 				</div>

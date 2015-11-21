@@ -13,12 +13,13 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
 
     function check_date($str){
                 trim($str);
+                if($str=="")
+                    return false; 
                 $partes = split ('[./-]', $str);
                 $año=$partes[0];
                 $mes=$partes[1];
                 $dia=$partes[2];
-                if($str=="")
-                    return false;     
+                    
                 if(checkdate ($mes,$dia,$año)){
                 	return true;
                 }
@@ -60,7 +61,7 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
 
 	   if($numero!==0){
 			echo "<script type='text/javascript'>";
-    		echo "alert('fecha desde o fecha hasta ya existe!');";
+    		echo "alert('Alguna de las Fechas ya Existe!');";
     		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
         //header("Location:../disponibilidad.php?idmiembro=".$id."");
@@ -72,14 +73,14 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
 
 	   elseif($numero2!==0){
 			echo "<script type='text/javascript'>";
-    		echo "alert('Ya existen fechas entre fecha desde o fecha hasta !');";
+    		echo "alert('Ya Existen Fechas dentro de Desde Y Hasta !');";
     		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
     //header("Location:../disponibilidad.php?idmiembro=".$id."");
 		}
 		elseif(compare_date($desde,$hasta)==true){
 			echo "<script type='text/javascript'>";
-    		echo "alert('fecha desde es posterior a la fecha hasta !');";
+    		echo "alert('Fecha Desde es Posterior a Fecha Hasta !');";
     		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
 		}else{
@@ -96,7 +97,7 @@ if((isset($_POST['desde']))&&(isset($_POST['hasta']))){
     }
     else{
 	echo "<script type='text/javascript'>";
-    		echo "alert('fechas invalidas!');";
+    		echo "alert('Fechas No Validas!');";
     		echo "location.href='../disponibilidad.php?owner&idmiembro=".$id."'";
     		echo "</script>";
     }
