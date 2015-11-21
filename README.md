@@ -59,7 +59,7 @@ Barra de menú
 * Inicio: vuelve a la pantalla de inicio(disponibilidad)
 * Listados(lleva al usuario al listado completo de miembros.
 * Usuario Conectado (muestra el nombre y apellido del usuario que inicio la sesión)
-* Mis Datos (lleva al formulario de los datos completos del usuario que inicio la sesión)
+* Mis Datos (Abre formulario de los **datos personales** permite la edicion de  datos y disponibilidad)
 * Buscar(busca a un miembro por nombre o por apellido)
 * Salir (cierra la sesión del usuario actual)
 
@@ -75,6 +75,8 @@ Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** pue
 Importante
 
 Los datos solo pueden ser editados por el miembro o por el administrador
+
+Para acceder a la edicion de los datos personales se debe ingresar por la opcion Mis Datos en la Barra de menú
 ```
 Los campos de texto se colocaran todo los datos personales del usuario.
 
