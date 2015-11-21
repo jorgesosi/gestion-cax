@@ -22,13 +22,13 @@ Guia de usuario
 Permite visualizar informacion  detallada de cada miembro de la comision y modificacion de los datos personales como tambien cargar las fechas o periodos de tempos en los que se va a estar disponible.
 
 Usuarios/Miembros
--------
+---
 **Usuarios** son los miembros de la comision de auxilio, activos , de  apoyo y aspirantes, que hayan sido dados de alta en la base de datos por el **Ususario Administrador\res**.
 El mantenimiento, la edicion de los datos  y la disponibilidad estara a cargo de cada uno de los usuarios 
 se puede consultar la informacion de otro usuarios en las diferentes pantallas.
 
 Usuario/Administrador
-----
+---
 ***El administrado/es*** cuentan con mayores privilegios.Tendran a cargo la creacion o altas y las bajas de los ***Usuarios***. ***El administrador/es*** podra modificar los datos de todos los usuarios.
 
 Vistas
@@ -37,11 +37,11 @@ Pantalla de Log-in (gestion-cax)
 ----
 Contiene dos campos para colocar el nombre de ***ususario y la contrasena***, el nombre de ***ususario*** sera el *email registrados* en los listados de la CAX, la contrasena sera colocada por el ***Adminitrador*** y podra ser cambiada por el ***Usuario***.
 
--Boton ingresar 
+Boton ingresar 
 ----
 Permite al usuario ***ingresar*** a la aplicación.
 
--Recuperacion de contraseña
+Recuperacion de contraseña
 ----
 Envia la contraseña al ***e-mail registrado del usuario***. En caso de que la direccion de correo sea ***incorrecta*** envia un mensaje de ***error***.
 
@@ -73,7 +73,7 @@ Pantalla Datos Personales (Formulario Miembros)
 Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** puede modificar solo sus datos personales, pudiendo cambiar la informacion de cada campo de **texto checkbox, y optionbox**.
 ```
 Importante
----
+
 Los datos solo pueden ser editados por el miembro o por el administrador
 ```
 Los campos de texto se colocaran todo los datos personales del usuario.
