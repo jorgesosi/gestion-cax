@@ -32,7 +32,7 @@ if (empty($_SESSION["id"]))
                 gotoCurrent: true,
                 monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
                 monthNamesShort:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep", "Oct","Nov","Dic"],
-                minDate: "-1D",
+                minDate: "D",
                 maxDate: "+30Y" ,
                 prevText: '&#x3c;&#x3c;Ant', 
         		prevStatus: '',
@@ -49,6 +49,32 @@ if (empty($_SESSION["id"]))
         );
     });
     </script>
+    <script>
+	function funcionNuevo(){
+		var ini=document.getElementById('desde').value;
+		var fin=document.getElementById('hasta').value;
+		if(ini==''|| fin==''){
+			alert("Fechas Vacias");
+			return false;
+		}else if(confirm("Los Datos Desde: "+ini+" y Hasta: "+fin+" Seran Enviados")==true)
+				return true;
+			else
+				return false;
+
+					
+    }
+	</script>
+	<script>
+		function funcionEliminar() {
+		var ini=document.getElementById('desde').value;
+		var fin=document.getElementById('hasta').value;					
+    		if (confirm("Desea Eliminar Estas Fechas")==true)
+    			return true;
+    		else
+    			return false;
+    	}
+	</script>
+
     <style>
         #fecha {width:100px;text-align:center;}
     </style>
@@ -120,7 +146,7 @@ if (empty($_SESSION["id"]))
 
 				
 				<?if ($_SESSION["permiso"]==1  || isset($_GET["owner"])){?>
-				<tr><th>Desde</th><th>hasta</th><th></th><th>Nuevo</th></tr>
+				<tr><th>Desde AA/MM/DD</th><th>hasta AA/MM/DD </th><th></th><th>Nuevo</th></tr>
 				<form action='include/servicio_disponibilidad.php' method='POST'>  
 				<tr>
     			<td><p><input type='text' name='desde' id='desde'class='fecha'value=''></input></p></td>
@@ -132,22 +158,6 @@ if (empty($_SESSION["id"]))
 				</form>
 				<?}?>
 				</table>
-				<script>
-				function funcionNuevo(){
-					var ini=document.getElementById('desde').value;
-					var fin=document.getElementById('hasta').value;
-					if(ini==''|| fin==''){
-						alert("Fechas Vacias");
-						return false;
-					}else if(confirm("Los Datos Desde: "+ini+"y Hasta: "+fin+" Seran Enviados")==true)
-						return true;
-					else
-						return false;
-
-					
-    			}
-				</script>
-
 
 				<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 						<!-- Datos de las tablas de disponibilidad crea los encabezados-->
@@ -167,14 +177,7 @@ if (empty($_SESSION["id"]))
 						</tr>	
 						</form>												
         				<?}?>
-        		<script>
-				function funcionEliminar() {					
-    				if (confirm("Desea Eliminar Estas Fechas")==true)
-    					return true;
-    				else
-    				return false;
-    				}
-				</script>
+        		
 					
 				</table>
 				</div>

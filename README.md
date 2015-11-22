@@ -44,6 +44,7 @@ Permite al usuario ***ingresar*** a la aplicación.
 Recuperación de contraseña
 ----
 Enviá la contraseña al ***e-mail registrado del usuario***. En caso de que la dirección de correo sea ***incorrecta*** envía un mensaje de ***error***.
+<img scr="img\login.png"width="45%"></img>
 
 Pantalla de Inicio.
 ----
