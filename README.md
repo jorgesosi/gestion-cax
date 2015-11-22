@@ -35,6 +35,7 @@ Vistas
 ===
 Pantalla de Log-in (gestión-cax)
 ----
+![login] (img/login.png?raw=true)
 Contiene dos campos para colocar el nombre de *** usuario y la contraseña***, el nombre de ***usuario*** sera el *e-mail registrados* en los listados de la CAX, la contraseña sera colocada por el ***Administrador*** y  podrá ser cambiada por el ***Usuario***.
 
 Botón ingresar 
@@ -44,10 +45,11 @@ Permite al usuario ***ingresar*** a la aplicación.
 Recuperación de contraseña
 ----
 Enviá la contraseña al ***e-mail registrado del usuario***. En caso de que la dirección de correo sea ***incorrecta*** envía un mensaje de ***error***.
-<img scr="img\login.png"width="45%"></img>
+
 
 Pantalla de Inicio.
 ----
+![inicio] (img/inicio.png?raw=true)
 Muestra la **disponibilidad** de hoy y mañana en la ventana principal y la barra de menú común a todas las pantallas
 Muestra dos tablas con los  miembros disponibles hoy y mañana.
 Botón ver mas
@@ -71,6 +73,7 @@ Muestra la pantalla de **Listado de Miembros**. Donde se muestran todos los dato
 
 Pantalla Datos Personales (Formulario Miembros)
 ---
+![formulario personal] (img/miembro.png?raw=true)
 Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** puede modificar solo sus datos personales, pudiendo cambiar la información de cada campo de **texto checkbox, y optionbox**.
 ```
 Importante
@@ -83,7 +86,9 @@ Los campos de texto se colocaran todo los datos personales del usuario.
 
 Botón disponibilidad
 ---
+![disponibilidad] (img/dispo.png?raw=true)
 Muestra la pantalla de disponibilidad total de la persona
+![dispo2] (img/dispo2.png?raw=true)
 
 La categoría se carga en el formato de opciones, donde solo se podrá elegir **una sola** categoría
 
@@ -98,6 +103,7 @@ Envía  los datos cargados o modificados a la **Base de Datos**
 
 Pantalla Listado
 ---
+![listado] (img/listado.png?raw=true)
 Muestra el listado de todos los miembros por nombre, apellido, domicilio, categoría, celular, teléfono fijo de día u de noche.
 botón disponibilidad: lleva a la pantalla disponibilidad total de la persona seleccionada
 botón editar **(en el caso de que este habilitado)** lleva a la pantalla de datos de la persona para poder editarlos o modificarlos.
