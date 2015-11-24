@@ -1,16 +1,3 @@
-# gestión-cax
-sistema de gestión de la Comisión de Auxilio del Club Andino Bariloche
-
-Gestiona la disponibilidad de miembros de rescate
-
-1) ABM de miembros, donde se muestre datos personales, de tipo y especialidad.
-
-2) vista disponibilidad hoy, y algún valor a definir
-
-3) validación de usuario login
-
-prueba
-
 Gestión Cax
 ======
 Descripción
