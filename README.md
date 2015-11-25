@@ -55,6 +55,7 @@ Barra de menú
 
 Buscar
 ---
+![buscar] (img/busquedaavanzada.png?raw=true)
 Busca por **nombre** o **apellido**.
 Muestra la pantalla de **Listado de Miembros**. Donde se muestran todos los datos de la **persona/miembro** buscado
 
@@ -94,6 +95,10 @@ Pantalla Listado
 Muestra el listado de todos los miembros por nombre, apellido, domicilio, categoría, celular, teléfono fijo de día u de noche.
 botón disponibilidad: lleva a la pantalla disponibilidad total de la persona seleccionada
 botón editar **(en el caso de que este habilitado)** lleva a la pantalla de datos de la persona para poder editarlos o modificarlos.
+
+Pantalla Administrdor (nuevo usuario)
+![nuevo] (img/nuevo.png?raw=true)
+Desde el boton que se crea a la derecha se genera un nuevo usuario. la caracteristica es que solo crea el email y un password, para que el usuario pueda ingresar por primera vez, cargue todos los datos necesarios.
 
 Guía de Instalación (Programadores)
 ===
