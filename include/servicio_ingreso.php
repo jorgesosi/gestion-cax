@@ -1,10 +1,10 @@
 <? session_start();
 require("connect_db.php");
-$nombre=$_POST['usuario']; 
+$email=$_POST['usuario']; 
 $password=$_POST['contrasenia'];
 
 $query = "select nombre, password, idmiembro, apellido, permiso from CAX.miembro
-	  where nombre='".$nombre."' AND password='".$password."';";
+	  where email='".$email."' AND password='".$password."';";
 $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 $numero=mysql_num_rows($result);
 $row=mysql_fetch_object($result);

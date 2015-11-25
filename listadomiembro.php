@@ -72,9 +72,18 @@ function pregunta(){
 		<div class="col-md-1">
 		</div>
 		<div class="col-md-2">
-			<?if ($_SESSION["permiso"]==1)
-				echo("<a href='formulario_miembro.php'><button type='button' class='btn  btn-success btn-m'>Agregar +</button></a>");
-			?>
+			<?if ($_SESSION["permiso"]==1){?>
+				
+				<button type="button" data-toggle="collapse" data-target="#recupero" class='btn  btn-success btn-m'>Agregar miembro</button>
+            <div id="recupero" class="collapse">
+        		<form action="include/servicio_miembro.php" method="post">
+					<input name ="email" type="text" placeholder="Ingresa mail">
+					<input name="password" type="hidden" value="cax1234">
+					<input name="id" type="hidden" value="0">
+					<input type="submit" name="submit" value="Crear" class='btn  btn-success btn-m 'class="boton">
+				</form>
+			</div>	
+			<?}?>
 		</div>
 		<div class="col-md-1">
 		</div>
@@ -83,6 +92,11 @@ function pregunta(){
 		echo ('<div class="alert alert-warning alert-dismissable">');
   		echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
   		echo ('<strong>¡AVISO!</strong> Miembro eliminado. </div>');}?>
+  	<? if (isset($_GET['msg1'])){
+		echo ('<div class="alert alert-success alert-dismissable">');
+  		echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+  		echo ('<strong>¡AVISO!</strong> Nuevo miembro creado. </div>');}?>
+
 			<!-- Tabla-->
 	<div class="row">
 		<div class="col-md-1">

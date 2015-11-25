@@ -34,6 +34,10 @@ if (isset($id1)){
 if($id=='0'){
 	$query="INSERT INTO CAX.miembro (email,celular,nombre,apellido,domicilio,dni,fijoDia,fijoNoche,fechaNacimiento,password,idcategoria) VALUE ('".$email."','".$celular."','".$nombre."','".$apellido."','".$domicilio."','".$dni."','".$fijoDia."','".$fijoNoche."','".$fechaNacimiento."','".$password."','".$idcategoria."');";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	if (empty($nombre)){
+		header('Location: nuevo_usuario.php?email='.$email.'');
+		exit();}
+
 }
 
 else {

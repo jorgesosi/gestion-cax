@@ -4,10 +4,11 @@ if (empty($_SESSION["id"])){
 	exit();}
 require("include/connect_db.php");
 
+$email="";
+$password="";	
 $id="0";
 $nombre="";
 $boton="nuevo";
-$email="";
 $domicilio="";
 $apellido="";
 $dni="";
@@ -15,8 +16,8 @@ $celular="";
 $fijoDia="";
 $fijoNoche="";
 $fechaNacimiento="";
-$password="";
 $idcategoria="0";
+
 
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
