@@ -75,7 +75,7 @@ function pregunta(){
 			<?if ($_SESSION["permiso"]==1){?>
 				
 				<button type="button" data-toggle="collapse" data-target="#recupero" class='btn  btn-success btn-m'>Agregar miembro</button>
-            <div id="recupero" class="collapse">
+            	<div id="recupero" class="collapse">
         		<form action="include/servicio_miembro.php" method="post">
 					<input name ="email" type="text" placeholder="Ingresa mail">
 					<input name="password" type="hidden" value="cax1234">
@@ -96,6 +96,10 @@ function pregunta(){
 		echo ('<div class="alert alert-success alert-dismissable">');
   		echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
   		echo ('<strong>¡AVISO!</strong> Nuevo miembro creado. </div>');}?>
+  	<? if (isset($_GET['msg2'])){
+		echo ('<div class="alert alert-warning alert-dismissable">');
+  		echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+  		echo ('<strong>¡Error!</strong> Email ya registrado </div>');}?>
 
 			<!-- Tabla-->
 	<div class="row">
@@ -106,9 +110,9 @@ function pregunta(){
 			<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 				<!-- Datos de las tablas de prueba-->
 				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th>
-					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th></th>
+					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th>Email</th><th></th>
 					<? if ($_SESSION["permiso"]==1)
-						echo("<th></th><th></th><th></th>");
+						echo("<th></th><th></th>");
 
 					?>
 				</tr>
@@ -121,22 +125,35 @@ function pregunta(){
 					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); 
 
 				while ($row=mysql_fetch_object($result)){
-					if ($row->nombre!="Root"){
+					
 
+					
+					if ($_SESSION["permiso"]==1){
 					echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 					echo ("<td>    $row->nombre</td>");
 					echo("<td><span class='glyphicon glyphicon-earphone'></span> $row->celular </td>");
 					echo("<td>$row->domicilio</td>");
 					echo("<td>$row->fijoDia</td>");
 					echo("<td>$row->fijoNoche</td>");
-					echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>");
-
-					if ($_SESSION["permiso"]==1){
+					echo("<td>$row->email</td>");
 					echo("<td><a title='Editar' href='formulario_miembro.php?id=$row->idmiembro'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-pencil'</span></button></a></td>");
+					echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>");
 					echo("<td><a title='Eliminar' href='include/servicio_miembro.php?id1=$row->idmiembro'  onclick='return pregunta()'>");
 					echo("<span class='glyphicon glyphicon-remove'> </span></a></td></tr>");
-					} else echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 
+
+					} else {if ($row->nombre!="Root")
+								if ($row->idcategoria!=0){
+									echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
+									echo ("<td>    $row->nombre</td>");
+									echo("<td><span class='glyphicon glyphicon-earphone'></span> $row->celular </td>");
+									echo("<td>$row->domicilio</td>");
+									echo("<td>$row->fijoDia</td>");
+									echo("<td>$row->fijoNoche</td>");
+									echo("<td>$row->email</td>");
+									echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>");
+									echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
+								}
 
 				} }?>
 

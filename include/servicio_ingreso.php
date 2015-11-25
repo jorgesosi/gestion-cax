@@ -14,6 +14,8 @@ $_SESSION["nombre"]=$row->nombre;
 $_SESSION["apellido"]=$row->apellido;
 $_SESSION["permiso"]=$row->permiso;
 header("Location: ../inicio.php");
+if ($row->nombre=="")
+	header('Location: ../formulario_miembro.php?id='.$row->idmiembro.'');
 }
 else
 	header('location: ../index.php?error');
