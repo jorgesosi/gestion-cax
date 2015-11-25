@@ -61,13 +61,47 @@ function pregunta(){
 	<div class="row">
 		<div class="col-md-2">
 		</div>
-		<div class="col-md-5">
+
+		<div class="col-md-4">
 			<form  class="form-group" method="post" action="listadomiembro.php?go"> 
 	     	 	<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
 		</div>
 		<div class="col-md-1">
+				<!--se crean los downdrop para cargar las habilidades y las categoria
+				para realizar una busqueda avanzada por categoria o pro habilidades -->
+		  			
+		  			<select class="selectpicker" name="categoria">
+		    			<option value="categoria">categoria</option>
+		    <?
+		    			require("include/connect_db.php");
+		    			$categoria='SELECT * FROM CAX.categoria;';
+		    			$result = mysql_query($categoria) or die('Consulta fallida: ' . mysql_error()); 
+		    			while ($row=mysql_fetch_object($result)){
+		    				echo("<option value='$row->nombre'>$row->nombre</option>");
+		    			}
+
+
+		    ?>
+		  			</select>
+		</div>
+		<div class="col-md-1">
+				
+					<select class="selectpicker" name="habilidades" >
+		    			<option value="habilidades">habilidades</option>
+		    			<?
+		    			require("include/connect_db.php");
+		    			$categoria='SELECT * FROM CAX.skill;';
+		    			$result = mysql_query($categoria) or die('Consulta fallida: ' . mysql_error()); 
+		    			while ($row=mysql_fetch_object($result)){
+		    				echo("<option value='$row->nombre'>$row->nombre</option>");
+		    			}
+			?>
+		  			</select>
+		</div>	
+		<div class="col-md-1">
 			<input  type="submit" name="buscar" class="btn btn-primary btn-x" value="Buscar">
 			</form>
+
 		</div>
 		<div class="col-md-1">
 		</div>
@@ -117,12 +151,39 @@ function pregunta(){
 					?>
 				</tr>
 				<?
-					require("include/connect_db.php");
+					/*require("include/connect_db.php"); //este codigo lo reemplace por el que esta debajo
 					if (isset($_POST['buscar'])){
 						$nombre=$_POST['name'];
 						$query = 'SELECT * FROM CAX.miembro WHERE nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';}
 					else {$query = 'SELECT * FROM CAX.miembro;';}
+					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); */
+					require("include/connect_db.php");
+					if (isset($_POST['buscar'])){
+						$nombre=$_POST['name'];
+						$query = 'SELECT * FROM CAX.miembro WHERE miembro.nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';
+					if(isset($_POST['categoria'])){
+						$categoria=$_POST['categoria'];	
+						if ($categoria=="categoria"){
+							$query = 'SELECT * FROM CAX.miembro WHERE miembro.nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';
+							if(isset($_POST['habilidades'])){
+								$habilidades=$_POST['habilidades'];
+								}if($habilidades=="habilidades"){
+									$query = 'SELECT * FROM CAX.miembro WHERE miembro.nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';
+								}else
+									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email from CAX.miembro, CAX.miembro_skill, CAX.skill where (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil and skill.nombre="'.$habilidades.'";';
+						}else{
+						$query='SELECT * FROM CAX.categoria, CAX.miembro WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria);';
+						if(isset($_POST['habilidades'])){
+							$habilidades=$_POST['habilidades'];
+							if($habilidades!=="habilidades")
+								$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email from CAX.miembro, CAX.miembro_skill, CAX.skill, CAX.categoria where (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND (miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil and skill.nombre="'.$habilidades.'") AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria) ;';
+						}
+						}	
+					}
+					}else {$query = 'SELECT * FROM CAX.miembro;';
+					}
 					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); 
+
 
 				while ($row=mysql_fetch_object($result)){
 					
