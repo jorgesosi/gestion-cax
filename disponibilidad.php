@@ -143,8 +143,10 @@ if (empty($_SESSION["id"]))
 ?>
 				<table class'table table-condensed table-bordered table-striped' style='background-color:#ececec' >
 						<!-- Datos de las tablas de disponibilidad crea los encabezados-->
-
-				
+			<?  $query="SELECT nombre,apellido FROM CAX.miembro where idmiembro ='".$id."';";
+				$resultado=mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+				$fila = mysql_fetch_object($resultado)?>
+				<?echo('<tr><th> '.$fila->nombre.' '.$fila->apellido.'</th></tr>')?>
 				<?if ($_SESSION["permiso"]==1  || isset($_GET["owner"])){?>
 				<tr><th>Desde AA/MM/DD</th><th>hasta AA/MM/DD </th><th></th><th>Nuevo</th></tr>
 				<form action='include/servicio_disponibilidad.php' method='POST'>  

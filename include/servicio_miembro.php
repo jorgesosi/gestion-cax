@@ -35,7 +35,7 @@ if($id=='0'){
 	$query = "SELECT email from CAX.miembro WHERE email='".$email."' ;";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	if(mysql_num_rows($result)==0){
-		$query="INSERT INTO CAX.miembro (email,celular,nombre,apellido,domicilio,dni,fijoDia,fijoNoche,fechaNacimiento,password,idcategoria) VALUE ('".$email."','".$celular."','".$nombre."','".$apellido."','".$domicilio."','".$dni."','".$fijoDia."','".$fijoNoche."','".$fechaNacimiento."','".$password."','".$idcategoria."');";
+		$query="INSERT INTO CAX.miembro (email,celular,nombre,apellido,domicilio,dni,fijoDia,fijoNoche,fechaNacimiento,password,idcategoria,permiso) VALUE ('".$email."','".$celular."','".$nombre."','".$apellido."','".$domicilio."','".$dni."','".$fijoDia."','".$fijoNoche."','".$fechaNacimiento."','".$password."','".$idcategoria."','".$permiso."');";
 		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 		header('Location: nuevo_usuario.php?email='.$email.'');
 		}
@@ -45,7 +45,7 @@ if($id=='0'){
 }
 
 else {
-$query="UPDATE CAX.miembro SET email='".$email."',celular='".$celular."',nombre='".$nombre."',apellido='".$apellido."',domicilio='".$domicilio."',dni='".$dni."',fijoDia='".$fijoDia."',fijoNoche='".$fijoNoche."',fechaNacimiento='".$fechaNacimiento."',password='".$password."',idcategoria='".$idcategoria."' WHERE idmiembro='".$id."';";
+$query="UPDATE CAX.miembro SET email='".$email."',celular='".$celular."',nombre='".$nombre."',apellido='".$apellido."',domicilio='".$domicilio."',dni='".$dni."',fijoDia='".$fijoDia."',fijoNoche='".$fijoNoche."',fechaNacimiento='".$fechaNacimiento."',password='".$password."',idcategoria='".$idcategoria."',permiso='".$permiso."' WHERE idmiembro='".$id."';";
 $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 }
 header('Location: ../listadomiembro.php');

@@ -17,6 +17,7 @@ $fijoDia="";
 $fijoNoche="";
 $fechaNacimiento="";
 $idcategoria="0";
+$permiso="0";
 
 
 if (isset($_GET['id'])){
@@ -36,6 +37,7 @@ if (isset($_GET['id'])){
 	$fechaNacimiento=$row->fechaNacimiento;
 	$password=$row->password;
 	$idcategoria=$row->idcategoria;
+	$permiso=$row->permiso;
 }
 ?>
 <html>
@@ -134,13 +136,24 @@ if (isset($_GET['id'])){
 				<label class="col-sm-2 control-label">Tel fijo noche</label>
 		    	<p><? echo("<input disabled='true' type='text' name='fijoNoche' value='$fijoNoche'>");?></p>
 		    	<?}?>
+		    	 <p></p>
+	    		<?if ($_SESSION["permiso"]==1 && $nombre!="Root"){
+	    			if ($permiso==1)
+	    				echo("<input type='checkbox' name='permiso' checked='checked' 
+								value='1'>");
+	    				else 
+	    					echo("<input type='checkbox' name='permiso'
+								value='1'>");
+	    		echo(" ¿Administrador del sistema?");
+	    		}
+				?>
 		    	<p></p>
 		    	<? if (isset($_GET["ext"])==FALSE)
 						echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$id&owner'><button type='button' class='btn  btn-success'><span>Ver disponibilidad</span></button></a></td>");
 					else
 						echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$id'><button type='button' class='btn  btn-success'><span>Ver disponibilidad</span></button></a></td>");
 				?>
-	    		<h3>Categoria</h3> 	
+	    		<h3>Categoria</h3>
 	    		<p></p>	
 	    	    <?if (isset($_GET["ext"])==FALSE){?>
 		    		<input type="radio" name="idcategoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>

@@ -11,6 +11,7 @@ function pregunta(){
 	return blnRespuesta;
 }
 </script> 
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
@@ -70,7 +71,7 @@ function pregunta(){
 				<!--se crean los downdrop para cargar las habilidades y las categoria
 				para realizar una busqueda avanzada por categoria o pro habilidades -->
 		  			
-		  			<select class="selectpicker" name="categoria">
+		  			<select name="categoria" class="btn btn-success btn-xs">
 		    			<option value="categoria">categoria</option>
 		    <?
 		    			require("include/connect_db.php");
@@ -86,7 +87,7 @@ function pregunta(){
 		</div>
 		<div class="col-md-1">
 				
-					<select class="selectpicker" name="habilidades" >
+					<select name="habilidades"class="btn btn-warning btn-xs" >
 		    			<option value="habilidades">habilidades</option>
 		    			<?
 		    			require("include/connect_db.php");
