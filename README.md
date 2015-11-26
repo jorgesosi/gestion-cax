@@ -19,7 +19,7 @@ La aplicación muestra la información de los miembros que  están disponibles p
 
 Guía de usuario
 ===
-Permite visualizar información  detallada de cada miembro de la comisión y modificación de los datos personales como también cargar las fechas o periodos de tempos en los que se va a estar disponible.
+Permite visualizar información  detallada de cada miembro de la comisión y modificación de los datos personales como también cargar las fechas o periodos de tiempos en los que se va a estar disponible.
 
 Usuarios/Miembros
 ---
@@ -138,7 +138,8 @@ requerimientos
 ```
 * php
 * my Sql
-* script de creación de base de datos.
+* Cax.sql( script de creación de base de datos)
+	se encuentra en la carpeta sql.
 ```
 
 Dependencias
@@ -162,7 +163,7 @@ Gestión_cax
 	|		|__cab.jpg
 	|		|__logoComAux.jpg
 	|__sql
-	|		|__
+	|		|__Cax.sql
 	|__include
 			|__connect_db.php
 			|__
