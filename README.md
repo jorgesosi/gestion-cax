@@ -1,3 +1,21 @@
+Proyecto para la Materia Practica Profesional 1.
+====
+Instituto Superior Capacitas.
+===
+Carrera
+-----
+desarrollo de Sistemas 1
+Materia
+-----
+Practica Profecional 1
+
+Año 2015
+Autores
+-----
+* Docente: Lucas Passalacqua
+* Alumno: Matias Lavanchi
+* Alumno: Jorge G. Sosinowicz.
+
 Gestión Cax
 ======
 Descripción
@@ -20,6 +38,21 @@ Usuario/Administrador
 
 Vistas
 ===
+Pantalla Admnistrador
+-----
+![admin] (img/nuevo.png?raw=true)
+
+
+Crear usuario nuevo
+-----
+![nuevo] (img/nuevo1.png?raw=true)
+
+
+usuario creado
+----
+![nuevo2] (img/nuevo2.png?raw=true)
+
+
 Pantalla de Log-in (gestión-cax)
 ----
 ![login] (img/login.png?raw=true)
@@ -33,6 +66,9 @@ Recuperación de contraseña
 ----
 Enviá la contraseña al ***e-mail registrado del usuario***. En caso de que la dirección de correo sea ***incorrecta*** envía un mensaje de ***error***.
 
+Primer Pantalla de Usuario Nuevo
+-----
+![primer] (img/primerpantalla.png?raw=true)
 
 Pantalla de Inicio.
 ----
