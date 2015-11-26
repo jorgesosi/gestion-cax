@@ -97,7 +97,7 @@ if (isset($_GET['id'])){
 		<div class="col-md-8">	
 			<h3>Formulario de miembro</h3><p></p>
 			<form class="form-horizontal" action="include/servicio_miembro.php" method="POST" name="miembro">
-				<?if (isset($_GET["ext"])==FALSE){?>
+				<?if (isset($_GET["ext"])==FALSE && $nombre!="Root"){?>
 				<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
 		      	<label  class="col-sm-2 control-label">Nombre</label>
 				<p><? echo("<input type='text' name='nombre' value='$nombre'>");?></p>

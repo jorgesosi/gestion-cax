@@ -18,9 +18,8 @@ function pregunta(){
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/bootstrap-select.css">
+    <link rel="stylesheet" href="css/bootstrap-select.css">
 	<script src="js/bootstrap.min.js"></script>
-
 </head>
 <!-- Navegador-->
 <div class="container-full">
@@ -74,7 +73,7 @@ function pregunta(){
 				<!--se crean los downdrop para cargar las habilidades y las categoria
 				para realizar una busqueda avanzada por categoria o pro habilidades -->
 		  			
-		  			<select name="categoria" class="btn btn-success btn-x">
+		  			<select name="categoria" class="btn btn-success btn-xs">
 		    			<option value="categoria">categoria</option>
 		    <?
 		    			require("include/connect_db.php");
@@ -90,7 +89,7 @@ function pregunta(){
 		</div>
 		<div class="col-md-1">
 				
-					<select name="habilidades"class="btn btn-warning btn-x" >
+					<select name="habilidades"class="btn btn-warning btn-xs" >
 		    			<option value="habilidades">habilidades</option>
 		    			<?
 		    			require("include/connect_db.php");
@@ -190,10 +189,10 @@ function pregunta(){
 
 
 				while ($row=mysql_fetch_object($result)){
-					
 
-					
-					if ($_SESSION["permiso"]==1){
+
+
+					if ($_SESSION["permiso"]==1 && $row->nombre!="Root"){
 					echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 					echo ("<td>    $row->nombre</td>");
 					echo("<td><span class='glyphicon glyphicon-earphone'></span> $row->celular </td>");
