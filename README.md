@@ -1,20 +1,15 @@
-Proyecto para la Materia Practica Profesional 1.
+Proyecto Gestión CAX ( Comisión de Auxilio )
 ====
 Instituto Superior Capacitas.
-===
-Carrera
------
-desarrollo de Sistemas 1
-Materia
------
-Practica Profecional 1
+----
+**Carrera**: Técnico Superior en Desarrollo de Sistemas 
+**Materia**: Práctica Profesional 1 (2do año)
 
-Año 2015
-Autores
+** Año** :  2015
+**Autores**
 -----
+* Alumno: Matias Lavanchi, Jorge G. Sosinowicz.
 * Docente: Lucas Passalacqua
-* Alumno: Matias Lavanchi
-* Alumno: Jorge G. Sosinowicz.
 
 Gestión Cax
 ======
