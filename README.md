@@ -3,6 +3,7 @@ Proyecto Gestión CAX ( Comisión de Auxilio )
 Instituto Superior Capacitas.
 ----
 **Carrera**: Técnico Superior en Desarrollo de Sistemas.
+
 **Materia**: Práctica Profesional 1 (2do año)
 
 **Año** :  2015
