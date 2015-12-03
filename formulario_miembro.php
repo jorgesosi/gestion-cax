@@ -88,6 +88,56 @@ if (isset($_GET['id'])){
     <style>
         #fecha {width:100px;text-align:center;}
     </style>
+
+    <script>
+    function funcionAceptar(){
+    var nombre= document.getElementById('nombre').value;
+	var apellido=document.getElementById('apellido').value;
+	var email=document.getElementById('email').value;
+	var domicilio=document.getElementById('domicilio').value;
+	var dni=document.getElementById('dni').value;
+	var fechaNacimiento=document.getElementById('fechaNacimiento').value;
+	var celular=document.getElementById('celular').value;
+	var password=document.getElementById('password').value;
+	if(nombre==''){
+		alert("El Campo 'Nombre' Esta Vacio");
+		document.getElementById('nombre').focus();
+		var apellido=document.getElementById('apellido').value;
+		return false;
+	}else if(apellido==''){
+		alert("El Campo 'Apellido' Esta Vacio");
+		document.getElementById('apellido').focus();
+		return false;
+	}else if(email==''){
+		alert("El Campo 'email' Esta Vacio");
+		document.getElementById('email').focus();
+		return false;
+	}else if(domicilio==''){
+		alert("El Campo 'Domicilio' Esta Vacio");
+		document.getElementById('domicilio').focus();
+		return false;
+	}else if(dni==''){
+		alert("El Campo 'DNI' Esta Vacio");
+		document.getElementById('dni').focus();
+		return false;
+	}else if(fechaNacimiento==''){
+		alert("El Campo 'fechaNacimiento' Esta Vacio");
+		document.getElementById('fechaNacimiento').focus();
+		return false;
+	}else if(celular==''){
+		alert("El Campo 'Celular' Esta Vacio");
+		document.getElementById('celular').focus();
+		return false;
+	}else if(password==''){
+		alert("El Campo 'password' Esta Vacio");
+		document.getElementById('password').focus();
+		return false;
+	}else{
+		return true;
+	}
+	   	
+	}
+    </script>
 </head>
 <body>
 <!-- Navegador-->
@@ -139,21 +189,21 @@ if (isset($_GET['id'])){
 				<?if (isset($_GET["ext"])==FALSE && $nombre!="Root"){?>
 				<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
 		      	<label  class="col-sm-2 control-label">Nombre</label>
-				<p><? echo("<input type='text' name='nombre' value='$nombre'>");?></p>
+				<p><? echo("<input type='text' name='nombre' id='nombre'value='$nombre'>");?></p>
 				<label class="col-sm-2 control-label">Apellido</label>
-				<p><? echo("<input type='text' name='apellido' value='$apellido'>");?></p>
+				<p><? echo("<input type='text' name='apellido' id='apellido'value='$apellido'>");?></p>
 				<label class="col-sm-2 control-label">Password</label>
-				<p><? echo("<input type='password' name='password' value='$password'>");?></p>
+				<p><? echo("<input type='password' name='password' id='password' value='$password'>");?></p>
 				<label class="col-sm-2 control-label">Email</label>
-				<p><? echo("<input type='text' name='email' value='$email'>"); ?></p>
+				<p><? echo("<input type='text' name='email' id='email' value='$email'>"); ?></p>
 				<label class="col-sm-2 control-label">Domicilio</label>
-				<p><? echo("<input type='text' name='domicilio' value='$domicilio'>");?></p>
+				<p><? echo("<input type='text' name='domicilio' id='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>
-			  	<p><? echo("<input type='text' name='dni' value='$dni'>"); ?></p>
+			  	<p><? echo("<input type='text' name='dni' id='dni' value='$dni'>"); ?></p>
 			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
 			  	<p><? echo("<input type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
 				<label  class="col-sm-2 control-label">Celular</label>
-			    <p><? echo("<input type='text' name='celular' value='$celular'>");?></p>
+			    <p><? echo("<input type='text' name='celular' id='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
 		    	<p><? echo("<input type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
 				<label class="col-sm-2 control-label">Tel fijo noche</label>
@@ -161,19 +211,19 @@ if (isset($_GET['id'])){
 		    	<?}else {?>
 		    	<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
 		      	<label  class="col-sm-2 control-label">Nombre</label>
-				<p><? echo("<input disabled='true' type='text' name='nombre' value='$nombre'>");?></p>
+				<p><? echo("<input disabled='true' type='text' name='nombre' id='nombre' value='$nombre'>");?></p>
 				<label class="col-sm-2 control-label">Apellido</label>
-				<p><? echo("<input disabled='true' type='text' name='apellido' value='$apellido'>");?></p>
+				<p><? echo("<input disabled='true' type='text' name='apellido' id='apellido' value='$apellido'>");?></p>
 				<label class="col-sm-2 control-label">Email</label>
-				<p><? echo("<input disabled='true' type='text' name='email' value='$email'>"); ?></p>
+				<p><? echo("<input disabled='true' type='text' name='email' id='email' value='$email'>"); ?></p>
 				<label class="col-sm-2 control-label">Domicilio</label>
-				<p><? echo("<input disabled='true' type='text' name='domicilio' value='$domicilio'>");?></p>
+				<p><? echo("<input disabled='true' type='text' name='domicilio' id='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>
-			  	<p><? echo("<input disabled='true' type='text' name='dni' value='$dni'>"); ?></p>
+			  	<p><? echo("<input disabled='true' type='text' name='dni' id='dni' value='$dni'>"); ?></p>
 			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
 			  	<p><? echo("<input disabled ='true' type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
 				<label  class="col-sm-2 control-label">Celular</label>
-			    <p><? echo("<input disabled='true' type='text' name='celular' value='$celular'>");?></p>
+			    <p><? echo("<input disabled='true' type='text' name='celular' id='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
 		    	<p><? echo("<input disabled='true' type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
 				<label class="col-sm-2 control-label">Tel fijo noche</label>
@@ -234,9 +284,11 @@ if (isset($_GET['id'])){
 						else echo ("<input type='checkbox' disabled='disabled' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
 				}
 			?>  
-			<p></p><p></p>
+			<p></p>
+			<p></p>
+
 			<? if (isset($_GET["ext"])==FALSE)
-			echo ('<button type="submit" class="btn btn-success">Aceptar</button>');?>
+			echo ('<button type="submit" class="btn btn-success" onclick="return funcionAceptar()">Aceptar</button>');?>
 		</form>
 		</div>
 	    <div class ="col-md-3">
