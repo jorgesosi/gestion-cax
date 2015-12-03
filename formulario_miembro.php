@@ -1,3 +1,5 @@
+
+
 <? session_start();
 if (empty($_SESSION["id"])){
 	header("Location: index.php");
@@ -49,6 +51,43 @@ if (isset($_GET['id'])){
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/bootstrap.min.js"></script>
+	<!--estas lines incorporan los archivos necesarios para el datepicker -->
+	<meta charset="utf-8" />
+    <link rel="stylesheet" href="css/jquery-ui.css" />
+    <script src="js/jquery-1.9.1.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <!-- funcion para dar formato al text de la fecha -->
+	<script>
+    $(function() {
+        $(".fecha").datepicker(
+            {
+                dateFormat: "yy/mm/dd",
+                dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
+                dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
+                firstDay: 1,
+                gotoCurrent: true,
+                monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" ],
+                monthNamesShort:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep", "Oct","Nov","Dic"],
+                minDate: "-80Y",
+                maxDate: "-15Y" ,
+                prevText: '&#x3c;&#x3c;Ant', 
+        		prevStatus: '',
+        		prevJumpText: '&#x3c;&#x3c', 
+        		prevJumpStatus: '',
+        		nextText: 'Sig&#x3e;&#x3e', 
+        		nextStatus: '',
+        		nextJumpText: '&#x3e;&#x3e', 
+        		nextJumpStatus: '',
+        		//changeMonth: true ,
+        		changeYear:true//,
+        		//numberOfMonths:1
+            }
+        );
+    });
+    </script>
+    <style>
+        #fecha {width:100px;text-align:center;}
+    </style>
 </head>
 <body>
 <!-- Navegador-->
@@ -111,6 +150,8 @@ if (isset($_GET['id'])){
 				<p><? echo("<input type='text' name='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>
 			  	<p><? echo("<input type='text' name='dni' value='$dni'>"); ?></p>
+			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
+			  	<p><? echo("<input type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
 				<label  class="col-sm-2 control-label">Celular</label>
 			    <p><? echo("<input type='text' name='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
@@ -129,6 +170,8 @@ if (isset($_GET['id'])){
 				<p><? echo("<input disabled='true' type='text' name='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>
 			  	<p><? echo("<input disabled='true' type='text' name='dni' value='$dni'>"); ?></p>
+			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
+			  	<p><? echo("<input disabled ='true' type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
 				<label  class="col-sm-2 control-label">Celular</label>
 			    <p><? echo("<input disabled='true' type='text' name='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
