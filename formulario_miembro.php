@@ -132,6 +132,10 @@ if (isset($_GET['id'])){
 		alert("El Campo 'password' Esta Vacio");
 		document.getElementById('password').focus();
 		return false;
+	}else if (password=='cax1234'){
+		alert("Debe Cambiar El PASSWORD");
+		document.getElementById('password').focus();
+		return false;
 	}else{
 		return true;
 	}
