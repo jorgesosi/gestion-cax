@@ -127,6 +127,10 @@ function funcionAceptar(){
 		alert("El Campo 'fechaNacimiento' Esta Vacio");
 		document.getElementById('fechaNacimiento').focus();
 		return false;
+	}else if(fechaNacimiento=='0000-00-00'){
+		alert("'FechaNacimiento' No valida");
+		document.getElementById('fechaNacimiento').focus();
+		return false;	
 	}else if(celular==''){
 		alert("El Campo 'Celular' Esta Vacio");
 		document.getElementById('celular').focus();
@@ -145,8 +149,7 @@ function funcionAceptar(){
 		return false;
 	}else{
 		return true;
-	}
-	   	
+	}	
 }
     </script>
  <?
