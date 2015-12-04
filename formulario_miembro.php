@@ -89,8 +89,8 @@ if (isset($_GET['id'])){
         #fecha {width:100px;text-align:center;}
     </style>
 
-    <script>
-    function funcionAceptar(){
+   <script>
+function funcionAceptar(){
     var nombre= document.getElementById('nombre').value;
 	var apellido=document.getElementById('apellido').value;
 	var email=document.getElementById('email').value;
@@ -99,6 +99,9 @@ if (isset($_GET['id'])){
 	var fechaNacimiento=document.getElementById('fechaNacimiento').value;
 	var celular=document.getElementById('celular').value;
 	var password=document.getElementById('password').value;
+	var cat1=document.getElementById('cat1').checked;
+	var cat2=document.getElementById('cat2').checked;
+	var cat3=document.getElementById('cat3').checked;
 	if(nombre==''){
 		alert("El Campo 'Nombre' Esta Vacio");
 		document.getElementById('nombre').focus();
@@ -136,12 +139,22 @@ if (isset($_GET['id'])){
 		alert("Debe Cambiar El PASSWORD");
 		document.getElementById('password').focus();
 		return false;
+	}else if(cat1==false&&cat2==false&&cat3==false){
+		alert("Seleccione una Categoria");
+		document.getElementById('cat1').focus();
+		return false;
 	}else{
 		return true;
 	}
 	   	
-	}
+}
     </script>
+ <?
+ function emailChange(){
+ 	echo("<script> alert('existe');</scrtipt>");
+ 	
+ }
+ ?>
 </head>
 <body>
 <!-- Navegador-->
@@ -199,7 +212,7 @@ if (isset($_GET['id'])){
 				<label class="col-sm-2 control-label">Password</label>
 				<p><? echo("<input type='password' name='password' id='password' value='$password'>");?></p>
 				<label class="col-sm-2 control-label">Email</label>
-				<p><? echo("<input type='text' name='email' id='email' value='$email'>"); ?></p>
+				<p><? echo("<input type='text' name='email' id='email' value='$email' >"); ?></p>
 				<label class="col-sm-2 control-label">Domicilio</label>
 				<p><? echo("<input type='text' name='domicilio' id='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>
@@ -253,11 +266,11 @@ if (isset($_GET['id'])){
 	    		<h3>Categoria</h3>
 	    		<p></p>	
 	    	    <?if (isset($_GET["ext"])==FALSE){?>
-		    		<input type="radio" name="idcategoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>
+		    		<input type="radio" name="idcategoria" value="1" id="cat1"<?if ($idcategoria==1)echo ('checked')?>>
 		    		Activo
-		    		<input type="radio" name="idcategoria"  value="2" <?if ($idcategoria==2)echo ('checked')?>>
+		    		<input type="radio" name="idcategoria"  value="2" id="cat2"<?if ($idcategoria==2)echo ('checked')?>>
 		    		Apoyo
-		    		<input type="radio" name="idcategoria"  value="3" <?if ($idcategoria==3)echo ('checked')?>>
+		    		<input type="radio" name="idcategoria"  value="3" id="cat3"<?if ($idcategoria==3)echo ('checked')?>>
 		    		Aspirante
 		    	<?} else{?>
 		    		<input type="radio" disabled='disabled' name="idcategoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>
