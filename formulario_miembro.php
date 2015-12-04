@@ -140,7 +140,7 @@ function funcionAceptar(){
 		document.getElementById('password').focus();
 		return false;
 	}else if (password=='cax1234'){
-		alert("Debe Cambiar El PASSWORD");
+		alert("Debe Cambiar El PASSWORD No se puede usar cax1234");
 		document.getElementById('password').focus();
 		return false;
 	}else if(cat1==false&&cat2==false&&cat3==false){
@@ -152,12 +152,7 @@ function funcionAceptar(){
 	}	
 }
     </script>
- <?
- function emailChange(){
- 	echo("<script> alert('existe');</scrtipt>");
- 	
- }
- ?>
+ 
 </head>
 <body>
 <!-- Navegador-->
@@ -201,9 +196,9 @@ function funcionAceptar(){
 	</div>
 	<!--inicio  fila  contenedora formulario-->
 		<div class="row"> 
-		<div class="col-md-1">
-		</div>
-		<div class="col-md-8">	
+			<div class="col-md-1">
+			</div>
+			<div class="col-md-8">	
 			<h3>Formulario de miembro</h3><p></p>
 			<form class="form-horizontal" action="include/servicio_miembro.php" method="POST" name="miembro">
 				<?if (isset($_GET["ext"])==FALSE && $nombre!="Root"){?>
@@ -213,9 +208,11 @@ function funcionAceptar(){
 				<label class="col-sm-2 control-label">Apellido</label>
 				<p><? echo("<input type='text' name='apellido' id='apellido'value='$apellido'>");?></p>
 				<label class="col-sm-2 control-label">Password</label>
-				<p><? echo("<input type='password' name='password' id='password' value='$password'>");?></p>
+				<p><? echo("<input type='password' name='password' id='password' value='$password'readonly>");
+				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal1' ><span class='glyphicon glyphicon-pencil'</span></button></td>");?></p>
 				<label class="col-sm-2 control-label">Email</label>
-				<p><? echo("<input type='text' name='email' id='email' value='$email' >"); ?></p>
+				<p><? echo("<input type='text' name='email' id='email' value='$email' readonly>"); 
+				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-pencil'</span></button></td>");?></p>
 				<label class="col-sm-2 control-label">Domicilio</label>
 				<p><? echo("<input type='text' name='domicilio' id='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>
@@ -308,11 +305,107 @@ function funcionAceptar(){
 			<p></p>
 
 			<? if (isset($_GET["ext"])==FALSE)
-			echo ('<button type="submit" class="btn btn-success" onclick="return funcionAceptar()">Aceptar</button>');?>
+				echo ('<button type="submit" class="btn btn-success" onclick="return funcionAceptar()">Aceptar</button>');?>
 		</form>
-		</div>
-	    <div class ="col-md-3">
-	    </div>
+
+			</div>
+		    <div class ="col-md-3">
+		    </div>
+		    <!-- Modal -->
+			  <div class="modal fade" id="myModal" role="dialog">
+			    <div class="modal-dialog">
+			    	<!-- Modal content-->
+			      <div class="modal-content">
+			        <?/*codigo php para confirmacion de email*/
+			        require("include/connect_db.php"); // incluimos el archivo de conexión a la Base de Datos
+    				if(isset($_POST['enviar'])) { // comprobamos que se han enviado los datos desde el formulario
+	        			// creamos una función que nos parmita validar el email
+	        			function valida_email($correo) {
+	            			if (preg_match('/^[A-Za-z0-9-_.+%]+@[A-Za-z0-9-.]+\.[A-Za-z]{2,4}$/', $correo))
+	            			 return true;
+	            			else 
+	            				return false;
+	        			} 
+        			if(!valida_email($_POST['usuario'])) { // validamos que el email ingresado sea correcto
+            			echo '<script>alert("El email ingresado no es válido.")</script>'; 
+            		}else{
+            			$mail=$_POST['usuario'];
+            			$query = "SELECT email from CAX.miembro WHERE email='".$mail."' ;";
+            			$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+						$total=mysql_num_rows($result);
+						
+						if($total==0){
+							echo('<script>document.getElementById("email").value="'.$mail.'";</script>');
+						}else{echo '<script>alert("El email ingresado ya existe.");</script>'; }        		
+            		}
+        			}
+			        ?>
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">cambiar E-mail</h4>
+			        </div>
+
+			        <div class="modal-body">
+			          <p></p>
+			          <form action="formulario_miembro.php?id=<?echo $id;?>" method="post">
+					        <label>Usuario:</label><br />
+					        <input type="text" name="usuario" maxlength="50" /><br />		         
+					        <input type="submit" name="enviar" value="Enviar" />
+					       
+			    		</form> 
+			        </div>
+			        
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+			  <!--fin modal  -->
+			   <!-- modal password  -->
+			  <div class="modal fade" id="myModal1" role="dialog">
+			    <div class="modal-dialog">
+			    	<!-- Modal content-->
+			      <div class="modal-content">
+			        <?/*codigo php para confirmacion de contrasenia*/
+			   			if(isset($_POST['enviar1'])) { // comprobamos que se han enviado los datos desde el formulario
+	        				if(empty($_POST['password1'])) { // comprobamos que el campo usuario_clave no esté vacío
+            					echo '<script>alert("Ingresa Un Password")</script>';
+        					}elseif($_POST['password1'] != $_POST['password2']) { // comprobamos que las contraseñas ingresadas coincidan
+            				echo '<script>alert("Los Password No Coniciden")</script>';
+     	      				}else{
+     	      					$pass=$_POST['password1'];
+            					echo('<script>document.getElementById("password").value="'.$pass.'";</script>');
+						}
+        			}
+			        ?><!--codigo de configuracion de las ventanas -->
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          <h4 class="modal-title">Cambiar Password</h4>
+			        </div>
+
+			        <div class="modal-body">
+			          <p></p>
+			          <form action="formulario_miembro.php?id=<?echo $id;?>" method="post">
+					        <label>Contraseña:</label><br />
+		        			<input type="password" name="password1" maxlength="15" /><br />
+		        			<label>Confirmar Contraseña:</label><br />
+		        			<input type="password" name="password2" maxlength="15" /><br />    
+		        			<input type="submit" name="enviar1" value="Aceptar" />
+					       
+			    		</form> 
+			        </div>
+			        
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			      
+			    </div>
+			  </div>
+			  <!--fin modal1 -->
+			</div>
 	    </div>
 </div>	
 </body>
