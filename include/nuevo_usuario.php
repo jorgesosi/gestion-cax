@@ -23,7 +23,8 @@ $mail->FromName = "Gestion CAX";
 $mail->Subject = "Alta de miembro de CAX"; 
 $mail->AltBody = ""; 
 $mail->MsgHTML("<br>Su mail se ha dado de alta para ser miembro de gestion CAX</br><br>Su clave de accesso provisoria es cax1234</br>
-	<br>Por favor, ingrese al sistema utilizando su mail y clave provisoria para personalizar su clave de accesso e ingresar sus datos</br>");
+	<br>Por favor, ingrese al sistema utilizando su mail y clave provisoria para personalizar su clave de accesso e ingresar sus datos</br>
+	<h1>Es importante que el primer campo que debe cambiar sea el de PASSWORD<br>Ya que si no cambia el password no podra realizar ningun cabio</h1>");
 $mail->AddAddress($mailmiembro,$nombre);
 $mail->IsHTML(true); 
 if(!$mail->Send()) { 
