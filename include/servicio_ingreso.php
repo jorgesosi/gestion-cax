@@ -3,8 +3,10 @@ require("connect_db.php");
 $email=$_POST['usuario']; 
 $password=$_POST['contrasenia'];
 
-$query = "select nombre, password, idmiembro, apellido, permiso from CAX.miembro
-	  where email='".$email."' AND password='".$password."';";
+//$query = "select nombre, password, idmiembro, apellido, permiso from CAX.miembro
+	  //where email='".$email."' AND password='".$password."';";
+$query="SELECT nombre, password, idmiembro, apellido, permiso,AES_DECRYPT(password,'cax') FROM CAX.miembro 
+where email='".$email."' and password= AES_ENCRYPT('".$password."','cax');"	;  
 $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 $numero=mysql_num_rows($result);
 $row=mysql_fetch_object($result);

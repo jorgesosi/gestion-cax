@@ -25,10 +25,11 @@ $permiso="0";
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
 	$boton="Modificar";
-	$query = 'select * from CAX.miembro where idmiembro="'.$id.'";';
+	$query = "SELECT nombre, email, domicilio, apellido, dni, celular, fijoDia, fijoNoche,fechaNacimiento,password, AES_DECRYPT(password,'cax'), idcategoria, permiso from CAX.miembro where idmiembro='".$id."';";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
-	$row=mysql_fetch_object($result);
-	$nombre=$row->nombre;
+	//$row=mysql_fetch_object($result);
+	$row1=mysql_fetch_array($result);//prueba con fetch_array para password
+	/*$nombre=$row->nombre;
 	$email=$row->email;
 	$domicilio=$row->domicilio;
 	$apellido=$row->apellido;
@@ -39,7 +40,19 @@ if (isset($_GET['id'])){
 	$fechaNacimiento=$row->fechaNacimiento;
 	$password=$row->password;
 	$idcategoria=$row->idcategoria;
-	$permiso=$row->permiso;
+	$permiso=$row->permiso;*/
+	$nombre=$row1["nombre"];
+	$email=$row1["email"];
+	$domicilio=$row1["domicilio"];
+	$apellido=$row1["apellido"];
+	$dni=$row1["dni"];
+	$celular=$row1["celular"];
+	$fijoDia=$row1["fijoDia"];
+	$fijoNoche=$row1["fijoNoche"];
+	$fechaNacimiento=$row1["fechaNacimiento"];
+	$password=$row1["AES_DECRYPT(password,'cax')"];
+	$idcategoria=$row1["idcategoria"];
+	$permiso=$row1["permiso"];
 }
 ?>
 <html>
@@ -212,7 +225,7 @@ function funcionAceptar(){
 				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal1' ><span class='glyphicon glyphicon-pencil'</span></button></td>");?></p>
 				<label class="col-sm-2 control-label">Email</label>
 				<p><? echo("<input type='text' name='email' id='email' value='$email' readonly>"); 
-				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-pencil'</span></button></td>");?></p>
+				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-envelope'</span></button></td>");?></p>
 				<label class="col-sm-2 control-label">Domicilio</label>
 				<p><? echo("<input type='text' name='domicilio' id='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>

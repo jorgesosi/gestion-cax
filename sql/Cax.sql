@@ -84,11 +84,11 @@ CREATE TABLE `miembro` (
   `fijoDia` varchar(45) DEFAULT NULL,
   `fijoNoche` varchar(45) DEFAULT NULL,
   `idcategoria` int(11) DEFAULT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` blob NOT NULL,
   `fechaNacimiento` date NOT NULL,
   `permiso` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmiembro`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `miembro` (
 
 LOCK TABLES `miembro` WRITE;
 /*!40000 ALTER TABLE `miembro` DISABLE KEYS */;
-INSERT INTO `miembro` VALUES (1,'Root','',NULL,'','Admin',NULL,NULL,NULL,NULL,'Admin','0000-00-00',1);
+INSERT INTO `miembro` VALUES (1,'Root','',NULL,'','Admin',NULL,NULL,NULL,NULL,'¨E†²µ+\03†ZDœ5ÿÔ|','0000-00-00',1);
 /*!40000 ALTER TABLE `miembro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-26 19:25:59
+-- Dump completed on 2015-12-06 19:33:13
