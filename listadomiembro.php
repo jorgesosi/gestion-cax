@@ -143,7 +143,37 @@ function pregunta(){
 		<div class="col-md-1">
 		</div>
 		<div class="col-md-10">
-			<p></p><p></p>
+			<p></p>
+		<p>
+			<?
+			if(isset($_POST['buscar'])){
+				echo ('<div class="alert alert-success alert-dismissable">');
+  				echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+  				echo ('<strong>¡AVISO!</strong><strong>');
+				if(isset($_POST['name'])){
+					$name=$_POST['name'];
+					if ($name==""){
+						echo '  Su busqueda por Nombre o Apellido: "Todos" ';
+					}else{
+					echo '  Su busqueda por Nombre o Apellido: "'.$name.'" ' ;
+					}
+					if(isset($_POST['categoria'])){
+					$cat=$_POST['categoria'];
+						if ($cat!=='categoria'){
+							echo'+ Categoria: "'.$cat.'"  ';
+						}
+					}
+					if(isset($_POST['habilidades'])){
+						$hab=$_POST['habilidades'];
+						if ($hab!=='habilidades'){
+							echo'+ Habilidades: "'.$hab.'" ';
+						}
+					}
+				}
+				echo ('</strong></div>');
+			}
+			?>
+		</p>
 			<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 				<!-- Datos de las tablas de prueba-->
 				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th>
@@ -215,7 +245,7 @@ function pregunta(){
 									echo("<td>$row->fijoDia</td>");
 									echo("<td>$row->fijoNoche</td>");
 									echo("<td>$row->email</td>");
-									echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-ok'</span></button></a></td>");
+									echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-calendar'</span></button></a></td>");
 									echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 								}
 
