@@ -111,6 +111,7 @@ if (empty($_SESSION["id"]))
 					<p class="navbar-text"><font color="red">Conectado como <? echo "$_SESSION[nombre]"; echo " ";
 					echo "$_SESSION[apellido]"; ?></font> </p>
 					<li><a href='formulario_miembro.php?id=<? echo $_SESSION["id"];?>'>Mis datos</a></li>
+					<li><a href="ayuda.php"><span class="glyphicon glyphicon-question-sign"></span></a></li>
 					<li><form  class="navbar-form navbar-right" method="post" action="listadomiembro.php?go"> 
 	     	 			<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
 	    	 			<input  type="submit" name="buscar" class="btn btn-danger" value="Buscar"> 
