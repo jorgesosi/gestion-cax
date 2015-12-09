@@ -199,7 +199,66 @@ function funcionAceptar(){
 	}	
 }
     </script>
- 
+ <script>
+function funcionAdmin(){
+    var nombre= document.getElementById('nombre').value;
+	var apellido=document.getElementById('apellido').value;
+	var email=document.getElementById('email').value;
+	var domicilio=document.getElementById('domicilio').value;
+	var dni=document.getElementById('dni').value;
+	var fechaNacimiento=document.getElementById('fechaNacimiento').value;
+	var celular=document.getElementById('celular').value;
+	var password=document.getElementById('password').value;
+	var fijoDia=document.getElementById('fijoDia').value;
+	var fijoNoche=document.getElementById('fijoNoche').value;
+	var cat1=document.getElementById('cat1').checked;
+	var cat2=document.getElementById('cat2').checked;
+	var cat3=document.getElementById('cat3').checked;
+	 if(!/^[a-zA-Z ]*$/.test(nombre)){//validar el campo nombre alfabetico
+		alert("El Formato 'Nombre' No  Valido");
+		document.getElementById('nombre').focus();
+		var apellido=document.getElementById('apellido').value;
+		return false;
+	}else if(!/^[a-zA-Z ]*$/.test(apellido)){//validar el campo apellido alfabetico
+		alert("El Formato 'Apellido' No  Valido");
+		document.getElementById('apellido').focus();
+		var apellido=document.getElementById('apellido').value;
+		return false;
+	}else if(email==''){
+		alert("El Campo 'email' Esta Vacio");
+		document.getElementById('email').focus();
+		return false;
+	}else if(!/^[0-9a-zA-Z ]*$/.test(domicilio)){//validar el campo nombre alfabetico
+		alert("El Formato 'domicilio' No  Valido");
+		document.getElementById('domicilio').focus();
+		var apellido=document.getElementById('apellido').value;
+		return false;
+	}else if(!/^[0-9a-zA-Z]*$/.test(dni)){//validar el campo nombre alfabetico
+		alert("El Formato 'dni' No  Valido solo [0-9a-zA-Z");
+		document.getElementById('dni').focus();
+		var apellido=document.getElementById('apellido').value;
+		return false;
+	}else if(!/^[0-9()-]*$/.test(celular)){<!--//valida que el campo sea numerico -->
+		alert("El 'Celular' no es Valido solo son validos '[0-9]' o '()'o '-'");
+		document.getElementById('celular').focus();
+		return false;
+	}else if(password==''){
+		alert("El Campo 'password' Esta Vacio");
+		document.getElementById('password').focus();
+		return false;
+	}else if(!/^[0-9()-]*$/.test(fijoDia)){<!--//valida que el campo sea numerico -->
+		alert("El 'Fijo de Dia' no es Valido solo son validos '[0-9]' o '()'o '-'");
+		document.getElementById('fijoDia').focus();
+		return false;
+	}else if(!/^[0-9()-]*$/.test(fijoNoche)){<!--//valida que el campo sea numerico -->
+		alert("El 'Fijo de Noche' no es Valido solo son validos '[0-9]' o '()'o '-'");
+		document.getElementById('fijoNoche').focus();
+		return false;
+	}else {
+		return true;
+	}	
+}
+    </script>
 </head>
 <body>
 <!-- Navegador-->
@@ -352,8 +411,12 @@ function funcionAceptar(){
 			<p></p>
 			<p></p>
 
-			<? if (isset($_GET["ext"])==FALSE)
-				echo ('<button type="submit" class="btn btn-success" onclick="return funcionAceptar()">Aceptar</button>');?>
+			<? if (isset($_GET["ext"])==FALSE){
+				if ($_SESSION["permiso"]==1 && $nombre!="Root"){
+				echo ('<button type="submit" class="btn btn-success" onclick="return funcionAdmin()">Aceptar</button>');
+				}else{
+				echo ('<button type="submit" class="btn btn-success" onclick="return funcionAceptar()">Aceptar</button>');
+			}}?>
 		</form>
 
 			</div>
