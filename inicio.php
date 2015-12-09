@@ -50,7 +50,7 @@ if (empty($_SESSION["id"]))
         #fecha {width:100px;text-align:center;}
     </style>
     <script>
-	function funcionNuevo(){
+	function funcionBuscar(){
 		var ini=document.getElementById('desde').value;
 		var fin=document.getElementById('hasta').value;
 		if(ini==''){
@@ -96,7 +96,7 @@ if (empty($_SESSION["id"]))
 					<p class="navbar-text"><font color="red">Conectado como <? echo $_SESSION["nombre"]; echo " ";
 					echo $_SESSION["apellido"]; ?></font> </p>
 					<li><a href='formulario_miembro.php?id=<? echo $_SESSION["id"];?>'>Mis datos</a></li>
-					<li><a href="ayuda.php"><span class="glyphicon glyphicon-question-sign"></span></a></li>
+					<li><a href="ayuda.php" ><span class="glyphicon glyphicon-question-sign"></span></a></li>
 					<li><form  class="navbar-form navbar-right" method="post" action="listadomiembro.php?go"> 
 	     	 			<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
 	    	 			<input  type="submit" name="buscar" class="btn btn-danger" value="Buscar"> 
@@ -127,7 +127,7 @@ $tomorrow="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro,
 		</div>
 		<div class="col-md-2">
 			<p></p><p></p><p></p><!--area para cargar datos de busqueda -->
-				<p><button type='submit'class='btn btn-success'name='buscar' value='buscar'onclick='return funcionNuevo()'>Buscar</button></p>
+				<p><button type='submit'class='btn btn-success'name='buscar' value='buscar'onclick='return funcionBuscar()'>Buscar</button></p>
 		</div>
 		<div class =col-md-2>
 			</form>

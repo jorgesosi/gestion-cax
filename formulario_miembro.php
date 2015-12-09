@@ -112,6 +112,8 @@ function funcionAceptar(){
 	var fechaNacimiento=document.getElementById('fechaNacimiento').value;
 	var celular=document.getElementById('celular').value;
 	var password=document.getElementById('password').value;
+	var fijoDia=document.getElementById('fijoDia').value;
+	var fijoNoche=document.getElementById('fijoNoche').value;
 	var cat1=document.getElementById('cat1').checked;
 	var cat2=document.getElementById('cat2').checked;
 	var cat3=document.getElementById('cat3').checked;
@@ -120,9 +122,19 @@ function funcionAceptar(){
 		document.getElementById('nombre').focus();
 		var apellido=document.getElementById('apellido').value;
 		return false;
+	}else if(!/^[a-zA-Z ]*$/.test(nombre)){//validar el campo nombre alfabetico
+		alert("El Formato 'Nombre' No  Valido");
+		document.getElementById('nombre').focus();
+		var apellido=document.getElementById('apellido').value;
+		return false;
 	}else if(apellido==''){
 		alert("El Campo 'Apellido' Esta Vacio");
 		document.getElementById('apellido').focus();
+		return false;
+	}else if(!/^[a-zA-Z ]*$/.test(apellido)){//validar el campo apellido alfabetico
+		alert("El Formato 'Apellido' No  Valido");
+		document.getElementById('apellido').focus();
+		var apellido=document.getElementById('apellido').value;
 		return false;
 	}else if(email==''){
 		alert("El Campo 'email' Esta Vacio");
@@ -132,9 +144,19 @@ function funcionAceptar(){
 		alert("El Campo 'Domicilio' Esta Vacio");
 		document.getElementById('domicilio').focus();
 		return false;
+	}else if(!/^[0-9a-zA-Z ]*$/.test(domicilio)){//validar el campo nombre alfabetico
+		alert("El Formato 'domicilio' No  Valido");
+		document.getElementById('domicilio').focus();
+		var apellido=document.getElementById('apellido').value;
+		return false;
 	}else if(dni==''){
 		alert("El Campo 'DNI' Esta Vacio");
 		document.getElementById('dni').focus();
+		return false;
+	}else if(!/^[0-9a-zA-Z]*$/.test(dni)){//validar el campo nombre alfabetico
+		alert("El Formato 'dni' No  Valido solo [0-9a-zA-Z");
+		document.getElementById('dni').focus();
+		var apellido=document.getElementById('apellido').value;
 		return false;
 	}else if(fechaNacimiento==''){
 		alert("El Campo 'fechaNacimiento' Esta Vacio");
@@ -148,6 +170,10 @@ function funcionAceptar(){
 		alert("El Campo 'Celular' Esta Vacio");
 		document.getElementById('celular').focus();
 		return false;
+	}else if(!/^[0-9()-]*$/.test(celular)){<!--//valida que el campo sea numerico -->
+		alert("El 'Celular' no es Valido solo son validos '[0-9]' o '()'o '-'");
+		document.getElementById('celular').focus();
+		return false;
 	}else if(password==''){
 		alert("El Campo 'password' Esta Vacio");
 		document.getElementById('password').focus();
@@ -156,7 +182,15 @@ function funcionAceptar(){
 		alert("Debe Cambiar El PASSWORD No se puede usar cax1234");
 		document.getElementById('password').focus();
 		return false;
-	}else if(cat1==false&&cat2==false&&cat3==false){
+	}else if(!/^[0-9()-]*$/.test(fijoDia)){<!--//valida que el campo sea numerico -->
+		alert("El 'Fijo de Dia' no es Valido solo son validos '[0-9]' o '()'o '-'");
+		document.getElementById('fijoDia').focus();
+		return false;
+	}else if(!/^[0-9()-]*$/.test(fijoNoche)){<!--//valida que el campo sea numerico -->
+		alert("El 'Fijo de Noche' no es Valido solo son validos '[0-9]' o '()'o '-'");
+		document.getElementById('fijoNoche').focus();
+		return false;
+	}else  if(cat1==false&&cat2==false&&cat3==false){
 		alert("Seleccione una Categoria");
 		document.getElementById('cat1').focus();
 		return false;
@@ -197,7 +231,7 @@ function funcionAceptar(){
 					<p class="navbar-text"><font color="red">Conectado como <? echo $_SESSION["nombre"]; echo " ";
 					echo $_SESSION["apellido"]; ?></font> </p>
 					<li><a href='formulario_miembro.php?id=<? echo $_SESSION["id"];?>'>Mis datos</a></li>
-					<li><a href="ayuda.php"><span class="glyphicon glyphicon-question-sign"></span></a></li>
+					<li><a href="ayuda.php" ><span class="glyphicon glyphicon-question-sign"></span></a></li>
 					<li><form  class="navbar-form navbar-right" method="post" action="listadomiembro.php?go"> 
 	     	 			<input  type="text" name="name" class="form-control" placeholder="Nombre o apellido"> 
 	    	 			<input  type="submit" name="buscar" class="btn btn-danger" value="Buscar"> 
@@ -236,9 +270,9 @@ function funcionAceptar(){
 				<label  class="col-sm-2 control-label">Celular</label>
 			    <p><? echo("<input type='text' name='celular' id='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
-		    	<p><? echo("<input type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
+		    	<p><? echo("<input type='text' name='fijoDia' id='fijoDia' value='$fijoDia'>"); ?></p>
 				<label class="col-sm-2 control-label">Tel fijo noche</label>
-		    	<p><? echo("<input type='text' name='fijoNoche' value='$fijoNoche'>");?></p>
+		    	<p><? echo("<input type='text' name='fijoNoche'id='fijoNoche' value='$fijoNoche'>");?></p>
 		    	<?}else {?>
 		    	<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
 		      	<label  class="col-sm-2 control-label">Nombre</label>
