@@ -144,7 +144,10 @@ if (empty($_SESSION["id"]))
 			</code></pre>
 
 				<img class="img-responsive" src="img/miem_ed_admin.png" class="img-rounded" alt="personal" >
-				<p>Los campos de texto se colocaran todo los datos personales del usuario. Primer Pantalla de Datos Personales ------ [formulario personal] (img/miem_inicial.png?raw=true)</p>
+				<p>Los campos de texto se colocaran todo los datos personales del usuario.</p>
+				<h2> Primer Pantalla de Datos Personales</h2>
+
+				<img class="img-responsive" src="img/miem_inicial.png" class="img-rounded" alt="inicial" >
 				<h2 id="botón-disponibilidad">Botón disponibilidad</h2>
 	
 				<img class="img-responsive" src="img/disp_ver.png" class="img-rounded" alt="disponible" >

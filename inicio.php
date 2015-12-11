@@ -110,8 +110,16 @@ if (empty($_SESSION["id"]))
 <?
 /*conexion a  la BD y query para mostrar disponble hoy y manana*/
 require("include/connect_db.php");
-$today ="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()  between fechaInicio and fechaFin;";
-$tomorrow="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+1  between fechaInicio and fechaFin;";
+//$today ="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  (curdate()  between fechaInicio and fechaFin);";
+$today="select distinct  miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad
+where  miembro.idmiembro = disponibilidad.idmiembro
+and(curdate() not between  fechaInicio  and  fechaFin )
+and iddispo=1 ;";
+//$tomorrow="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+1   between fechaInicio and fechaFin;";
+$tomorrow="select distinct  miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad
+where  miembro.idmiembro = disponibilidad.idmiembro
+and(curdate()+1 not between  fechaInicio  and  fechaFin )
+and iddispo=1 ;";
 ?>
 	<div class="row">
 		<div class="col-md-2">
@@ -176,7 +184,12 @@ while ($row = mysql_fetch_object($result))  {
 					<?if(isset($_POST['buscar'])){
 						$desde=$_POST['desde'];
 						$hasta=$_POST['hasta'];
-						$buscar="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and ( ('".$desde."'  between fechaInicio and fechaFin)or('".$hasta."'between fechaInicio and fechaFin));";
+						//$buscar="select distinctrow miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad where (iddispo = 1) and (miembro.idmiembro = disponibilidad.idmiembro) and  ( ('".$desde."' NOT BEETWEN fechaInicio and fechaFin)or('".$hasta."' NOT BEETWEN fechaInicio and fechaFin));";
+						$buscar="select distinctrow miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad
+						where  (miembro.idmiembro = disponibilidad.idmiembro)
+						and   (('".$desde."' not between fechaInicio and fechaFin)
+						and   ('".$hasta."'  not between fechaInicio and fechaFin))
+						and iddispo= 1 ;";
 						echo"<h2>Disponibles Desde:".$desde."<br>hasta: ".$hasta."</h2>";
 					?>
 					</div>

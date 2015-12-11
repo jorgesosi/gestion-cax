@@ -217,12 +217,12 @@ function funcionAdmin(){
 	 if(!/^[a-zA-Z ]*$/.test(nombre)){//validar el campo nombre alfabetico
 		alert("El Formato 'Nombre' No  Valido");
 		document.getElementById('nombre').focus();
-		var apellido=document.getElementById('apellido').value;
+		
 		return false;
 	}else if(!/^[a-zA-Z ]*$/.test(apellido)){//validar el campo apellido alfabetico
 		alert("El Formato 'Apellido' No  Valido");
 		document.getElementById('apellido').focus();
-		var apellido=document.getElementById('apellido').value;
+		
 		return false;
 	}else if(email==''){
 		alert("El Campo 'email' Esta Vacio");
@@ -231,12 +231,12 @@ function funcionAdmin(){
 	}else if(!/^[0-9a-zA-Z ]*$/.test(domicilio)){//validar el campo nombre alfabetico
 		alert("El Formato 'domicilio' No  Valido");
 		document.getElementById('domicilio').focus();
-		var apellido=document.getElementById('apellido').value;
+		
 		return false;
 	}else if(!/^[0-9a-zA-Z]*$/.test(dni)){//validar el campo nombre alfabetico
 		alert("El Formato 'dni' No  Valido solo [0-9a-zA-Z");
 		document.getElementById('dni').focus();
-		var apellido=document.getElementById('apellido').value;
+		
 		return false;
 	}else if(!/^[0-9()-]*$/.test(celular)){<!--//valida que el campo sea numerico -->
 		alert("El 'Celular' no es Valido solo son validos '[0-9]' o '()'o '-'");
@@ -314,11 +314,13 @@ function funcionAdmin(){
 				<p><? echo("<input type='text' name='nombre' id='nombre'value='$nombre'>");?></p>
 				<label class="col-sm-2 control-label">Apellido</label>
 				<p><? echo("<input type='text' name='apellido' id='apellido'value='$apellido'>");?></p>
+				<label class="col-sm-2 control-label">Apodo</label>
+				<p><? echo("<input type='text' name='apodo' id='apodo'value=''>");?></p>
 				<label class="col-sm-2 control-label">Password</label>
-				<p><? echo("<input type='password' name='password' id='password' value='$password'readonly>");
+				<p><? echo("<input type='password' name='password' id='password' value='$password'readonly >");
 				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal1' ><span class='glyphicon glyphicon-pencil'</span></button></td>");?></p>
 				<label class="col-sm-2 control-label">Email</label>
-				<p><? echo("<input type='text' name='email' id='email' value='$email' readonly>"); 
+				<p><? echo("<input type='text' name='email' id='email' value='$email' readonly >"); 
 				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal' ><span class='glyphicon glyphicon-envelope'</span></button></td>");?></p>
 				<label class="col-sm-2 control-label">Domicilio</label>
 				<p><? echo("<input type='text' name='domicilio' id='domicilio' value='$domicilio'>");?></p>
@@ -326,7 +328,9 @@ function funcionAdmin(){
 			  	<p><? echo("<input type='text' name='dni' id='dni' value='$dni'>"); ?></p>
 			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
 			  	<p><? echo("<input type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
-				<label  class="col-sm-2 control-label">Celular</label>
+				<label  class="col-sm-2 control-label">Cel: Cod Area: 0</label>
+				<p><? echo("<input type='text' name='cod' id='cod' value='' size='3px'>");?></p>
+				<label  class="col-sm-2 control-label">Cel Num:: 15-</label>
 			    <p><? echo("<input type='text' name='celular' id='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
 		    	<p><? echo("<input type='text' name='fijoDia' id='fijoDia' value='$fijoDia'>"); ?></p>
@@ -335,33 +339,45 @@ function funcionAdmin(){
 		    	<?}else {?>
 		    	<p><?echo ("<input type='hidden' name='id' value='$id'>"); ?></p>
 		      	<label  class="col-sm-2 control-label">Nombre</label>
-				<p><? echo("<input disabled='true' type='text' name='nombre' id='nombre' value='$nombre'>");?></p>
+				<p><? echo("<input  type='text' name='nombre' id='nombre' value='$nombre' readonly>");?></p>
 				<label class="col-sm-2 control-label">Apellido</label>
 				<p><? echo("<input disabled='true' type='text' name='apellido' id='apellido' value='$apellido'>");?></p>
+				<label class="col-sm-2 control-label">Apodo</label>
+				<p><? echo("<input type='text' name='apodo' id='apodo'value='' readonly>");?></p>
+				<label class="col-sm-2 control-label">Password</label>
+				<p><? echo("<input type='password' name='password' id='password' value='$password'readonly >");?></p>
 				<label class="col-sm-2 control-label">Email</label>
-				<p><? echo("<input disabled='true' type='text' name='email' id='email' value='$email'>"); ?></p>
+				<p><? echo("<input  type='text' name='email' id='email' value='$email' readonly >"); ?></p>
 				<label class="col-sm-2 control-label">Domicilio</label>
 				<p><? echo("<input disabled='true' type='text' name='domicilio' id='domicilio' value='$domicilio'>");?></p>
 				<label  class="col-sm-2 control-label">DNI</label>
 			  	<p><? echo("<input disabled='true' type='text' name='dni' id='dni' value='$dni'>"); ?></p>
 			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
 			  	<p><? echo("<input disabled ='true' type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
-				<label  class="col-sm-2 control-label">Celular</label>
-			    <p><? echo("<input disabled='true' type='text' name='celular' id='celular' value='$celular'>");?></p>
+				<label  class="col-sm-2 control-label">Cel: Cod Area: 0</label>
+				<p><? echo("<input type='text' name='cod' id='cod' value='' size='3px'>");?></p>
+				<label  class="col-sm-2 control-label">Cel Num:: 15-</label>
+			    <p><? echo("<input type='text' name='celular' id='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
 		    	<p><? echo("<input disabled='true' type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
 				<label class="col-sm-2 control-label">Tel fijo noche</label>
 		    	<p><? echo("<input disabled='true' type='text' name='fijoNoche' value='$fijoNoche'>");?></p>
 		    	<?}?>
 		    	 <p></p>
-	    		<?if ($_SESSION["permiso"]==1 && $nombre!="Root"){
-	    			if ($permiso==1)
+	    		<?if ($_SESSION["permiso"]==1){
+	    			if ($permiso==1&& $nombre=="Root"){
+	    				echo("<input type='checkbox' name='permiso' checked='checked' 
+								value='1' readonly>");
+	    				echo(" Administrador del sistema");
+	    			}else if($permiso==1&& $nombre!=="Root"){
 	    				echo("<input type='checkbox' name='permiso' checked='checked' 
 								value='1'>");
-	    				else 
+	    				echo(" ¿Administrador del sistema?");
+	    			}else{
 	    					echo("<input type='checkbox' name='permiso'
 								value='1'>");
-	    		echo(" ¿Administrador del sistema?");
+	    					echo(" ¿Administrador del sistema?");
+	    		}
 	    		}
 				?>
 		    	<p></p>
@@ -406,17 +422,20 @@ function funcionAdmin(){
 							echo ("<input type='checkbox' disabled='disabled' name='hab".$i."' checked='checked' 
 								value='".$i."'> ".$row->nombre." ");
 						else echo ("<input type='checkbox' disabled='disabled' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
+					if ($i!==1 && $i%10==1)
+						echo ("<br>");
 				}
 			?>  
 			<p></p>
 			<p></p>
 
 			<? if (isset($_GET["ext"])==FALSE){
-				if ($_SESSION["permiso"]==1 && $nombre!="Root"){
-				echo ('<button type="submit" class="btn btn-success" onclick="return funcionAdmin()">Aceptar</button>');
+				if ($_SESSION["permiso"]==1 && $nombre=="Root"){
+					echo ('<button type="submit" class="btn btn-success" onclick="return funcionAdmin()">AceptAr</button>');
 				}else{
 				echo ('<button type="submit" class="btn btn-success" onclick="return funcionAceptar()">Aceptar</button>');
-			}}?>
+				}
+			}?>
 		</form>
 
 			</div>

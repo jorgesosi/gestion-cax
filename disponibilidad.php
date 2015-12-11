@@ -126,12 +126,58 @@ if (empty($_SESSION["id"]))
 		<div class="col-md-1">
 		</div>
 		<div class="col-md-5">
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<h1>Disponibilidad</h1>
-				</div>
-				<div class="panel-body">
-					<p></p><p></p>
+			 <div class="panel-group">
+			    <div class="panel panel-primary">
+<?  
+	if(isset($_GET['idmiembro'])){
+		$id=$_GET['idmiembro'];
+		$query="SELECT nombre,apellido,iddispo FROM CAX.miembro where idmiembro ='".$id."';";
+		$resultado=mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+		$fila = mysql_fetch_object($resultado);
+		$iddisp=$fila->iddispo;
+}?>
+	
+			     	<div class="panel-heading"><?echo('<p><h1>Estado</h1><h4>Datos de Usuario:'.$fila->nombre.' '.$fila->apellido.'</h4></p>');?></div>
+			     	<div class="panel-body"></div>
+			     	<p> <strong>Debe  seleccionar un estado</strong> <br>
+			     		Si su estado es disponible puede<strong> seleccionar fechas<br>
+			     		 en la que no va estar disponible</strong> carguelas en al cuadro de abajo<br></p>
+			     		 <?
+						if(isset($_POST['Cambiar'])){
+							echo ('<div class="alert alert-success alert-dismissable">');
+  							echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+  							echo ('<strong>¡AVISO!</strong><strong>');
+  						}
+			     		 if ($_SESSION["permiso"]==1  || isset($_GET["owner"])){//Se cargan los checkboxs para la disponibilidad
+			     			if (isset($_GET["owner"]))
+			     				echo('<form class="form-horizontal" action="include/servicio_miembro.php?idmiembro='.$id.'" method="POST" name="diponibilidad">');
+			     	 		else //Se cargan los checkboxs para la disponibilidad
+			     				echo('<form class="form-horizontal" action="include/servicio_miembro.php?idmiembro='.$id.'" method="POST" name="diponibilidad">');?>
+			     	<input type="radio" name="iddisponibilidad" value="1" id="disp"<?if ($iddisp==1)echo ('checked')?>>
+		    		Disponible
+		    		<input type="radio" name="iddisponibilidad"  value="2" id="nodisp"<?if ($iddisp==2)echo ('checked')?>>
+		    		No Disponible
+		    		<input type="radio" name="iddisponibilidad"  value="0" id="nodef"<?if ($iddisp==0)echo ('checked')?>>
+		    		No definido
+		    		<input  type="submit" name="cambiar" class="btn btn-danger" value="Cambiar"> 
+		    	<?} else{?>
+		    		<form>
+		    		<input type="radio" disabled='disabled' name="iddisponibilidad" value="1" <?if ($iddisp==1)echo ('checked')?>>
+		    		Disponible
+		    		<input type="radio" disabled='disabled' name="iddisponibilidad"  value="2" <?if ($iddisp==2)echo ('checked')?>>
+		    		No Disponible
+		    		<input type="radio" disabled='disabled' name="iddisponibilidad"  value="0" <?if ($iddisp==0)echo ('checked')?>>
+		    		No Definido
+		    		<?}?>
+			     	
+			     </form>
+			    </div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h1>No Disponibilidad</h1>
+					</div>
+					<div class="panel-body">
+						<p></p><p></p>
 <?php
 					/*recibe por post el id para cargar los datos */
 					/*de disponibilidad*/
@@ -182,7 +228,8 @@ if (empty($_SESSION["id"]))
         				<?}?>
         		
 					
-				</table>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>

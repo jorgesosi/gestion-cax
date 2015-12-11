@@ -178,43 +178,54 @@ function pregunta(){
 			<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 				<!-- Datos de las tablas de prueba-->
 				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th>
-					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th>Email</th><th></th>
+					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th>Email</th>
+						<th>Categoria</th><th></th>
 					<? if ($_SESSION["permiso"]==1)
 						echo("<th></th><th></th>");
 
 					?>
 				</tr>
 				<?
-					/*require("include/connect_db.php"); //este codigo lo reemplace por el que esta debajo
-					if (isset($_POST['buscar'])){
-						$nombre=$_POST['name'];
-						$query = 'SELECT * FROM CAX.miembro WHERE nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';}
-					else {$query = 'SELECT * FROM CAX.miembro;';}
-					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); */
 					require("include/connect_db.php");
 					if (isset($_POST['buscar'])){
 						$nombre=$_POST['name'];
-						$query = 'SELECT * FROM CAX.miembro WHERE miembro.nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';
+						/*$query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+						 FROM CAX.miembro, CAX.categoria WHERE categoria.idcategoria = miembro.idcategoria ;';*/
 					if(isset($_POST['categoria'])){
 						$categoria=$_POST['categoria'];	
 						if ($categoria=="categoria"){
-							$query = 'SELECT * FROM CAX.miembro WHERE miembro.nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';
+							/*$query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+						 FROM CAX.miembro, CAX.categoria WHERE categoria.idcategoria = miembro.idcategoria ;';*/
 							if(isset($_POST['habilidades'])){
 								$habilidades=$_POST['habilidades'];
 								}if($habilidades=="habilidades"){
-									$query = 'SELECT * FROM CAX.miembro WHERE miembro.nombre LIKE "%'.$nombre.'%" OR apellido LIKE "%'.$nombre.'%";';
+									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+						 FROM CAX.miembro, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") 
+						AND (categoria.idcategoria = miembro.idcategoria);';
 								}else
-									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email from CAX.miembro, CAX.miembro_skill, CAX.skill where (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil and skill.nombre="'.$habilidades.'";';
+									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre, miembro.domicilio, miembro.fijoDia ,miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria 
+									FROM CAX.miembro, CAX.miembro_skill, CAX.skill, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil 
+									and skill.nombre="'.$habilidades.'" AND (categoria.idcategoria = miembro.idcategoria);';
 						}else{
-						$query='SELECT * FROM CAX.categoria, CAX.miembro WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria);';
+						$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+						 FROM CAX.miembro, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") 
+						AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria);';
 						if(isset($_POST['habilidades'])){
 							$habilidades=$_POST['habilidades'];
 							if($habilidades!=="habilidades")
-								$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email from CAX.miembro, CAX.miembro_skill, CAX.skill, CAX.categoria where (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND (miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil and skill.nombre="'.$habilidades.'") AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria) ;';
+								$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+							FROM CAX.miembro, CAX.miembro_skill, CAX.skill, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") 
+							AND (miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil and skill.nombre="'.$habilidades.'") AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria) ;';
 						}
 						}	
 					}
-					}else {$query = 'SELECT * FROM CAX.miembro;';
+					}else {/*$query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+						 FROM CAX.miembro, CAX.categoria WHERE categoria.idcategoria = miembro.idcategoria ;';*/
+						 $query = 'SELECT  miembro.idcategoria, miembro.nombre, miembro.idcategoria as categoria, miembro.domicilio, miembro.fijoDia, miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email  from CAX.miembro
+								where miembro.idcategoria= "" 
+								union
+								select  miembro.idcategoria, miembro.nombre,categoria.nombre as categoria, miembro.domicilio, miembro.fijoDia, miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email from CAX.miembro, CAX.categoria
+								where miembro.idcategoria = categoria.idcategoria;';
 					}
 					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); 
 
@@ -231,13 +242,15 @@ function pregunta(){
 					echo("<td>$row->fijoDia</td>");
 					echo("<td>$row->fijoNoche</td>");
 					echo("<td>$row->email</td>");
+					echo("<td>$row->categoria</td>");
 					echo("<td><a title='Editar' href='formulario_miembro.php?id=$row->idmiembro'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-pencil'</span></button></a></td>");
 					echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-calendar'</span></button></a></td>");
 					echo("<td><a title='Eliminar' href='include/servicio_miembro.php?id1=$row->idmiembro'  onclick='return pregunta()'>");
 					echo("<span class='glyphicon glyphicon-remove'> </span></a></td></tr>");
 
 
-					} else {if ($row->nombre!="Root")
+					} else{
+						if ($row->nombre!="Root")
 								if ($row->idcategoria!=0){
 									echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 									echo ("<td>    $row->nombre</td>");
@@ -246,6 +259,7 @@ function pregunta(){
 									echo("<td>$row->fijoDia</td>");
 									echo("<td>$row->fijoNoche</td>");
 									echo("<td>$row->email</td>");
+									echo("<td>$row->categoria</td>");
 									echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$row->idmiembro'><button type='button' class='btn  btn-success'><span class='glyphicon glyphicon-calendar'</span></button></a></td>");
 									echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 								}

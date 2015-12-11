@@ -30,7 +30,7 @@ $mail->From = "recuperacion@gestioncax";
 $mail->FromName = "Gestion CAX"; 
 $mail->Subject = "Recuperacion de clave de accesso"; 
 $mail->AltBody = ""; 
-$mail->MsgHTML("<br>El siguiente es una respestuesta al pedido de recuperacion de clave</br><br>Su clave de accesso es '".$password."'</br>
+$mail->MsgHTML("<br>El siguiente es una respuesta al pedido de recuperacion de clave</br><br>Su clave de accesso es '".$password."'</br>
 	<h5>Esta comunicación es de carácter confidencial y está amparada por el secreto profesional y se dirige exclusivamente al destinatario indicado. 
 	 Todo lector del presente mensaje 
 	 quedará debidamente notificado que la divulgación, modificación, reproducción o uso de la información aquí contenida por cualquier otra persona que no sea

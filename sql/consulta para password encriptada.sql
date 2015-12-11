@@ -1,1 +1,1 @@
-SELECT password, aes_decrypt(password,'cax') FROM CAX.miembro;
+SELECT nombre,email, password, aes_decrypt(password,'cax') FROM CAX.miembro;

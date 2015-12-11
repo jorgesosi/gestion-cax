@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `CAX` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `CAX`;
 -- MySQL dump 10.13  Distrib 5.6.27, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: CAX
 -- ------------------------------------------------------
--- Server version	5.6.27-0ubuntu0.15.04.1
+-- Server version	5.6.27-0ubuntu1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,6 +14,30 @@ USE `CAX`;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cat_dispo`
+--
+
+DROP TABLE IF EXISTS `cat_dispo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cat_dispo` (
+  `iddispo` int(11) NOT NULL AUTO_INCREMENT,
+  `dispo` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`iddispo`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cat_dispo`
+--
+
+LOCK TABLES `cat_dispo` WRITE;
+/*!40000 ALTER TABLE `cat_dispo` DISABLE KEYS */;
+INSERT INTO `cat_dispo` VALUES (1,'diponible'),(2,'no disponible'),(3,'no definido');
+/*!40000 ALTER TABLE `cat_dispo` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `categoria`
@@ -54,7 +76,7 @@ CREATE TABLE `disponibilidad` (
   `fechaInicio` date DEFAULT NULL,
   `fechaFin` date DEFAULT NULL,
   PRIMARY KEY (`iddisponibilidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +109,7 @@ CREATE TABLE `miembro` (
   `password` blob NOT NULL,
   `fechaNacimiento` date NOT NULL,
   `permiso` int(11) DEFAULT NULL,
+  `iddispo` varchar(45) NOT NULL,
   PRIMARY KEY (`idmiembro`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -97,7 +120,7 @@ CREATE TABLE `miembro` (
 
 LOCK TABLES `miembro` WRITE;
 /*!40000 ALTER TABLE `miembro` DISABLE KEYS */;
-INSERT INTO `miembro` VALUES (1,'Root','',NULL,'','Admin',NULL,NULL,NULL,NULL,'¨E†²µ+\03†ZDœ5ÿÔ|','0000-00-00',1);
+INSERT INTO `miembro` VALUES (1,'Root','','','','Admin','','','',0,'¨E†²µ+\03†ZDœ5ÿÔ|','0000-00-00',1,'3');
 /*!40000 ALTER TABLE `miembro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +136,7 @@ CREATE TABLE `miembro_skill` (
   `idmiembro` int(11) DEFAULT NULL,
   `idskill` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmiembro_skill`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +159,7 @@ CREATE TABLE `skill` (
   `idskil` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`idskil`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -145,7 +168,7 @@ CREATE TABLE `skill` (
 
 LOCK TABLES `skill` WRITE;
 /*!40000 ALTER TABLE `skill` DISABLE KEYS */;
-INSERT INTO `skill` VALUES (1,'Roca'),(2,'Hielo'),(3,'Esqui'),(4,'Cuerdas'),(5,'Rio/kayak'),(6,'Avalancha'),(7,'Perro'),(8,'Medico'),(9,'Guardia');
+INSERT INTO `skill` VALUES (1,'Roca'),(2,'Hielo'),(3,'Esqui'),(4,'Cuerdas'),(5,'Rio/kayak'),(6,'Avalancha'),(7,'Perro'),(8,'Medico'),(9,'Guardia'),(10,'Busqueda'),(11,'Trekking'),(12,'Vehiculo'),(13,'4x4');
 /*!40000 ALTER TABLE `skill` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -158,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-06 19:33:13
+-- Dump completed on 2015-12-11 19:02:12

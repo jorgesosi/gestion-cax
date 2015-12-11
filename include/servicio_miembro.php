@@ -27,23 +27,45 @@ if (isset($id1)){
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	$query="DELETE FROM CAX.miembro_skill WHERE idmiembro='".$id1."';";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	$query="DELETE FROM CAX.disponibilidad WHERE idmiembro='".$id1."';";
+	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	header('Location: ../listadomiembro.php?msg=1');
 	exit();
 }
 
 if($id=='0'){
+
 	$query = "SELECT email from CAX.miembro WHERE email='".$email."' ;";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	if(mysql_num_rows($result)==0){
 		$query="INSERT INTO CAX.miembro (email,celular,nombre,apellido,domicilio,dni,fijoDia,fijoNoche,fechaNacimiento,password,idcategoria,permiso) VALUE ('".$email."','".$celular."','".$nombre."','".$apellido."','".$domicilio."','".$dni."','".$fijoDia."','".$fijoNoche."','".$fechaNacimiento."',AES_ENCRYPT('".$password."','cax'),'".$idcategoria."','".$permiso."');";
 		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 		header('Location: nuevo_usuario.php?email='.$email.'');
-	}else header('Location: ../listadomiembro.php?msg2');
+		exit();
+	}else {header('Location: ../listadomiembro.php?msg2');
+		exit();}
+
+}else{
+	
+	if(isset($_POST['permiso']))
+		$permiso=$_POST['permiso'];
+	
+	if((isset($_POST['Buscar'])) || (isset($_GET['idmiembro']))){
+		
+		$iddisp=$_POST['iddisponibilidad'];
+		$idmiem=$_GET['idmiembro'];
+		$query="UPDATE CAX.miembro SET iddispo='".$iddisp."' WHERE idmiembro='".$idmiem."';";
+		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+		if (isset($_GET['owner']))
+			header('Location: ../disponibilidad.php?idmiembro='.$idmiem.'&owner');
+		else
+			header('Location: ../disponibilidad.php?idmiembro='.$idmiem.'');
 		exit();
 
-}else {
+	}else{
 	$query="UPDATE CAX.miembro SET email='".$email."',celular='".$celular."',nombre='".$nombre."',apellido='".$apellido."',domicilio='".$domicilio."',dni='".$dni."',fijoDia='".$fijoDia."',fijoNoche='".$fijoNoche."',fechaNacimiento='".$fechaNacimiento."',password= AES_ENCRYPT('".$password."','cax') ,idcategoria='".$idcategoria."',permiso='".$permiso."' WHERE idmiembro='".$id."';";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+}
 }
 header('Location: ../listadomiembro.php');
 
