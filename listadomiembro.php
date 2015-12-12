@@ -177,7 +177,7 @@ function pregunta(){
 		</p>
 			<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 				<!-- Datos de las tablas de prueba-->
-				<tr><th>Apellido</th><th>Nombre</th><th>Celular</th>
+				<tr><th>Apellido</th><th>Nombre</th><th>Cod. Area</th><th>Celular</th>
 					<th>Domicilio</th><th>Tel. Fijo Dia</th><th>Tel.Fijo Noche</th><th>Email</th>
 						<th>Categoria</th><th></th>
 					<? if ($_SESSION["permiso"]==1)
@@ -199,21 +199,21 @@ function pregunta(){
 							if(isset($_POST['habilidades'])){
 								$habilidades=$_POST['habilidades'];
 								}if($habilidades=="habilidades"){
-									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email, miembro.apodo, miembro.codArea, categoria.nombre as categoria
 						 FROM CAX.miembro, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") 
 						AND (categoria.idcategoria = miembro.idcategoria);';
 								}else
-									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre, miembro.domicilio, miembro.fijoDia ,miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria 
+									$query='SELECT distinctrow miembro.idcategoria, miembro.nombre, miembro.domicilio, miembro.fijoDia ,miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email, miembro.apodo, miembro.codArea, categoria.nombre as categoria 
 									FROM CAX.miembro, CAX.miembro_skill, CAX.skill, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil 
 									and skill.nombre="'.$habilidades.'" AND (categoria.idcategoria = miembro.idcategoria);';
 						}else{
-						$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+						$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email, miembro.apodo, miembro.codArea, categoria.nombre as categoria
 						 FROM CAX.miembro, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") 
 						AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria);';
 						if(isset($_POST['habilidades'])){
 							$habilidades=$_POST['habilidades'];
 							if($habilidades!=="habilidades")
-								$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
+								$query='SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email, miembro.apodo, miembro.codArea, categoria.nombre as categoria
 							FROM CAX.miembro, CAX.miembro_skill, CAX.skill, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") 
 							AND (miembro.idmiembro = miembro_skill.idmiembro and miembro_skill.idskill = skill.idskil and skill.nombre="'.$habilidades.'") AND (categoria.nombre = "'.$categoria.'" )AND (categoria.idcategoria = miembro.idcategoria) ;';
 						}
@@ -221,11 +221,8 @@ function pregunta(){
 					}
 					}else {/*$query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
 						 FROM CAX.miembro, CAX.categoria WHERE categoria.idcategoria = miembro.idcategoria ;';*/
-						 $query = 'SELECT  miembro.idcategoria, miembro.nombre, miembro.idcategoria as categoria, miembro.domicilio, miembro.fijoDia, miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email  from CAX.miembro
-								where miembro.idcategoria= "" 
-								union
-								select  miembro.idcategoria, miembro.nombre,categoria.nombre as categoria, miembro.domicilio, miembro.fijoDia, miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email from CAX.miembro, CAX.categoria
-								where miembro.idcategoria = categoria.idcategoria;';
+						 $query = 'select  miembro.idcategoria, miembro.nombre,categoria.nombre as categoria, miembro.domicilio, miembro.fijoDia, miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,miembro.apodo, miembro.codArea  from CAX.miembro, CAX.categoria
+									where miembro.idcategoria = categoria.idcategoria;';
 					}
 					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); 
 
@@ -237,6 +234,7 @@ function pregunta(){
 					if ($_SESSION["permiso"]==1 && $row->nombre!="Root"){
 					echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 					echo ("<td>    $row->nombre</td>");
+					echo("<td>$row->codArea</td>");
 					echo("<td><span class='glyphicon glyphicon-earphone'></span> $row->celular </td>");
 					echo("<td>$row->domicilio</td>");
 					echo("<td>$row->fijoDia</td>");
@@ -254,6 +252,7 @@ function pregunta(){
 								if ($row->idcategoria!=0){
 									echo ("<tr><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 									echo ("<td>    $row->nombre</td>");
+									echo("<td>$row->codArea</td>");
 									echo("<td><span class='glyphicon glyphicon-earphone'></span> $row->celular </td>");
 									echo("<td>$row->domicilio</td>");
 									echo("<td>$row->fijoDia</td>");

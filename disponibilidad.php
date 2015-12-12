@@ -53,16 +53,18 @@ if (empty($_SESSION["id"]))
 	function funcionNuevo(){
 		var ini=document.getElementById('desde').value;
 		var fin=document.getElementById('hasta').value;
+		var part=document.getElementById('part').checked;
 		if(ini==''|| fin==''){
 			alert("Fechas Vacias");
 			return false;
-		}else if(confirm("Los Datos Desde: "+ini+" y Hasta: "+fin+" Seran Enviados")==true)
+		}else if(confirm("Los Datos Desde: "+ini+" y Hasta: "+fin+" Seran Enviados")==true){
+				if(part!=true){
+					alert("Su estado Cambio a Part Time");
 				return true;
-			else
+			}
+		}else
 				return false;
-
-					
-    }
+	   }
 	</script>
 	<script>
 		function funcionEliminar() {
@@ -72,6 +74,17 @@ if (empty($_SESSION["id"]))
     			return true;
     		else
     			return false;
+    	}
+    	function funcionCambiar(){
+    		var full=document.getElementById('full').checked;
+    		if (full==true){
+    			if(confirm("Se Borraran Los Datos de No Disponibilidad")==true)
+    				return true;
+    			else
+    				return false;
+    		}else{
+    			return true;
+    		}
     	}
 	</script>
 
@@ -140,8 +153,9 @@ if (empty($_SESSION["id"]))
 			     	<div class="panel-heading"><?echo('<p><h1>Estado</h1><h4>Datos de Usuario:'.$fila->nombre.' '.$fila->apellido.'</h4></p>');?></div>
 			     	<div class="panel-body"></div>
 			     	<p> <strong>Debe  seleccionar un estado</strong> <br>
-			     		Si su estado es disponible puede<strong> seleccionar fechas<br>
+			     		Si su estado es  puede<strong> seleccionar fechas<br>
 			     		 en la que no va estar disponible</strong> carguelas en al cuadro de abajo<br></p>
+
 			     		 <?
 						if(isset($_POST['Cambiar'])){
 							echo ('<div class="alert alert-success alert-dismissable">');
@@ -153,18 +167,22 @@ if (empty($_SESSION["id"]))
 			     				echo('<form class="form-horizontal" action="include/servicio_miembro.php?idmiembro='.$id.'" method="POST" name="diponibilidad">');
 			     	 		else //Se cargan los checkboxs para la disponibilidad
 			     				echo('<form class="form-horizontal" action="include/servicio_miembro.php?idmiembro='.$id.'" method="POST" name="diponibilidad">');?>
-			     	<input type="radio" name="iddisponibilidad" value="1" id="disp"<?if ($iddisp==1)echo ('checked')?>>
-		    		Disponible
-		    		<input type="radio" name="iddisponibilidad"  value="2" id="nodisp"<?if ($iddisp==2)echo ('checked')?>>
-		    		No Disponible
+			     	<input type="radio" name="iddisponibilidad" value="1" id="full"<?if ($iddisp==1)echo ('checked')?>>
+		    		full Time
+		    		<input type="radio" name="iddisponibilidad"  value="2" id="part" readonly <?if ($iddisp==2)echo ('checked')?>>
+		    		Part Time
+		    		<input type="radio" name="iddisponibilidad"  value="3" id="nodisp"<?if ($iddisp==3)echo ('checked')?>>
+		    		No disponible
 		    		<input type="radio" name="iddisponibilidad"  value="0" id="nodef"<?if ($iddisp==0)echo ('checked')?>>
 		    		No definido
-		    		<input  type="submit" name="cambiar" class="btn btn-danger" value="Cambiar"> 
+		    		<input  type="submit" name="cambiar" class="btn btn-danger" value="Cambiar" onclick="return funcionCambiar()"> 
 		    	<?} else{?>
 		    		<form>
 		    		<input type="radio" disabled='disabled' name="iddisponibilidad" value="1" <?if ($iddisp==1)echo ('checked')?>>
 		    		Disponible
 		    		<input type="radio" disabled='disabled' name="iddisponibilidad"  value="2" <?if ($iddisp==2)echo ('checked')?>>
+		    		Part Time
+		    		<input type="radio" disabled= 'disabled' name="iddisponibilidad"  value="3" id="nodisp"<?if ($iddisp==3)echo ('checked')?>>
 		    		No Disponible
 		    		<input type="radio" disabled='disabled' name="iddisponibilidad"  value="0" <?if ($iddisp==0)echo ('checked')?>>
 		    		No Definido

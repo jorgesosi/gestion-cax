@@ -111,15 +111,21 @@ if (empty($_SESSION["id"]))
 /*conexion a  la BD y query para mostrar disponble hoy y manana*/
 require("include/connect_db.php");
 //$today ="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro, CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  (curdate()  between fechaInicio and fechaFin);";
-$today="select distinct  miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad
-where  miembro.idmiembro = disponibilidad.idmiembro
-and(curdate() not between  fechaInicio  and  fechaFin )
-and iddispo=1 ;";
+$today="select miembro.nombre, miembro.idmiembro, miembro.iddispo,miembro.apellido,miembro.celular, miembro.codArea
+from CAX.miembro 
+where miembro.iddispo =1
+union
+select distinctrow   miembro.nombre, miembro.idmiembro, miembro.iddispo, miembro.apellido,miembro.celular, miembro.codArea
+from CAX.miembro, CAX.disponibilidad
+where  miembro.idmiembro= disponibilidad.idmiembro and  (curdate() not between  fechaInicio  and  fechaFin)";
 //$tomorrow="select miembro.idmiembro, nombre, apellido, celular from CAX.miembro,CAX.disponibilidad where miembro.idmiembro = disponibilidad.idmiembro and  curdate()+1   between fechaInicio and fechaFin;";
-$tomorrow="select distinct  miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad
-where  miembro.idmiembro = disponibilidad.idmiembro
-and(curdate()+1 not between  fechaInicio  and  fechaFin )
-and iddispo=1 ;";
+$tomorrow="select miembro.nombre, miembro.idmiembro, miembro.iddispo,miembro.apellido,miembro.celular, miembro.codArea
+from CAX.miembro 
+where miembro.iddispo =1
+union
+select distinctrow   miembro.nombre, miembro.idmiembro, miembro.iddispo, miembro.apellido,miembro.celular, miembro.codArea 
+from CAX.miembro, CAX.disponibilidad
+where  miembro.idmiembro= disponibilidad.idmiembro and  (curdate()+1  not between  fechaInicio  and  fechaFin)";
 ?>
 	<div class="row">
 		<div class="col-md-2">
@@ -156,7 +162,7 @@ and iddispo=1 ;";
 					<p></p><p></p>
 					<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 						<!-- cabecera de la tabla de hoy-->
-						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th>
+						<tr><th>Apellido</th><th>Nombre</th><th>Cod. area</th><th>Celular</th><th></th>
 						</tr>
 <?
 /*codigo para cargar los datos en la tabla de hoy*/
@@ -166,6 +172,7 @@ while ($row = mysql_fetch_object($result))  {
 								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
     							echo("<tr class='danger'><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 								echo("<td>$row->nombre</td>");
+								echo("<td>$row->codArea</td>");
 								echo("<td><span class='glyphicon glyphicon-earphone'></span>$row->celular </td>");
 								echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 								echo ("\t</tr>\n");
@@ -185,11 +192,14 @@ while ($row = mysql_fetch_object($result))  {
 						$desde=$_POST['desde'];
 						$hasta=$_POST['hasta'];
 						//$buscar="select distinctrow miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad where (iddispo = 1) and (miembro.idmiembro = disponibilidad.idmiembro) and  ( ('".$desde."' NOT BEETWEN fechaInicio and fechaFin)or('".$hasta."' NOT BEETWEN fechaInicio and fechaFin));";
-						$buscar="select distinctrow miembro.idmiembro, miembro.nombre, miembro.apellido, miembro.celular, miembro.iddispo from CAX.miembro, CAX.disponibilidad
-						where  (miembro.idmiembro = disponibilidad.idmiembro)
-						and   (('".$desde."' not between fechaInicio and fechaFin)
-						and   ('".$hasta."'  not between fechaInicio and fechaFin))
-						and iddispo= 1 ;";
+						$buscar="select distinctrow miembro.idmiembro as idmiembro, miembro.nombre, miembro.apellido, miembro.celular,miembro.codArea, miembro.iddispo as iddispo
+						from CAX.miembro
+						where  miembro.iddispo= 1
+						union
+						SELECT distinctrow  disponibilidad.idmiembro as idmiembro, miembro.nombre, miembro.apellido, miembro.celular,miembro.codArea, disponibilidad.iddispo as iddispo
+						from CAX.miembro, CAX.disponibilidad
+						where miembro.idmiembro = disponibilidad.idmiembro and(('".$desde."' not between fechaInicio and fechaFin)
+						and   ('".$hasta."'  not between fechaInicio and fechaFin));";
 						echo"<h2>Disponibles Desde:".$desde."<br>hasta: ".$hasta."</h2>";
 					?>
 					</div>
@@ -197,7 +207,7 @@ while ($row = mysql_fetch_object($result))  {
 					<p></p><p></p>
 					<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 						<!-- cabecera de la tabla de manana-->
-						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th></tr>
+						<tr><th>Apellido</th><th>Nombre</th><th>Cod. area</th><th>Celular</th><th></th></tr>
 					<?
 					/*codigo para cargar los datos en la tabla de manana*/
 							$result=mysql_query($buscar) or die('Consulta fallida: ' . mysql_error());
@@ -206,6 +216,7 @@ while ($row = mysql_fetch_object($result))  {
 								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
     							echo("<tr class='danger'><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 								echo("<td>$row->nombre</td>");
+								echo("<td>$row->codArea</td>");
 								echo("<td><span class='glyphicon glyphicon-earphone'></span>$row->celular </td>");
 								echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 								echo ("\t</tr>\n");
@@ -221,7 +232,7 @@ while ($row = mysql_fetch_object($result))  {
 					<p></p><p></p>
 					<table class="table table-condensed table-bordered table-striped" style="background-color:#ececec" >
 						<!-- cabecera de la tabla de manana-->
-						<tr><th>Apellido</th><th>Nombre</th><th>Celular</th><th></th></tr>
+						<tr><th>Apellido</th><th>Nombre</th><th>Cod. area</th><th>Celular</th><th></th></tr>
 					<?
 					/*codigo para cargar los datos en la tabla de manana*/
 							$result=mysql_query($tomorrow) or die('Consulta fallida: ' . mysql_error());
@@ -230,6 +241,7 @@ while ($row = mysql_fetch_object($result))  {
 								echo "\t<tr class='danger'>\n";//por cada iteracion de busqueda de la fila en la base de datos
     							echo("<tr class='danger'><td><span class='glyphicon glyphicon-user'</span> $row->apellido</td>");
 								echo("<td>$row->nombre</td>");
+								echo("<td>$row->codArea</td>");
 								echo("<td><span class='glyphicon glyphicon-earphone'></span>$row->celular </td>");
 								echo("<td><a title='Ver mas' href='formulario_miembro.php?id=$row->idmiembro&ext'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>");
 								echo ("\t</tr>\n");

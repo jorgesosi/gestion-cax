@@ -13,8 +13,10 @@ $nombre="";
 $boton="nuevo";
 $domicilio="";
 $apellido="";
+$apodo="";
 $dni="";
 $celular="";
+$cod="";
 $fijoDia="";
 $fijoNoche="";
 $fechaNacimiento="";
@@ -25,7 +27,7 @@ $permiso="0";
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
 	$boton="Modificar";
-	$query = "SELECT nombre, email, domicilio, apellido, dni, celular, fijoDia, fijoNoche,fechaNacimiento,password, AES_DECRYPT(password,'cax'), idcategoria, permiso from CAX.miembro where idmiembro='".$id."';";
+	$query = "SELECT nombre, email, domicilio, apellido, dni, celular, fijoDia, fijoNoche,fechaNacimiento,password, AES_DECRYPT(password,'cax'), idcategoria, permiso, apodo, codArea from CAX.miembro where idmiembro='".$id."';";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	//$row=mysql_fetch_object($result);
 	$row1=mysql_fetch_array($result);//prueba con fetch_array para password
@@ -45,7 +47,9 @@ if (isset($_GET['id'])){
 	$email=$row1["email"];
 	$domicilio=$row1["domicilio"];
 	$apellido=$row1["apellido"];
+	$apodo=$row1["apodo"];
 	$dni=$row1["dni"];
+	$cod=$row1["codArea"];
 	$celular=$row1["celular"];
 	$fijoDia=$row1["fijoDia"];
 	$fijoNoche=$row1["fijoNoche"];
@@ -106,10 +110,12 @@ if (isset($_GET['id'])){
 function funcionAceptar(){
     var nombre= document.getElementById('nombre').value;
 	var apellido=document.getElementById('apellido').value;
+	var apodo=document.getElementById('apodo').value;
 	var email=document.getElementById('email').value;
 	var domicilio=document.getElementById('domicilio').value;
 	var dni=document.getElementById('dni').value;
 	var fechaNacimiento=document.getElementById('fechaNacimiento').value;
+	var cod=document.getElementById('cod').value;
 	var celular=document.getElementById('celular').value;
 	var password=document.getElementById('password').value;
 	var fijoDia=document.getElementById('fijoDia').value;
@@ -120,12 +126,12 @@ function funcionAceptar(){
 	if(nombre==''){
 		alert("El Campo 'Nombre' Esta Vacio");
 		document.getElementById('nombre').focus();
-		var apellido=document.getElementById('apellido').value;
+		//var apellido=document.getElementById('apellido').value;
 		return false;
 	}else if(!/^[a-zA-Z ]*$/.test(nombre)){//validar el campo nombre alfabetico
 		alert("El Formato 'Nombre' No  Valido");
 		document.getElementById('nombre').focus();
-		var apellido=document.getElementById('apellido').value;
+		//var apellido=document.getElementById('apellido').value;
 		return false;
 	}else if(apellido==''){
 		alert("El Campo 'Apellido' Esta Vacio");
@@ -134,7 +140,12 @@ function funcionAceptar(){
 	}else if(!/^[a-zA-Z ]*$/.test(apellido)){//validar el campo apellido alfabetico
 		alert("El Formato 'Apellido' No  Valido");
 		document.getElementById('apellido').focus();
-		var apellido=document.getElementById('apellido').value;
+		//var apellido=document.getElementById('apellido').value;
+		return false;
+	}else if(!/^[a-zA-Z ]*$/.test(apodo)){//validar el campo apellido alfabetico
+		alert("El Formato 'Apellido' No  Valido");
+		document.getElementById('apodo').focus();
+		//var apellido=document.getElementById('apellido').value;
 		return false;
 	}else if(email==''){
 		alert("El Campo 'email' Esta Vacio");
@@ -147,7 +158,7 @@ function funcionAceptar(){
 	}else if(!/^[0-9a-zA-Z ]*$/.test(domicilio)){//validar el campo nombre alfabetico
 		alert("El Formato 'domicilio' No  Valido");
 		document.getElementById('domicilio').focus();
-		var apellido=document.getElementById('apellido').value;
+		//var apellido=document.getElementById('apellido').value;
 		return false;
 	}else if(dni==''){
 		alert("El Campo 'DNI' Esta Vacio");
@@ -156,7 +167,7 @@ function funcionAceptar(){
 	}else if(!/^[0-9a-zA-Z]*$/.test(dni)){//validar el campo nombre alfabetico
 		alert("El Formato 'dni' No  Valido solo [0-9a-zA-Z");
 		document.getElementById('dni').focus();
-		var apellido=document.getElementById('apellido').value;
+		//var apellido=document.getElementById('apellido').value;
 		return false;
 	}else if(fechaNacimiento==''){
 		alert("El Campo 'fechaNacimiento' Esta Vacio");
@@ -166,6 +177,14 @@ function funcionAceptar(){
 		alert("'FechaNacimiento' No valida");
 		document.getElementById('fechaNacimiento').focus();
 		return false;	
+	}else if(cod==''){
+		alert("El Campo 'Celular' Esta Vacio");
+		document.getElementById('cod').focus();
+		return false;
+	}else if(!/^[0-9]*$/.test(cod)){<!--//valida que el campo sea numerico -->
+		alert("El 'codigo de area' no es Valido solo son validos '[0-9]'");
+		document.getElementById('cod').focus();
+		return false;
 	}else if(celular==''){
 		alert("El Campo 'Celular' Esta Vacio");
 		document.getElementById('celular').focus();
@@ -203,10 +222,12 @@ function funcionAceptar(){
 function funcionAdmin(){
     var nombre= document.getElementById('nombre').value;
 	var apellido=document.getElementById('apellido').value;
+	var apodo=document.getElementById('apodo').value;
 	var email=document.getElementById('email').value;
 	var domicilio=document.getElementById('domicilio').value;
 	var dni=document.getElementById('dni').value;
 	var fechaNacimiento=document.getElementById('fechaNacimiento').value;
+	var cod=document.getElementById('cod').value;
 	var celular=document.getElementById('celular').value;
 	var password=document.getElementById('password').value;
 	var fijoDia=document.getElementById('fijoDia').value;
@@ -224,6 +245,11 @@ function funcionAdmin(){
 		document.getElementById('apellido').focus();
 		
 		return false;
+	}else if(!/^[a-zA-Z ]*$/.test(apodo)){//validar el campo apellido alfabetico
+		alert("El Formato 'Apodo' No  Valido");
+		document.getElementById('apodo').focus();
+		//var apellido=document.getElementById('apellido').value;
+		return false;
 	}else if(email==''){
 		alert("El Campo 'email' Esta Vacio");
 		document.getElementById('email').focus();
@@ -237,6 +263,10 @@ function funcionAdmin(){
 		alert("El Formato 'dni' No  Valido solo [0-9a-zA-Z");
 		document.getElementById('dni').focus();
 		
+		return false;
+	}else if(!/^[0-9]*$/.test(cod)){<!--//valida que el campo sea numerico -->
+		alert("El 'codigo de area' no es Valido solo son validos '[0-9]' ");
+		document.getElementById('cod').focus();
 		return false;
 	}else if(!/^[0-9()-]*$/.test(celular)){<!--//valida que el campo sea numerico -->
 		alert("El 'Celular' no es Valido solo son validos '[0-9]' o '()'o '-'");
@@ -315,7 +345,7 @@ function funcionAdmin(){
 				<label class="col-sm-2 control-label">Apellido</label>
 				<p><? echo("<input type='text' name='apellido' id='apellido'value='$apellido'>");?></p>
 				<label class="col-sm-2 control-label">Apodo</label>
-				<p><? echo("<input type='text' name='apodo' id='apodo'value=''>");?></p>
+				<p><? echo("<input type='text' name='apodo' id='apodo'value='$apodo'>");?></p>
 				<label class="col-sm-2 control-label">Password</label>
 				<p><? echo("<input type='password' name='password' id='password' value='$password'readonly >");
 				echo("<td><button type='button' class='btn  btn-info' data-toggle='modal' data-target='#myModal1' ><span class='glyphicon glyphicon-pencil'</span></button></td>");?></p>
@@ -329,7 +359,7 @@ function funcionAdmin(){
 			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
 			  	<p><? echo("<input type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
 				<label  class="col-sm-2 control-label">Cel: Cod Area: 0</label>
-				<p><? echo("<input type='text' name='cod' id='cod' value='' size='3px'>");?></p>
+				<p><? echo("<input type='text' name='cod' id='cod' value='$cod' size='3px'>");?></p>
 				<label  class="col-sm-2 control-label">Cel Num:: 15-</label>
 			    <p><? echo("<input type='text' name='celular' id='celular' value='$celular'>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
@@ -343,7 +373,7 @@ function funcionAdmin(){
 				<label class="col-sm-2 control-label">Apellido</label>
 				<p><? echo("<input disabled='true' type='text' name='apellido' id='apellido' value='$apellido'>");?></p>
 				<label class="col-sm-2 control-label">Apodo</label>
-				<p><? echo("<input type='text' name='apodo' id='apodo'value='' readonly>");?></p>
+				<p><? echo("<input type='text' name='apodo' id='apodo'value='$apodo' readonly>");?></p>
 				<label class="col-sm-2 control-label">Password</label>
 				<p><? echo("<input type='password' name='password' id='password' value='$password'readonly >");?></p>
 				<label class="col-sm-2 control-label">Email</label>
@@ -355,9 +385,9 @@ function funcionAdmin(){
 			  	<label class="col-sm-2 control-label">Fecha Nac.</label>
 			  	<p><? echo("<input disabled ='true' type='text' name='fechaNacimiento' id='fechaNacimiento'class='fecha'value='$fechaNacimiento'>");?></p>
 				<label  class="col-sm-2 control-label">Cel: Cod Area: 0</label>
-				<p><? echo("<input type='text' name='cod' id='cod' value='' size='3px'>");?></p>
+				<p><? echo("<input type='text' name='cod' id='cod' value='$cod' size='3px' readonly>");?></p>
 				<label  class="col-sm-2 control-label">Cel Num:: 15-</label>
-			    <p><? echo("<input type='text' name='celular' id='celular' value='$celular'>");?></p>
+			    <p><? echo("<input type='text' name='celular' id='celular' value='$celular' readonly>");?></p>
 				<label  class="col-sm-2 control-label">Tel fijo dia</label>
 		    	<p><? echo("<input disabled='true' type='text' name='fijoDia' value='$fijoDia'>"); ?></p>
 				<label class="col-sm-2 control-label">Tel fijo noche</label>
