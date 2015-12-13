@@ -26,7 +26,7 @@ CREATE TABLE `cat_dispo` (
   `iddispo` int(11) NOT NULL AUTO_INCREMENT,
   `dispo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`iddispo`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `cat_dispo` (
 
 LOCK TABLES `cat_dispo` WRITE;
 /*!40000 ALTER TABLE `cat_dispo` DISABLE KEYS */;
-INSERT INTO `cat_dispo` VALUES (1,'diponible'),(2,'no disponible'),(3,'no definido');
+INSERT INTO `cat_dispo` VALUES (0,'no definido'),(1,'full time'),(2,'part time'),(3,'no disponible');
 /*!40000 ALTER TABLE `cat_dispo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,6 +75,7 @@ CREATE TABLE `disponibilidad` (
   `idmiembro` varchar(45) DEFAULT NULL,
   `fechaInicio` date DEFAULT NULL,
   `fechaFin` date DEFAULT NULL,
+  `iddispo` int(11) DEFAULT NULL,
   PRIMARY KEY (`iddisponibilidad`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -113,7 +114,7 @@ CREATE TABLE `miembro` (
   `apodo` varchar(45) DEFAULT NULL,
   `codArea` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmiembro`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +123,7 @@ CREATE TABLE `miembro` (
 
 LOCK TABLES `miembro` WRITE;
 /*!40000 ALTER TABLE `miembro` DISABLE KEYS */;
-INSERT INTO `miembro` VALUES (1,'Root','','','','Admin','','','',0,'¨E†²µ+\03†ZDœ5ÿÔ|','0000-00-00',1,'3',NULL,NULL);
+INSERT INTO `miembro` VALUES (1,'Root','','','','Admin','','','',0,'¨E†²µ+\03†ZDœ5ÿÔ|','0000-00-00',1,'0',NULL,NULL);
 /*!40000 ALTER TABLE `miembro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,4 +184,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-11 19:31:26
+-- Dump completed on 2015-12-12 21:07:18
