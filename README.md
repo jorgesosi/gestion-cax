@@ -16,7 +16,7 @@ Gestión Cax
 ======
 Descripción
 -----
-La aplicación muestra la información de los miembros que  están disponibles para realizar una **"salida"** de la **Comisión de Auxilio (CAX)** del **Club Andino Bariloche**. Las diferentes pantallas permiten ver disponibilidad , datos personales y habilidades de otros miembros
+La aplicación muestra la información de los miembros que  están disponibles para realizar una ***"salida"*** de la ***Comisión de Auxilio (CAX)*** ***Club Andino Bariloche***. Las diferentes pantallas permiten ver disponibilidad , datos personales y habilidades de otros miembros
 
 Guía de usuario
 ===
@@ -37,7 +37,7 @@ Vistas
 Pantalla de Log-in (gestión-cax)
 ----
 ![login] (img/login.png?raw=true)
-Contiene dos campos para colocar el nombre de *** usuario y la contraseña***, el nombre de ***usuario*** sera el *e-mail registrados* en los listados de la CAX, la contraseña sera colocada por el ***Administrador*** y  podrá ser cambiada por el ***Usuario***.
+Contiene dos campos para colocar el nombre de *** usuario y la contraseña***, el nombre de ***usuario*** sera el ***e-mail registrados*** en los listados de la CAX, la contraseña sera colocada por el ***Administrador*** y  podrá ser cambiada por el ***Usuario***.
 
 Botón ingresar 
 ----
@@ -57,7 +57,7 @@ Pantalla de Inicio.
 ----
 ![inicio] (img/ini.png?raw=true)
 Es la pantalla que recibe al usuario cada ves que ingrese al sistema luego de haber confirmado el alta.
-Muestra la **disponibilidad** de hoy y mañana en la ventana principal y la barra de menú común a todas las pantallas
+Muestra la ***disponibilidad*** de hoy y mañana en la ventana principal y la barra de menú común a todas las pantallas
 Muestra dos tablas con los  miembros disponibles hoy y mañana.
 
 ##Busqueda
