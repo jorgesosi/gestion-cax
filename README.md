@@ -34,21 +34,6 @@ Usuario/Administrador
 
 Vistas
 ===
-Pantalla Administrador
------
-![admin] (img/list_admin.png?raw=true)
-
-
-Crear usuario nuevo
------
-![nuevo] (img/list_nuevo_admin.png?raw=true)
-
-
-usuario creado
-----
-![nuevo2] (img/list_crea_admin.png?raw=true)
-
-
 Pantalla de Log-in (gestión-cax)
 ----
 ![login] (img/login.png?raw=true)
@@ -62,19 +47,23 @@ Recuperación de contraseña
 ----
 Enviá la contraseña al ***e-mail registrado del usuario***. En caso de que la dirección de correo sea ***incorrecta*** envía un mensaje de ***error***.
 
-Primer Pantalla de Usuario Nuevo
+Pantalla de Usuario Nuevo
 -----
 ![primer] (img/miem_inicial.png?raw=true)
 
-Se debe cambiar la contraseña primero, después completar todos los campos, si no se cambia la contraseña, los cambios agregados se perderán y se tendrán que llenar nuevamente
+Es la primer pantalla que encuetra un usuario nuevo, donde debe cargar sus datos personales, ***Se debe cambiar la contraseña primero***,para luego completar todos los campos, si no se cambia la contraseña, los datos cargados agregados se perderán y se tendrán que llenar nuevamente. El alta como usuario del sistama Gestion Cax, se realiza despues de haber completado los datos  de este formulario, que posteriormente se llamara ***Mis Datos.***
 
 Pantalla de Inicio.
 ----
 ![inicio] (img/ini.png?raw=true)
-
+Es la pantalla que recibe al usuario cada ves que ingrese al sistema luego de haber confirmado el alta.
 Muestra la **disponibilidad** de hoy y mañana en la ventana principal y la barra de menú común a todas las pantallas
 Muestra dos tablas con los  miembros disponibles hoy y mañana.
 
+##Busqueda
+
+Existen dos campos para realizar busquedas, el primer campo DESDE, permite la busqueda en un dia especifico.
+Campo Hasta, este campo puede este en blanco, pero si se completa, se hace una combinacion de las dos fechas y muestra los miembros que pueden estar disponibles, este tipo de busqueda no es exacta, como buscar por un solo dia, ya que muestra los miembros que estan disponibles en un periodo de tiempo, si el periodo es muy largo puede ser que algun miembro tenga pequenos periodos de no disponibilidad
 Botón ver mas
 ---
 Este botón lleva a la pantalla donde se visualizan los datos completos de la persona, Datos Personales, Categoría dentro del Grupo de la **CAX**, Habilidades.
@@ -92,10 +81,31 @@ Resultado de búsqueda por disponibilidad
 ![inicio] (img/ini_conf_busc.png?raw=true)
 ![inicio] (img/ini_res_busc.png?raw=true)
 
+Pantalla Administrador
+-----
+Los usuarios administradores son los responsbles de dar de alta a nuevos miembros, esto se realiza a travez de un mail proporsionado por cada uno a dicho administrador. Se resuelve este metodo para tener el control de los miembros que accederan al sistema.
+
+![admin] (img/list_admin.png?raw=true)
+
+
+Crear usuario nuevo
+-----
+![nuevo] (img/list_nuevo_admin.png?raw=true)
+
+
+usuario creado
+----
+![nuevo2] (img/list_crea_admin.png?raw=true)
+
+
+
+
+
 Barra de menú
 ---
 * Inicio: vuelve a la pantalla de inicio(disponibilidad)
 * Listados(lleva al usuario al listado completo de miembros.
+* Guardia, abre el formularo de los miembros de guardia, mensuales y anuales
 * Usuario Conectado (muestra el nombre y apellido del usuario que inicio la sesión)
 * Mis Datos (Abre formulario de los **datos personales** permite la edición de  datos y disponibilidad)
 * Buscar(busca a un miembro por nombre o por apellido)
@@ -139,17 +149,34 @@ Botón disponibilidad
 ---
 ![disponibilidad] (img/disp_ver.png?raw=true)
 
-Muestra la pantalla de disponibilidad total de la persona
+Muestra la pantalla de disponibilidad de la persona
 Si se accede desde ***Mis Datos*** de la barra menú se accede a la posibilidad de editar disponibilidad
+En esta pantalla se puede seleccionar el tipo de disponibilidad acorde a cada necesidad.
+dentro de las posibilidades esta la opcion de disponible, no disponible, o no definido (por defecto).
+dentro de disponibilidad si se seleccionan fechas de no disponibilidad, se cambia de full-time a part-time.
+En el caso de que la disponibilidad esta seteada en part-time, y se la cambia a full-time, se borran los datos de no disponibilidad.
+El proposito de este metodo es que cada usuario decida si va a marcarse como disponible o no disponible o que cargue los periodos en los que sabe que no va a estar.
+en el caso de marcar la opcion de no disponible, este estado se mantien hasta que el usuario cambie su estado a diaponible.
+en caso de busqueda por disponibilidad, no aparecera su nombre.
+
 ![dispo2] (img/disp_edit.png?raw=true)
-Haciendo click en el campo de texto se despliega un calendario que comienza en la fecha de "Hoy". y se podrá cargar el periodo de disponibilidad.
+
+Haciendo click en el campo de texto se despliega un calendario que comienza en la fecha de "Hoy". y se podrá cargar el periodo de ***No disponibilidad.***
 ![dispo2] (img/disp_nuevo.png?raw=true)
 
-La categoría se carga en el formato de opciones, donde solo se podrá elegir **una sola** categoría
+La categoría se carga en un menu desplegable,  donde solo se podrá elegir **una sola** categoría
 
 Habilidades
 ---
-Consiste en campos tipo checkbox donde pueden elegir **varias** habilidades
+Consiste en un menu desplegable que perite  **varias** habilidades
+
+##Guardia
+Menu desplegable que permite seleccionar el o los meses en los que se estara de guardia.
+
+#Pantalla Guardia
+Esta panalla muestra dos listas donde se pueden ver los miembros que estan de guardia en el mes en curso y otra lista que muestra los miembros que estan de guardia durante todo el año, estos datos se cambien desde le formulario de ***Mis Datos***,
+el alta o baja de este listado estara a cargo del usuario o de lagun administrador del sistema
+
 
 Botón aceptar
 ---
