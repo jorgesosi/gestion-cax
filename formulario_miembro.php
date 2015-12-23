@@ -62,14 +62,21 @@ if (isset($_GET['id'])){
 <html>
 <head>
 	<title> Comisión de Auxilio - Sistema de Gestion de Disponibilidad de Miembros de Auxilio  </title>
+	<meta charset="utf-8" />
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/bootstrap-select.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+	
 	<script src="js/bootstrap.min.js"></script>
+  	<script src="js/bootstrap-select.js"></script>
+	
 	<!--estas lines incorporan los archivos necesarios para el datepicker -->
-	<meta charset="utf-8" />
+	
     <link rel="stylesheet" href="css/jquery-ui.css" />
     <script src="js/jquery-1.9.1.js"></script>
     <script src="js/jquery-ui.js"></script>
@@ -120,9 +127,9 @@ function funcionAceptar(){
 	var password=document.getElementById('password').value;
 	var fijoDia=document.getElementById('fijoDia').value;
 	var fijoNoche=document.getElementById('fijoNoche').value;
-	var cat1=document.getElementById('cat1').checked;
-	var cat2=document.getElementById('cat2').checked;
-	var cat3=document.getElementById('cat3').checked;
+	var cat=document.getElementById('cat').value;
+	//alert("categoriaN:"+cat);
+	
 	if(nombre==''){
 		alert("El Campo 'Nombre' Esta Vacio");
 		document.getElementById('nombre').focus();
@@ -209,11 +216,11 @@ function funcionAceptar(){
 		alert("El 'Fijo de Noche' no es Valido solo son validos '[0-9]' o '()'o '-'");
 		document.getElementById('fijoNoche').focus();
 		return false;
-	}else  if(cat1==false&&cat2==false&&cat3==false){
+	}else if(cat=='0'){
 		alert("Seleccione una Categoria");
-		document.getElementById('cat1').focus();
+		document.getElementById('cat').focus();
 		return false;
-	}else{
+	}else {
 		return true;
 	}	
 }
@@ -232,9 +239,9 @@ function funcionAdmin(){
 	var password=document.getElementById('password').value;
 	var fijoDia=document.getElementById('fijoDia').value;
 	var fijoNoche=document.getElementById('fijoNoche').value;
-	var cat1=document.getElementById('cat1').checked;
-	var cat2=document.getElementById('cat2').checked;
-	var cat3=document.getElementById('cat3').checked;
+	//var cat1=document.getElementById('cat1').checked;
+	//var cat2=document.getElementById('cat2').checked;
+	//var cat3=document.getElementById('cat3').checked;
 	 if(!/^[a-zA-Z ]*$/.test(nombre)){//validar el campo nombre alfabetico
 		alert("El Formato 'Nombre' No  Valido");
 		document.getElementById('nombre').focus();
@@ -313,7 +320,7 @@ function funcionAdmin(){
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					
+					<li><a href="guardia.php">Guardia</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -411,53 +418,143 @@ function funcionAdmin(){
 	    		}
 				?>
 		    	<p></p>
+		    	<label  class="col-sm-2 control-label">Habilidades</label>
+					<!-- cargamos el select para asignar habilidades al usuario -->
+				<select class="selectpicker" name= "hab[]" multiple data-selected-text-format="count>3" data-style="btn-primary"  data-width="auto" title='Seleccione Habilidades'>
+				<!--<option disabled='diasbled' > Seleccione Mes Guardia</option>-->
+		<?
+
+		   			require("include/connect_db.php");
+		   			$query = 'SELECT idskil,nombre from CAX.skill ;';
+					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+					$total=mysql_num_rows($result);
+					for($i=1;$i<=$total;$i++){
+						$row=mysql_fetch_object($result);
+						$consulta= "SELECT idskill FROM CAX.miembro_skill WHERE idmiembro='".$id."' AND 
+						idskill='".$i."';";
+						$resultado= mysql_query($consulta) or die('Consulta fallida: ' . mysql_error());
+						if (isset($_GET["ext"])==FALSE){
+							if (mysql_num_rows($resultado)!=0)
+								echo("<option  value='".$i."'selected >$row->nombre</option>");
+							else
+								echo("<option   value=".$i." >$row->nombre</option>");
+						}else if (mysql_num_rows($resultado)!=0)
+								echo("<option disabled='disabled'  value=".$i." selected >$row->nombre</option>");
+							else
+								echo("<option disabled='disabled'  value=".$i." >$row->nombre</option>");
+		   			}   				
+		 ?>
+			</select>
+			<p></p>
+		    <p></p>
+			<label  class="col-sm-2 control-label">Guardia</label>
+			<!-- cargamos el select para asignar un mes de guardia al usuario asi lomostramos en la pagina de inicio-->
+			<select class="selectpicker" name= "mes[]" multiple data-selected-text-format="count>3" data-style="btn-primary"  data-width="auto" title='Seleccione mes Guardia'>
+				<!--<option disabled='diasbled' > Seleccione Mes Guardia</option>-->
+				<?
+		    			require("include/connect_db.php");
+		    			$guardia='SELECT * FROM CAX.guardia where idguardia!=0;';
+		    			$result = mysql_query($guardia) or die('Consulta fallida: ' . mysql_error()); 
+
+		    			for($i=1;$i<=12;$i++) {
+		    				$a=$i-1;
+		    				$row=mysql_fetch_object($result);
+		    				$consulta= "SELECT idguar FROM CAX.miembro_guardia 
+		    				WHERE idmiem=".$id." AND idguar=".$i.";";
+							$res=mysql_query($consulta) or die ('Consulta fallida: ' . mysql_error());
+							if(isset($_GET["ext"])==FALSE){
+								if(mysql_num_rows($res)!=0)
+									echo("<option  value='".$i."'selected >$row->nombre_mes</option>");
+								else
+									echo("<option   value=".$i." >$row->nombre_mes</option>");
+							}else if (mysql_num_rows($res)!=0)
+									echo("<option disabled='disabled'  value=".$i." selected >$row->nombre_mes</option>");
+								else
+									echo("<option disabled='disabled'  value=".$i." >$row->nombre_mes</option>");
+		    			}   				
+		    	?>
+			</select>
+			<p></p>
+			<p></p>
+			<label  class="col-sm-2 control-label">categoria</label>
+			<!-- cargamos el select para asignar un mes de guardia al usuario asi lomostramos en la pagina de inicio-->
+			<select class="selectpicker" id="cat"name= "idcategoria"  data-selected-text-format="count>3" data-style="btn-primary"  data-width="auto" title='Seleccione una Categoria'>
+				<!--<option disabled='diasbled' > Seleccione Mes Guardia</option>-->
+				<?
+		    			require("include/connect_db.php");
+		    			$cate='SELECT * FROM CAX.categoria ;';
+		    			$result = mysql_query($cate) or die('Consulta fallida: ' . mysql_error()); 
+		    			$total=mysql_num_rows($result);
+		    			for($i=0;$i<=$total;$i++) {
+		    				$a=$i-1;
+		    				$row=mysql_fetch_object($result);
+		    				$consulta= "SELECT idcategoria FROM CAX.miembro 
+		    				WHERE idmiembro=".$id." AND idcategoria=".$i.";";
+							$res=mysql_query($consulta) or die ('Consulta fallida: ' . mysql_error());
+							if(isset($_GET["ext"])==FALSE){
+								if(mysql_num_rows($res)!=0)
+									echo("<option  value='".$i."'selected >$row->nombre</option>");
+								else
+									echo("<option   value=".$i." >$row->nombre</option>");
+							}else if (mysql_num_rows($res)!=0)
+									echo("<option disabled='disabled'  value=".$i." selected >$row->nombre</option>");
+								else
+									echo("<option disabled='disabled'  value=".$i." >$row->nombre</option>");
+		    			}   				
+		    	?>
+			</select>
+			<p></p>
 		    	<? if (isset($_GET["ext"])==FALSE)
 						echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$id&owner'><button type='button' class='btn  btn-success'><span>Ver disponibilidad</span></button></a></td>");
 					else
 						echo("<td><a title='Ver disponibilidad' href='disponibilidad.php?idmiembro=$id'><button type='button' class='btn  btn-success'><span>Ver disponibilidad</span></button></a></td>");
 				?>
-	    		<h3>Categoria</h3>
-	    		<p></p>	
-	    	    <?if (isset($_GET["ext"])==FALSE){?>
-		    		<input type="radio" name="idcategoria" value="1" id="cat1"<?if ($idcategoria==1)echo ('checked')?>>
-		    		Activo
-		    		<input type="radio" name="idcategoria"  value="2" id="cat2"<?if ($idcategoria==2)echo ('checked')?>>
-		    		Apoyo
-		    		<input type="radio" name="idcategoria"  value="3" id="cat3"<?if ($idcategoria==3)echo ('checked')?>>
-		    		Aspirante
-		    	<?} else{?>
-		    		<input type="radio" disabled='disabled' name="idcategoria" value="1" <?if ($idcategoria==1)echo ('checked')?>>
-		    		Activo
-		    		<input type="radio" disabled='disabled' name="idcategoria"  value="2" <?if ($idcategoria==2)echo ('checked')?>>
-		    		Apoyo
-		    		<input type="radio" disabled='disabled' name="idcategoria"  value="3" <?if ($idcategoria==3)echo ('checked')?>>
-		    		Aspirante
-		    		<?}?>
+	    	<!--//	<h3>Categoria</h3>
+	    	//	<p></p>	
+	    	//    <?//if (isset($_GET["ext"])==FALSE){?>
+		    //		<input type="radio" name="idcategoria" value="1" id="cat1"<?//if ($idcategoria==1)echo ('checked')?>>
+		    //		Activo
+		    //		<input type="radio" name="idcategoria"  value="2" id="cat2"<?//if ($idcategoria==2)echo ('checked')?>>
+		    //		Apoyo
+		    //		<input type="radio" name="idcategoria"  value="3" id="cat3"<?//if ($idcategoria==3)echo ('checked')?>>
+		    //		Aspirante
+		    //	<?//}// else//{?>
+		    //		<input type="radio" disabled='disabled' name="idcategoria" value="1" <?//if ($idcategoria==1)echo ('checked')?>>
+		    //		Activo
+		    //		<input type="radio" disabled='disabled' name="idcategoria"  value="2" <?//if ($idcategoria==2)echo ('checked')?>>
+		    //		Apoyo
+		    //		<input type="radio" disabled='disabled' name="idcategoria"  value="3" <?//if ($idcategoria==3)echo ('checked')?>>
+		    //		Aspirante
+		    //		<?//}?>
+			-->	<p></p>
 				<p></p>
-			<h3>Habilidades</h3>
-			<? 	$query = 'SELECT idskil,nombre from CAX.skill ;';
-				$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
-				$total=mysql_num_rows($result);
-				for($i=1;$i<=$total;$i++){
-					$row=mysql_fetch_object($result);
-					$consulta= "SELECT idskill FROM CAX.miembro_skill WHERE idmiembro='".$id."' AND 
-					idskill='".$i."';";
-					$resultado= mysql_query($consulta) or die('Consulta fallida: ' . mysql_error());
-					if (isset($_GET["ext"])==FALSE)
-						if (mysql_num_rows($resultado)!=0)
-							echo ("<input type='checkbox' name='hab".$i."' checked='checked' 
-								value='".$i."'> ".$row->nombre." ");
-						else echo ("<input type='checkbox' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
-					else if (mysql_num_rows($resultado)!=0)
-							echo ("<input type='checkbox' disabled='disabled' name='hab".$i."' checked='checked' 
-								value='".$i."'> ".$row->nombre." ");
-						else echo ("<input type='checkbox' disabled='disabled' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
-					if ($i!==1 && $i%10==1)
-						echo ("<br>");
-				}
-			?>  
+					
+			<!--<h3>Habilidades</h3>
+			<? 	//$query //= 'SELECT idskil,nombre from CAX.skill ;';
+				//$result //= mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+				//$total//=mysql_num_rows($result);
+				//for($i=1;$i<=$total;$i++){
+				//	$row=mysql_fetch_object($result);
+				//	$consulta= "SELECT idskill FROM CAX.miembro_skill WHERE idmiembro='".$id."' AND 
+				//	idskill='".$i."';";
+				//	$resultado= mysql_query($consulta) or die('Consulta fallida: ' . mysql_error());
+				//	if (isset($_GET["ext"])==FALSE)
+				//		if (mysql_num_rows($resultado)!=0)
+				//			echo ("<input type='checkbox' name='hab".$i."' checked='checked' 
+				//				value='".$i."'> ".$row->nombre." ");
+				//		else echo ("<input type='checkbox' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
+				//	else if (mysql_num_rows($resultado)!=0)
+				//			echo ("<input type='checkbox' disabled='disabled' name='hab".$i."' checked='checked' 
+				//				value='".$i."'> ".$row->nombre." ");
+				//		else echo ("<input type='checkbox' disabled='disabled' name='hab".$i."'value='".$i."'> ".$row->nombre." ");
+				//	if ($i!==1 && $i%10==1)
+				//		echo ("<br>");
+				//}
+			//?>  -->
 			<p></p>
+			
 			<p></p>
+
 
 			<? if (isset($_GET["ext"])==FALSE){
 				if ($_SESSION["permiso"]==1 && $nombre=="Root"){

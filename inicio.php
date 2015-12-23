@@ -89,7 +89,7 @@ if (empty($_SESSION["id"]))
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					
+					<li><a href="guardia.php">Guardia</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -142,9 +142,19 @@ where  miembro.idmiembro= disponibilidad.idmiembro and  (curdate()+1  not betwee
 		<div class="col-md-2">
 			<p></p><p></p><p></p><!--area para cargar datos de busqueda -->
 				<p><button type='submit'class='btn btn-success'name='buscar' value='buscar'onclick='return funcionBuscar()'>Buscar</button></p>
+				</form>
 		</div>
-		<div class =col-md-2>
+		<div class ="col-md-2">
+			<p></p><p></p><p></p>
+			<form class="form-group" action='include/alertamail.php' method='POST'>
+				<p><button type='submit'class='btn btn-danger'name='alerta' value='alerta'onclick=''>Alerta Mail</button></p>
 			</form>
+		</div>
+		<div class ="col-md-2">
+			<? if (isset($_GET['msg'])){
+		echo ('<div class="alert alert-warning alert-dismissable">');
+  		echo ('<button type="button" class="close" data-dismiss="alert">&times;</button>');
+  		echo ('<strong>¡AVISO!</strong> Alerta Enviada </div>');}?>
 		</div>
 		
 				<!--<td><a title='Ver mas' href='include/servicio_disponibilidad.php'><button type='button' class='btn  btn-info'><span class='glyphicon glyphicon-plus'</span></button></a></td>-->

@@ -1,24 +1,54 @@
 <? require("connect_db.php");
 
 $id1=$_GET['id1'];
+$idcategoria=$_POST['idcategoria'];
+
 foreach($_POST as $nombre_campo => $valor){
 	$asignacion= "$".$nombre_campo."='". $valor."';";
 	echo $asignacion;
 	eval($asignacion);
 }
 
-	$query="DELETE FROM CAX.miembro_skill WHERE idmiembro='".$id."';";
+	/*$query="DELETE FROM CAX.miembro_skill WHERE idmiembro='".$id."';";
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	$query = 'SELECT idskil,nombre from CAX.skill ;';
 	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	$total=mysql_num_rows($result);
 	for($i=1;$i<=$total;$i++){
 		$var=${'hab'.$i};
-		echo $var;
+		//echo $var;
+		if (isset($var))
+			$query="INSERT INTO CAX.miembro_skill (idmiembro,idskill) VALUE ('".$id."','".$var."')";
+		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	}*/
+	$query="DELETE FROM CAX.miembro_skill WHERE idmiembro='".$id."';";
+	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	$query = 'SELECT idskil,nombre from CAX.skill ;';
+	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	//$total=mysql_num_rows($result);
+	$hab=$_POST['hab'];
+	for($i=0;$i<count($hab);$i++){
+		$var=$hab[$i];
+		//echo $var;
 		if (isset($var))
 			$query="INSERT INTO CAX.miembro_skill (idmiembro,idskill) VALUE ('".$id."','".$var."')";
 		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 	}
+
+	$query="DELETE FROM CAX.miembro_guardia WHERE idmiem='".$id."';";
+	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	$query = 'SELECT idguardia,nombre_mes from CAX.guardia ;';
+	$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	//$total=mysql_num_rows($result);
+	$mes=$_POST['mes'];
+	for ($i=0;$i< count($mes);$i++){
+		$var=$mes[$i];
+		//echo $var;
+		if (isset($var))
+			$query="INSERT INTO CAX.miembro_guardia (idmiem,idguar) VALUE ('".$id."','".$var."')";
+		$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
+	}
+	
 
 
 

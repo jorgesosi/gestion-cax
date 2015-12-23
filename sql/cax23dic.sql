@@ -26,7 +26,7 @@ CREATE TABLE `cat_dispo` (
   `iddispo` int(11) NOT NULL AUTO_INCREMENT,
   `dispo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`iddispo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,10 +47,10 @@ DROP TABLE IF EXISTS `categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categoria` (
-  `idcategoria` int(11) NOT NULL AUTO_INCREMENT,
+  `idcategoria` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`idcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +59,7 @@ CREATE TABLE `categoria` (
 
 LOCK TABLES `categoria` WRITE;
 /*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
-INSERT INTO `categoria` VALUES (1,'Activo'),(2,'Apoyo'),(3,'Aspirante');
+INSERT INTO `categoria` VALUES (0,'No def'),(1,'Activo'),(2,'Apoyo'),(3,'Aspirante');
 /*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,6 +90,30 @@ LOCK TABLES `disponibilidad` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `guardia`
+--
+
+DROP TABLE IF EXISTS `guardia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `guardia` (
+  `idguardia` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_mes` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idguardia`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `guardia`
+--
+
+LOCK TABLES `guardia` WRITE;
+/*!40000 ALTER TABLE `guardia` DISABLE KEYS */;
+INSERT INTO `guardia` VALUES (1,'enero'),(2,'febrero'),(3,'marzo'),(4,'abril'),(5,'mayo'),(6,'junio'),(7,'julio'),(8,'agosto'),(9,'setiembre'),(10,'octubre'),(11,'noviembre'),(12,'diciembre');
+/*!40000 ALTER TABLE `guardia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `miembro`
 --
 
@@ -114,7 +138,7 @@ CREATE TABLE `miembro` (
   `apodo` varchar(45) DEFAULT NULL,
   `codArea` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmiembro`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,8 +147,32 @@ CREATE TABLE `miembro` (
 
 LOCK TABLES `miembro` WRITE;
 /*!40000 ALTER TABLE `miembro` DISABLE KEYS */;
-INSERT INTO `miembro` VALUES (1,'Root','','','','Admin','','','',0,'¨E†²µ+\03†ZDœ5ÿÔ|','0000-00-00',1,'0',NULL,NULL);
+INSERT INTO `miembro` VALUES (1,'Root','','','','Admin','','','',0,'¨E†²µ+\03†ZDœ5ÿÔ|','0000-00-00',1,'0','',0);
 /*!40000 ALTER TABLE `miembro` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `miembro_guardia`
+--
+
+DROP TABLE IF EXISTS `miembro_guardia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `miembro_guardia` (
+  `idmiembro_guardia` int(11) NOT NULL AUTO_INCREMENT,
+  `idguar` int(11) DEFAULT NULL,
+  `idmiem` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idmiembro_guardia`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `miembro_guardia`
+--
+
+LOCK TABLES `miembro_guardia` WRITE;
+/*!40000 ALTER TABLE `miembro_guardia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `miembro_guardia` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -139,7 +187,7 @@ CREATE TABLE `miembro_skill` (
   `idmiembro` int(11) DEFAULT NULL,
   `idskill` int(11) DEFAULT NULL,
   PRIMARY KEY (`idmiembro_skill`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=446 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,4 +232,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-12-12 21:07:18
+-- Dump completed on 2015-12-23 10:48:23

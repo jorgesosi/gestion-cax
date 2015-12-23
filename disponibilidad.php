@@ -117,7 +117,7 @@ if (empty($_SESSION["id"]))
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					
+					<li><a href="guardia.php">Guardia</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -153,8 +153,8 @@ if (empty($_SESSION["id"]))
 			     	<div class="panel-heading"><?echo('<p><h1>Estado</h1><h4>Datos de Usuario:'.$fila->nombre.' '.$fila->apellido.'</h4></p>');?></div>
 			     	<div class="panel-body"></div>
 			     	<p> <strong>Debe  seleccionar un estado</strong> <br>
-			     		Si su estado es  puede<strong> seleccionar fechas<br>
-			     		 en la que no va estar disponible</strong> carguelas en al cuadro de abajo<br></p>
+			     		<strong> seleccionar fechas<br>
+			     		 en la que no va estar disponible</strong>en caso de ser necesario<br></p>
 
 			     		 <?
 						if(isset($_POST['Cambiar'])){

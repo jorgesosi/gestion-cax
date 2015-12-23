@@ -13,14 +13,18 @@ function pregunta(){
 </script> 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- Estas lineas necesita boostrap para funcionar, necesita incorporar estos archivos -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-select.css">
+    <link rel="stylesheet" href="css/bootstrap-select.min.css">
+	
 	<script src="js/bootstrap.min.js"></script>
-</head>
+  	<script src="js/bootstrap-select.js"></script>
+	
+	</head>
 <!-- Navegador-->
 <div class="container-full">
 	<div class="row">
@@ -43,7 +47,7 @@ function pregunta(){
 				<ul class="nav navbar-nav">
 					<li><a href="inicio.php">Inicio</a></li>
 					<li><a href="listadomiembro.php">Listado</a></li>
-					
+					<li><a href="guardia.php">Guardia</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -78,7 +82,7 @@ function pregunta(){
 		    			<option value="categoria">categoria</option>
 		    <?
 		    			require("include/connect_db.php");
-		    			$categoria='SELECT * FROM CAX.categoria;';
+		    			$categoria='SELECT * FROM CAX.categoria where idcategoria!=0;';
 		    			$result = mysql_query($categoria) or die('Consulta fallida: ' . mysql_error()); 
 		    			while ($row=mysql_fetch_object($result)){
 		    				echo("<option value='$row->nombre'>$row->nombre</option>");
@@ -88,6 +92,8 @@ function pregunta(){
 		    ?>
 		  			</select>
 		</div>
+		<!--se crean los downdrop para cargar las habilidades y las categoria
+				para realizar una busqueda avanzada por categoria o pro habilidades -->
 		<div class="col-md-1">
 				
 					<select name="habilidades"class="btn btn-warning btn-xs" >
