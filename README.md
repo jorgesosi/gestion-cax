@@ -37,7 +37,7 @@ Vistas
 Pantalla de Log-in (gestión-cax)
 ----
 ![login] (img/login.png?raw=true)
-Contiene dos campos para colocar el nombre de *** usuario y la contraseña***, el nombre de ***usuario*** sera el ***e-mail registrados*** en los listados de la CAX, la contraseña sera colocada por el ***Administrador*** y  podrá ser cambiada por el ***Usuario***.
+Contiene dos campos para colocar el nombre de *** usuario y la contraseña***, el nombre de ***usuario*** sera el ***e-mail registrado*** en los listados de la CAX, la contraseña sera colocada por el ***Administrador*** y  podrá ser cambiada por el ***Usuario***.
 
 Botón ingresar 
 ----
@@ -51,39 +51,47 @@ Pantalla de Usuario Nuevo
 -----
 ![primer] (img/miem_inicial.png?raw=true)
 
-Es la primer pantalla que encuetra un usuario nuevo, donde debe cargar sus datos personales, ***Se debe cambiar la contraseña primero***,para luego completar todos los campos, si no se cambia la contraseña, los datos agregados se perderán y se tendrán que llenar nuevamente. El alta como usuario del sistama Gestion Cax, se realiza despues de haber completado los datos  de este formulario, que posteriormente se llamara ***Mis Datos.***
+Es la primer pantalla que encuentra un usuario nuevo, donde debe cargar sus datos personales, ***Se debe cambiar la contraseña primero***,para luego completar todos los campos.
+Si no se cambia la contraseña, los datos agregados se perderán y se tendrán que llenar nuevamente. El alta como usuario del sistema Gestión Cax, se realiza después de haber completado los datos  de este formulario, que posteriormente se accederá desde el menu  ***Mis Datos.***
 
 Pantalla de Inicio.
 ----
 ![inicio] (img/ini.png?raw=true)
+
 Es la pantalla que recibe al usuario cada ves que ingrese al sistema luego de haber confirmado el alta.
 Muestra la ***disponibilidad*** de hoy y mañana en la ventana principal y la barra de menú común a todas las pantallas
 Muestra dos tablas con los  miembros disponibles hoy y mañana.
+Se pueden ver dos campos   Desde y Hasta y dos botones, Buscar y Alerta Mail. 
 
-##Busqueda
-
-Existen dos campos para realizar busquedas, el primer campo DESDE, permite la busqueda en un dia especifico.
-Campo Hasta, este campo puede este en blanco, pero si se completa, se hace una combinacion de las dos fechas y muestra los miembros que pueden estar disponibles, este tipo de busqueda no es exacta, como buscar por un solo dia, ya que muestra los miembros que estan disponibles en un periodo de tiempo, si el periodo es muy largo puede ser que algun miembro tenga pequenos periodos de no disponibilidad
-Botón ver mas
----
-Este botón lleva a la pantalla donde se visualizan los datos completos de la persona, Datos Personales, Categoría dentro del Grupo de la **CAX**, Habilidades.
-
-![ver mas] (img/miem_ver.png?raw=true)
+##Búsqueda (Botón Buscar)
 
 Búsqueda por disponibilidad
-----
+
 ![inicio búsqueda] (img/ini_busc_norm.png?raw=true)
 
-Esta pantalla permita buscar miembros que estén disponibles en una fecha especifica, o en un periodo de fechas determinado por la búsqueda, si se coloca la fecha desde, se busca en un solo día especifico, si se completan las dos fechas muestra la disponibilidad en ese periodo de tiempo, si el usuario tiene aunque sea un día marcado como disponible en el periodo buscado lo va a mostrar en la tabla de  la derecha, como muestra la imagen siguiente
+Existen dos campos para realizar búsquedas, el primer campo DESDE, permite la búsqueda en un día especifico.
+
+Campo Hasta, este campo puede estar en blanco, pero si se completa, se hace una combinación de las dos fechas y se buscara a todos los miembros que estén disponibles en ese periodo de tiempo, este tipo de búsqueda no es exacta, como buscar por un solo día,  si el periodo es muy largo puede generar resultados inexactos.
 
 Resultado de búsqueda por disponibilidad
 -----
 ![inicio] (img/ini_conf_busc.png?raw=true)
 ![inicio] (img/ini_res_busc.png?raw=true)
 
+ 
+## Alerta Mail (Botón)
+Al hacer clic en este botón se envía un mensaje a los usuarios que figuran en el listado de disponibles hoy,  con los teléfonos SMART se puede tener acceso a cualquier cuenta de mail, solo con configurarla y mantenerla sincronizada. 
+
+##Botón ver mas
+---
+Este botón lleva a la pantalla donde se visualizan los datos completos de la persona, Datos Personales, Categoría dentro del Grupo de la **CAX**, Habilidades.
+
+![ver mas] (img/miem_ver.png?raw=true)
+
+
 Pantalla Administrador
 -----
-Los usuarios administradores son los responsbles de dar de alta a nuevos miembros, esto se realiza a travez de un mail proporsionado por cada uno a dicho administrador. Se resuelve este metodo para tener el control de los miembros que accederan al sistema.
+Los usuarios administradores son los responsables de dar de alta a nuevos miembros, esto se realiza a través de un mail proporcionado por cada uno a dicho administrador. Se resuelve este método para tener el control de los miembros que accederán al sistema.
 
 ![admin] (img/list_admin.png?raw=true)
 
@@ -107,7 +115,7 @@ Barra de menú
 
 * Inicio: vuelve a la pantalla de inicio(disponibilidad)
 * Listados(lleva al usuario al listado completo de miembros.
-* Guardia, abre el formularo de los miembros de guardia, mensuales y anuales
+* Guardia, abre el formulario de los miembros de guardia, mensuales y anuales
 * Usuario Conectado (muestra el nombre y apellido del usuario que inicio la sesión)
 * Mis Datos (Abre formulario de los **datos personales** permite la edición de  datos y disponibilidad)
 * icono ? de ayuda, abre la pantalla de manual de usuario
@@ -120,7 +128,7 @@ Buscar (Pantalla Usuario Administrador)
 
 Busca por **nombre** o **apellido**. Por categoría o por habilidades.
 Muestra la pantalla de **Listado de Miembros**. Donde se muestran todos los datos de la **persona/miembro** buscado
-Si el campo nombre o apellido esta vació, muestra todos los miembros, si selecciona alguna habilidad y/o categoría, buscara a las personas que cumplan con dicha busqueda. El campo "nombre o apellido" puede estar completo con una palabra o parte de una palabra y brindara un resultado con las palabras que contengan las letras determinadas.
+Si el campo nombre o apellido esta vació, muestra todos los miembros, si selecciona alguna habilidad y/o categoría, buscara a las personas que cumplan con dicha búsqueda. El campo "nombre o apellido" puede estar completo con una palabra o parte de una palabra y brindara un resultado con las palabras que contengan las letras determinadas.
 Buscar (Pantalla Usuario Normal)
 ----
 ![buscar] (img/list_busc_norm.png?raw=true)
@@ -129,13 +137,13 @@ Pantalla Datos Personales (Formulario Miembros)
 ---
 ![formulario personal] (img/miem_ed.png?raw=true)
 
-Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** puede modificar solo sus datos personales, pudiendo cambiar la información de cada campo de **texto y  menues desplegables**.
-se puede cargar y editar los menues de: 
+Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** puede modificar solo sus datos personales, pudiendo cambiar la información de cada campo de **texto y  menúes desplegables**.
+se puede cargar y editar los menúes de: 
 ###menu habilidades
 
 ![formulario personal] (img/miem_ed_hab.png?raw=true)
 
-###menu categoria
+###menu categoría
 
 ![formulario personal] (img/miem_ed_cat.png?raw=true)
 
@@ -161,7 +169,7 @@ Como se muestra en la siguiente imagen
 
 Botón disponibilidad
 ---
-Abre la pantalla de disponivilidad
+Abre la pantalla de disponibilidad
 
 
 Botón aceptar
@@ -176,20 +184,20 @@ Envía  los datos cargados o modificados a la **Base de Datos**
 Muestra la pantalla de disponibilidad de la persona
 Si se accede desde ***Mis Datos*** de la barra menú se accede a la posibilidad de editar disponibilidad
 En esta pantalla se puede seleccionar el tipo de disponibilidad acorde a cada necesidad.
-dentro de las posibilidades esta la opcion de disponible, no disponible, o no definido (por defecto).
+dentro de las posibilidades esta la opción de disponible, no disponible, o no definido (por defecto).
 dentro de disponibilidad si se seleccionan fechas de no disponibilidad, se cambia de full-time a part-time.
 En el caso de que la disponibilidad esta seteada en part-time, y se la cambia a full-time, se borran los datos de no disponibilidad.
-El proposito de este metodo es que cada usuario decida si va a marcarse como disponible o no disponible o que cargue los periodos en los que sabe que no va a estar.
-en el caso de marcar la opcion de no disponible, este estado se mantien hasta que el usuario cambie su estado a diaponible.
-en caso de busqueda por disponibilidad, no aparecera su nombre.
+El propósito de este método es que cada usuario decida si va a marcarse como disponible o no disponible o que cargue los periodos en los que sabe que no va a estar.
+en el caso de marcar la opción de no disponible, este estado se mantiene hasta que el usuario cambie su estado a disponible.
+en caso de búsqueda por disponibilidad, no aparecerá su nombre.
 
 ![dispo2] (img/disp_edit.png?raw=true)
 
 Haciendo click en el campo de texto se despliega un calendario que comienza en la fecha de "Hoy". y se podrá cargar el periodo de ***No disponibilidad.***
 
 #Pantalla Guardia
-Esta panalla muestra dos listas donde se pueden ver los miembros que estan de guardia en el mes en curso y otra lista que muestra los miembros que estan de guardia durante todo el año, estos datos se cambien desde le formulario de ***Mis Datos***,
-el alta o baja de este listado estara a cargo del usuario o de lagun administrador del sistema
+Esta pantalla muestra dos listas donde se pueden ver los miembros que están de guardia en el mes en curso y otra lista que muestra los miembros que están de guardia durante todo el año, estos datos se cambien desde le formulario de ***Mis Datos***,
+el alta o baja de este listado estará a cargo del usuario o de algún administrador del sistema
 
 ![guardia] (img/guardia.png?raw=true)
 
@@ -230,7 +238,7 @@ Gestión_cax
 	|		|__jquery-ui.css
 	|		|__style.css
 	|		|__images
-	|				|__ui-icons_222222_256x240.png
+	|			|__ui-icons_222222_256x240.png
 	|__img
 	|		|__cab.jpg
 	|		|__logoComAux.jpg
