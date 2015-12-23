@@ -51,7 +51,7 @@ Pantalla de Usuario Nuevo
 -----
 ![primer] (img/miem_inicial.png?raw=true)
 
-Es la primer pantalla que encuetra un usuario nuevo, donde debe cargar sus datos personales, ***Se debe cambiar la contraseña primero***,para luego completar todos los campos, si no se cambia la contraseña, los datos cargados agregados se perderán y se tendrán que llenar nuevamente. El alta como usuario del sistama Gestion Cax, se realiza despues de haber completado los datos  de este formulario, que posteriormente se llamara ***Mis Datos.***
+Es la primer pantalla que encuetra un usuario nuevo, donde debe cargar sus datos personales, ***Se debe cambiar la contraseña primero***,para luego completar todos los campos, si no se cambia la contraseña, los datos agregados se perderán y se tendrán que llenar nuevamente. El alta como usuario del sistama Gestion Cax, se realiza despues de haber completado los datos  de este formulario, que posteriormente se llamara ***Mis Datos.***
 
 Pantalla de Inicio.
 ----
@@ -103,11 +103,14 @@ usuario creado
 
 Barra de menú
 ---
+![menu] (img/menu.png?raw=true)
+
 * Inicio: vuelve a la pantalla de inicio(disponibilidad)
 * Listados(lleva al usuario al listado completo de miembros.
 * Guardia, abre el formularo de los miembros de guardia, mensuales y anuales
 * Usuario Conectado (muestra el nombre y apellido del usuario que inicio la sesión)
 * Mis Datos (Abre formulario de los **datos personales** permite la edición de  datos y disponibilidad)
+* icono ? de ayuda, abre la pantalla de manual de usuario
 * Buscar(busca a un miembro por nombre o por apellido)
 * Salir (cierra la sesión del usuario actual)
 
@@ -126,27 +129,48 @@ Pantalla Datos Personales (Formulario Miembros)
 ---
 ![formulario personal] (img/miem_ed.png?raw=true)
 
-Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** puede modificar solo sus datos personales, pudiendo cambiar la información de cada campo de **texto checkbox, y optionbox**.
+Muestra **todos** los datos de la persona, si el usuario esta **"logueado"** puede modificar solo sus datos personales, pudiendo cambiar la información de cada campo de **texto y  menues desplegables**.
+se puede cargar y editar los menues de: 
+###menu habilidades
+
+![formulario personal] (img/miem_ed_hab.png?raw=true)
+
+###menu categoria
+
+![formulario personal] (img/miem_ed_cat.png?raw=true)
+
+###menu de guardia ( en caso de ser miembro de ***Guarida***
+
+![formulario personal] (img/miem_ed_guardia.png?raw=true)
+
 ```
 Importante
 
 Los datos solo pueden ser editados por el miembro o por el administrador
 
-Para acceder a la edición de los datos personales se debe ingresar por la opción Mis Datos en la Barra de menú
+Para acceder a la edición de los datos personales se debe 
+
+ingresar por la opción Mis Datos en la Barra de menú
 
 El administrador podrá asignar la categoría administrador a cualquier miembro en esta pantalla.
 
 Como se muestra en la siguiente imagen
 ```
-![formulario personal] (img/miem_ed_admin.png?raw=true)
 
-Los campos de texto se colocaran todo los datos personales del usuario.
-Primer Pantalla de Datos Personales
-------
-![formulario personal] (img/miem_inicial.png?raw=true)
+
 
 Botón disponibilidad
 ---
+Abre la pantalla de disponivilidad
+
+
+Botón aceptar
+---
+Envía  los datos cargados o modificados a la **Base de Datos**
+
+
+##Pantalla Disponibilidad
+
 ![disponibilidad] (img/disp_ver.png?raw=true)
 
 Muestra la pantalla de disponibilidad de la persona
@@ -162,25 +186,12 @@ en caso de busqueda por disponibilidad, no aparecera su nombre.
 ![dispo2] (img/disp_edit.png?raw=true)
 
 Haciendo click en el campo de texto se despliega un calendario que comienza en la fecha de "Hoy". y se podrá cargar el periodo de ***No disponibilidad.***
-![dispo2] (img/disp_nuevo.png?raw=true)
-
-La categoría se carga en un menu desplegable,  donde solo se podrá elegir **una sola** categoría
-
-Habilidades
----
-Consiste en un menu desplegable que perite  **varias** habilidades
-
-##Guardia
-Menu desplegable que permite seleccionar el o los meses en los que se estara de guardia.
 
 #Pantalla Guardia
 Esta panalla muestra dos listas donde se pueden ver los miembros que estan de guardia en el mes en curso y otra lista que muestra los miembros que estan de guardia durante todo el año, estos datos se cambien desde le formulario de ***Mis Datos***,
 el alta o baja de este listado estara a cargo del usuario o de lagun administrador del sistema
 
-
-Botón aceptar
----
-Envía  los datos cargados o modificados a la **Base de Datos**
+![guardia] (img/guardia.png?raw=true)
 
 
 Pantalla Listado
@@ -191,11 +202,6 @@ Muestra el listado de todos los miembros por nombre, apellido, domicilio, catego
 botón disponibilidad: lleva a la pantalla disponibilidad total de la persona seleccionada
 botón editar **(en el caso de que este habilitado)** lleva a la pantalla de datos de la persona para poder editarlos o modificarlos.
 
-Pantalla Administrador (nuevo usuario)
-----
-![nuevo] (img/list_crea_admin.png?raw=true)
-
-Desde el botón que se crea a la derecha se genera un nuevo usuario. la característica es que solo crea el e-mail y un password, para que el usuario pueda ingresar por primera vez, cargue todos los datos necesarios.
 
 Guía de Instalación (Programadores)
 ===
