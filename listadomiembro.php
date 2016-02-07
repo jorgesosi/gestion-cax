@@ -195,8 +195,8 @@ function pregunta(){
 					require("include/connect_db.php");
 					if (isset($_POST['buscar'])){
 						$nombre=$_POST['name'];
-						/*$query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
-						 FROM CAX.miembro, CAX.categoria WHERE categoria.idcategoria = miembro.idcategoria ;';*/
+						$query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,miembro.codArea, categoria.nombre as categoria
+						 FROM CAX.miembro, CAX.categoria WHERE (miembro.nombre LIKE "%'.$nombre.'%" OR miembro.apellido LIKE "%'.$nombre.'%") AND categoria.idcategoria = miembro.idcategoria ;';
 					if(isset($_POST['categoria'])){
 						$categoria=$_POST['categoria'];	
 						if ($categoria=="categoria"){
@@ -225,10 +225,10 @@ function pregunta(){
 						}
 						}	
 					}
-					}else {/*$query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,categoria.nombre as categoria
-						 FROM CAX.miembro, CAX.categoria WHERE categoria.idcategoria = miembro.idcategoria ;';*/
-						 $query = 'select  miembro.idcategoria, miembro.nombre,categoria.nombre as categoria, miembro.domicilio, miembro.fijoDia, miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,miembro.apodo, miembro.codArea  from CAX.miembro, CAX.categoria
-									where miembro.idcategoria = categoria.idcategoria;';
+					}else { $query = 'SELECT distinctrow miembro.idcategoria, miembro.nombre,miembro.domicilio,miembro.fijoDia,miembro.fijoNoche,miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,miembro.codArea, categoria.nombre as categoria
+						 FROM CAX.miembro, CAX.categoria WHERE categoria.idcategoria = miembro.idcategoria ;';
+						 /*$query = 'select  miembro.idcategoria, miembro.nombre,categoria.nombre as categoria, miembro.domicilio, miembro.fijoDia, miembro.fijoNoche, miembro.apellido, miembro.celular, miembro.idmiembro, miembro.email,miembro.apodo, miembro.codArea  from CAX.miembro, CAX.categoria
+									where miembro.idcategoria = categoria.idcategoria;';*/
 					}
 					$result = mysql_query($query) or die('Consulta fallida: ' . mysql_error()); 
 

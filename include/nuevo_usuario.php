@@ -1,4 +1,4 @@
-<?
+<?ob_start();
 require("connect_db.php");
 include("class.phpmailer.php"); 
 include("class.smtp.php"); 
@@ -52,4 +52,4 @@ echo "Mensaje enviado correctamente";
 }
 
 header('Location: ../listadomiembro.php?msg1');
-?>
+ob_end_flush();?>

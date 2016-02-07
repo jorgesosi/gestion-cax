@@ -1,4 +1,4 @@
-<?
+<?ob_start();
 require("connect_db.php");
 include("class.phpmailer.php"); 
 include("class.smtp.php"); 
@@ -45,4 +45,4 @@ echo "Error: " . $mail->ErrorInfo;
 echo "Mensaje enviado correctamente"; 
 }
 header('Location: ../index.php?msg');
-?>
+ob_end_flush();?>

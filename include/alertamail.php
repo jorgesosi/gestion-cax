@@ -1,4 +1,4 @@
-<?php
+<?ob_start();
 require("connect_db.php");
 include("class.phpmailer.php"); 
 include("class.smtp.php"); 
@@ -61,4 +61,4 @@ while($row=mysql_fetch_array($result)){
     $mail->ClearAddresses(); 
 }
 header('Location: ../inicio.php?msg');
-?>
+ob_end_flush();?>
